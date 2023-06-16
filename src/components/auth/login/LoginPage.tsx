@@ -8,7 +8,7 @@ const LoginPage = () => {
         <div>
             <div className="root">
                 <div className="form">
-                    <h1>Авторизация</h1>
+                    <h2>Авторизация</h2>
                     <p>Введите ваш логин и пароль</p>
                     <TextField fullWidth={true} margin='normal' id="outlined-basic" label="Email" variant="outlined" placeholder="Введите ваш email"/>
                     <TextField type="password" fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Введите ваш пароль"/>

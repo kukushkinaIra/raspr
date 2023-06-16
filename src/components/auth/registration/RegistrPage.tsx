@@ -8,7 +8,7 @@ const RegistrPage = () => {
         <Fragment>
             <div className="root">
                 <div className="form">
-                    <h1>Регистрация</h1>
+                    <h2>Регистрация</h2>
                     <p>Введите данные для регистрации</p>
                     <TextField fullWidth={true} margin='normal' id="outlined-basic" label="Name" variant="outlined" placeholder="Введите ваше Имя"/>
                     <TextField fullWidth={true} margin='normal' id="outlined-basic" label="Surname" variant="outlined" placeholder="Введите вашу Фамилию"/>

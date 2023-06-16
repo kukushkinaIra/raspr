@@ -1,3 +1,5 @@
+/* @import url("Code_pro/stylesheet.css"); */
+
 .App {
   text-align: center;
 }
@@ -41,6 +43,7 @@
 
 *{
   margin: 0;
+  font-family: 'Code Pro' sans-serif;
 }
 h2, h1{
   text-transform: uppercase;
@@ -83,6 +86,7 @@ nav{
 
 .user_variations a{
   margin-left: 20px;
+  color: #000000;
 }
 
 .user_variations a.registration{
@@ -319,4 +323,134 @@ footer{
 .root h1, .root p{
   text-align: center;
   margin-bottom: 10px;
+}
+
+/* user page */
+
+.tab-content h3{
+  font-size: 32px;
+  text-transform: uppercase;
+  margin: 20px 0px;
+}
+
+.tab-content h3.choose{
+  margin-left: 15px;
+}
+
+.user_container{
+  min-height: 100vh;
+}
+
+.mainUser{
+  background-color: #F0F1F3;
+  /* min-height: 100vh; */
+}
+
+#ledt-tabs-example-tab-first, #ledt-tabs-example-tab-second, #ledt-tabs-example-tab-third{
+  color: #000000;
+}
+
+.nav a.nav-link {
+  background-color: white;
+}
+
+.nav a.nav-link:hover {
+  background-color: gray;
+}
+
+.nav a.nav-link:focus {
+  background-color: #E3E3E3!important;
+}
+
+.nav-pills {
+  --bs-nav-pills-border-radius: none!important;
+  --bs-nav-pills-link-active-color: #fff;
+  --bs-nav-pills-link-active-bg: #E3E3E3!important;
+}
+
+.nav-pills .nav-link {
+  border-radius: none;
+  color: #000000;
+}
+
+.nav-pills .nav-link.active, .nav-pills .nav-link.active:hover {
+  color: #000000!important;
+}
+
+
+.service hr{
+  width: 100%;
+}
+
+.services{
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.service{
+  width: 28%;
+  padding: 20px;
+  background-color: white;
+  margin: 18px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.service:hover{
+  box-shadow: 0px 0px 10px #FAC600;
+}
+
+.service h4{
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.form_heading{
+  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.modal-footer{
+  justify-content: center !important;
+  border-top: none !important ;
+}
+
+.modal-footer .btn{
+  background: #FCDC2D !important;
+  border-radius: 30px !important;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  color: #000000;
+  border-color: #FCDC2D !important;
+}
+
+.modal-footer .btn:hover{
+  background: #f3cf00 !important;
+  color: #000000;
+}
+
+.modal-header{
+  border-bottom: none !important;
+  padding-bottom: 0px !important;
+}
+
+.modal-content .modal-title{
+  text-transform: uppercase !important;
+}
+
+
+/* admin page */
+
+.orders{
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.orders tr:hover{
+  background-color: #c2c1bb;
+}
+
+.orders thead{
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
