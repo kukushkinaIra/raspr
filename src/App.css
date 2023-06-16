@@ -131,18 +131,21 @@ section.main{
 }
 
 /* servise style */
+.services_block{
+  padding-bottom: 20px;
+}
 
-.services h2{
+.services_block h2{
   text-align: center;
   margin-top: 25px;
 }
 
-.services img{
+.services_block img{
   width: 400px;
   height: 400px;
 }
 
-.service{
+.service_block{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -377,6 +380,9 @@ footer{
   color: #000000!important;
 }
 
+/* .nav-pills:hover {
+  --bs-nav-pills-link-active-bg: #000000!important;
+} */
 
 .service hr{
   width: 100%;

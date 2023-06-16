@@ -5,10 +5,10 @@ import serviceBoy from "./images/jump_student 1.png"
 
 function Service(){
     return(
-        <section className="services">
+        <section className="services_block">
             <h2>Наши услуги</h2>
             <div className="container">
-                <div className="service">
+                <div className="service_block">
                     <div>
                         <img src={serviceBoy} />
                     </div>
@@ -21,7 +21,7 @@ function Service(){
                         </ul>
                     </div>
                 </div>
-                <div className="service">
+                <div className="service_block">
                     <div className="service_text">
                         <h3>Производственная/
                             преддипломная практика</h3>
