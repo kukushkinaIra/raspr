@@ -10,9 +10,9 @@ function MainInfo(){
                 <div className="main_description">
                     <h1>Официальное Трудоустройство</h1>
                     <p>Поможем с распределением, перераспределением, прохождением производственной и преддипломной практики студентам РБ</p>
-                    <a>Подать заявку</a>
+                    <a className="home_main_button">Подать заявку</a>
                 </div>
-                <div class="main_photo"></div>
+                <div className="main_photo"></div>
             </div>
         </section>
     )

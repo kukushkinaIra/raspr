@@ -41,7 +41,7 @@ const { error, isLoaded, content } = this.state;
     } else {
       return (
         <div>
-            <Table responsive striped bordered hover>
+            <Table responsive striped hover>
                                     <thead>
                                         <tr>
                                         <th >Наименование услуги</th>
@@ -59,6 +59,11 @@ const { error, isLoaded, content } = this.state;
                                                   <td>
                                                     В обработке
                                                   </td>
+                                                }
+                                                {item.status ==="ACCEPTED" &&
+                                                    <td>
+                                                        Ожидание платежа
+                                                    </td>
                                                 }
                                                 <td>
                                                   {item.payments.map(pay=>(

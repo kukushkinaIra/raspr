@@ -1,11 +1,11 @@
 // import logo from './logo.svg';
-import './App.css';
 import MainPage from "./components/mainPage/MainPage.jsx"
 import LoginPage from './components/auth/login/LoginPage.tsx';
 import RegistrPage from './components/auth/registration/RegistrPage.tsx';
 import AdminPage from "./components/admin/AdminPage.jsx"
 import UserPage from "./components/user/UserPage.jsx"
 import {Route, Routes} from "react-router-dom"
+import './App.css';
 
 function App() {
   return (
