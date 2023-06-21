@@ -12,7 +12,7 @@ constructor(props) {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/users/15")
+    fetch("http://213.109.204.76:8080/users/15")
       .then(res => res.json())
     .then(
         data => {
