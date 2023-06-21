@@ -23,7 +23,7 @@ function Main(){
         <Container className="user_container">
             <Tab.Container id="ledt-tabs-example" defaultActiveKey="first">
                 <Row>
-                    <Col sm={3} >
+                    <Col sm={2} className="profile_menu">
                         <Nav variant="pills" className="flex-column mt-2 nav">
                             <Nav.Item className="tab_item_custom">
                                 <Nav.Link className="tab_link_custom" eventKey="first">

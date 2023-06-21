@@ -56,7 +56,7 @@ export default function TableHistoryOrders() {
 
   return (
     <TableContainer className="orders" component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table responsive striped hover className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>ФИО</TableCell>
