@@ -1,0 +1,192 @@
+{
+    "_embedded" : {
+      "offers" : [ {
+        "title" : "Гарантийное письмо",
+        "price" : 100.00,
+        "userStatusForUnlock" : "DEFAULT",
+        "userStatusOnCompletion" : "GUARANTEE",
+        "orderStatuses" : [ "MEETING_WAITING", "REVIEW", "PAYMENT_REVIEW", "COMPLETED", "REJECTED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/3"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/3"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/3/orders"
+          }
+        }
+      }, {
+        "title" : "Распределение",
+        "price" : 350.00,
+        "userStatusForUnlock" : "GUARANTEE",
+        "userStatusOnCompletion" : "CONTRACT",
+        "orderStatuses" : [ "MEETING_WAITING", "REVIEW", "PAYMENT_REVIEW", "COMPLETED", "REJECTED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/4"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/4"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/4/orders"
+          }
+        }
+      }, {
+        "title" : "Перераспределение",
+        "price" : 350.00,
+        "userStatusForUnlock" : "GUARANTEE",
+        "userStatusOnCompletion" : "CONTRACT",
+        "orderStatuses" : [ "MEETING_WAITING", "REVIEW", "PAYMENT_REVIEW", "COMPLETED", "REJECTED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/5"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/5"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/5/orders"
+          }
+        }
+      }, {
+        "title" : "Практика",
+        "price" : 350.00,
+        "userStatusForUnlock" : "DEFAULT",
+        "userStatusOnCompletion" : "PRACTICE",
+        "orderStatuses" : [ "MEETING_WAITING", "REVIEW", "PAYMENT_REVIEW", "COMPLETED", "REJECTED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/6"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/6"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/6/orders"
+          }
+        }
+      }, {
+        "title" : "Справка",
+        "price" : 20.00,
+        "userStatusForUnlock" : "CONTRACT",
+        "userStatusOnCompletion" : "CONTRACT",
+        "orderStatuses" : [ "MEETING_WAITING", "PAYMENT_REVIEW", "COMPLETED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/7"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/7"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/7/orders"
+          }
+        }
+      }, {
+        "title" : "Характеристика",
+        "price" : 20.00,
+        "userStatusForUnlock" : "CONTRACT",
+        "userStatusOnCompletion" : "CONTRACT",
+        "orderStatuses" : [ "MEETING_WAITING", "PAYMENT_REVIEW", "COMPLETED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/8"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/8"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/8/orders"
+          }
+        }
+      }, {
+        "title" : "Копия трудовой книжки",
+        "price" : 20.00,
+        "userStatusForUnlock" : "CONTRACT",
+        "userStatusOnCompletion" : "CONTRACT",
+        "orderStatuses" : [ "MEETING_WAITING", "PAYMENT_REVIEW", "COMPLETED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/9"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/9"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/9/orders"
+          }
+        }
+      }, {
+        "title" : "Подписать дневник",
+        "price" : 20.00,
+        "userStatusForUnlock" : "PRACTICE",
+        "userStatusOnCompletion" : "PRACTICE",
+        "orderStatuses" : [ "MEETING_WAITING", "PAYMENT_REVIEW", "COMPLETED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/10"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/10"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/10/orders"
+          }
+        }
+      }, {
+        "title" : "Подписать отчет",
+        "price" : 20.00,
+        "userStatusForUnlock" : "PRACTICE",
+        "userStatusOnCompletion" : "PRACTICE",
+        "orderStatuses" : [ "MEETING_WAITING", "PAYMENT_REVIEW", "COMPLETED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/11"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/11"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/11/orders"
+          }
+        }
+      }, {
+        "title" : "Подписать титульный лист",
+        "price" : 20.00,
+        "userStatusForUnlock" : "PRACTICE",
+        "userStatusOnCompletion" : "PRACTICE",
+        "orderStatuses" : [ "MEETING_WAITING", "PAYMENT_REVIEW", "COMPLETED", "PAYMENT_DONE", "ACCEPTED", "PAYMENT_REJECTED" ],
+        "_links" : {
+          "self" : {
+            "href" : "http://213.109.204.76:8080/offers/12"
+          },
+          "offer" : {
+            "href" : "http://213.109.204.76:8080/offers/12"
+          },
+          "orders" : {
+            "href" : "http://213.109.204.76:8080/offers/12/orders"
+          }
+        }
+      } ]
+    },
+    "_links" : {
+      "self" : {
+        "href" : "http://213.109.204.76:8080/offers?page=0&size=20"
+      },
+      "profile" : {
+        "href" : "http://213.109.204.76:8080/profile/offers"
+      },
+      "search" : {
+        "href" : "http://213.109.204.76:8080/offers/search"
+      }
+    },
+    "page" : {
+      "size" : 20,
+      "totalElements" : 10,
+      "totalPages" : 1,
+      "number" : 0
+    }
+  }

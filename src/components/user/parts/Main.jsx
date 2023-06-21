@@ -5,17 +5,20 @@ import Container from 'react-bootstrap/Container';
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import FormGarantLetter from "./formGarantLetter.jsx"
 import Table from 'react-bootstrap/Table';
+// import OffersList from './Offers.js';
+// import axios from 'axios';
 
 
 function Main(){
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
     return(
         <Container className="user_container">
             <Tab.Container id="ledt-tabs-example" defaultActiveKey="first">
@@ -46,6 +49,7 @@ function Main(){
                                 <a>Ссылка на форму</a>
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">
+                            {/* <Button onClick={getAllOffers}>Logout</Button> */}
                                 <h3 className="choose">Выберите услугу для заказа</h3>
                                 <div className="services">
                                     <div className="service" onClick={handleShow}>
