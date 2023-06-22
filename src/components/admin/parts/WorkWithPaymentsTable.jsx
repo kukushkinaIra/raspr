@@ -37,7 +37,7 @@ constructor(props) {
 const { error, data } = this.state;
     // eslint-disable-next-line no-lone-blocks
     return(
-        <Table responsive striped bordered hover>
+        <Table responsive striped hover>
         <thead>
             <tr>
                 <th >ФИО</th>

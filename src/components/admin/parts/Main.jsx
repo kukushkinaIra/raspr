@@ -60,6 +60,7 @@ function Main(){
                                 
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">
+                                <h3>Управление заказами</h3>
                                 <WorkWithPaymentsTable/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="third">

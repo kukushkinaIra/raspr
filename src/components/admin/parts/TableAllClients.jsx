@@ -1,13 +1,15 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TablePagination from "@material-ui/core/TablePagination";
-import Paper from "@material-ui/core/Paper";
+// import { makeStyles } from "@material-ui/core/styles";
+// import Table from "@material-ui/core/Table";
+// import TableBody from "@material-ui/core/TableBody";
+// import TableCell from "@material-ui/core/TableCell";
+// import TableContainer from "@material-ui/core/TableContainer";
+// import TableHead from "@material-ui/core/TableHead";
+// import TableRow from "@material-ui/core/TableRow";
+// import TablePagination from "@material-ui/core/TablePagination";
+// import Paper from "@material-ui/core/Paper";
+import Table from 'react-bootstrap/Table';
+
 
 // const useStyles = makeStyles({
 //   table: {
@@ -138,7 +140,7 @@ export default class TableAllClients extends React.Component {
       } else {
         return (
           <div>
-              <Table responsive striped bordered hover>
+              <Table responsive striped hover>
                                       <thead>
                                           <tr>
                                             <th>ФИО</th>
