@@ -41,7 +41,7 @@ import Table from 'react-bootstrap/Table';
 //   createData("Гуревич Алексей17", "КБ", +375123456789, "БГУ", "lorem_ipsum_ipsum@gmail.com")
 // ];
 
-// export default function AllClients() {
+// export default function AllClientsTable() {
 //   const classes = useStyles();
 //   const [page, setPage] = React.useState(0);
 //   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -102,7 +102,7 @@ import Table from 'react-bootstrap/Table';
 //   );
 // }
 
-export default class TableAllClients extends React.Component {
+export default class AllClientsTable extends React.Component {
 
   constructor(props) {
       super(props);

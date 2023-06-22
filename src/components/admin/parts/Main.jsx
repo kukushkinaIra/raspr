@@ -10,10 +10,10 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import FormGarantLetter from "./formGarantLetter.jsx"
 import Table from 'react-bootstrap/Table';
-import SimpleTable from "./TableOrders.jsx";
-import TableHistoryOrder from "./TableHistoryOrder.jsx";
-import AllClients from "./TableAllClients.jsx";
-import WorkWithPaymentsTable from "./WorkWithPaymentsTable.jsx";
+import ManagementTable from "./ManagementTable.jsx";
+import OrdersHistoryTable from "./OrdersHistoryTable.jsx";
+import AllClientsTable from "./AllClientsTable.jsx";
+import WorkWithOrdersTable from "./WorkWithOrdersTable.jsx";
 
 
 function Main(){
@@ -61,19 +61,19 @@ function Main(){
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">
                                 <h3>Управление заказами</h3>
-                                <WorkWithPaymentsTable/>
+                                <WorkWithOrdersTable/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="third">
                                 <h3 className="choose">Распределение заказов</h3>
-                                <SimpleTable/>
+                                <ManagementTable/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="forth">
                                 <h3>Информация о заказах</h3>
-                                <TableHistoryOrder/>
+                                <OrdersHistoryTable/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="fifth">
                                 <h3>Информация о клиентах</h3>
-                                <AllClients/>
+                                <AllClientsTable/>
                             </Tab.Pane>
                         </Tab.Content>
 
