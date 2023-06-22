@@ -6,11 +6,11 @@ function Navigation(){
     return(
         
         <nav>
-            <div class="container navigation_cotainer">
+            <div className="container navigation_cotainer">
                 <div>
-                    <img src={logo} />
+                    <img src={logo} alt="logo"/>
                 </div>
-                <div class="navigation">
+                <div className="navigation">
                     <ul>
                         <li>
                             <a href="">
@@ -32,7 +32,7 @@ function Navigation(){
                         </li>
                     </ul>
                 </div>
-                <div class="user_variations">
+                <div className="user_variations">
                     <NavLink className="username" to="/register" style={{textDecoration:'none'}}>lorem_ipsum@gmail.com</NavLink>
                     <NavLink className="enter" to="/login" style={{textDecoration:'none'}} >Выйти</NavLink>
                 </div>
