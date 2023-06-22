@@ -1,5 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import Table from 'react-bootstrap/Table';
+import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
+
+
+import {makeStyles} from "@material-ui/core/styles";
 // import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -8,7 +12,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
-import Table from 'react-bootstrap/Table';
 
 // const useStyles = makeStyles({
 //   table: {
@@ -103,68 +106,80 @@ import Table from 'react-bootstrap/Table';
 
 export default class OrdersHistoryTable extends React.Component {
 
-  constructor(props) {
-      super(props);
-      this.state = {
-        error: null,
-        isLoaded: false,
-        _embedded: {},
-        content:[]
-      };
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            expandedRow: null,
+            content: []
+        };
     }
-  
+
+    toggleRow = (rowId) => {
+        this.setState((prevState) => ({
+            expandedRow: prevState.expandedRow === rowId ? null : rowId
+        }));
+    };
+
     componentDidMount() {
-      fetch("http://213.109.204.76:8080/orders")
-        .then(res => res.json())
-      .then(
-          data => {
-          this.setState({
-              content: data.content, 
-            isLoading: false,
-          })
-      },
-          (error) => {
-            this.setState({
-              isLoaded: true,
-              error
-            });
-          }
-        )
+        fetch("http://213.109.204.76:8080/orders")
+            .then(res => res.json())
+            .then(
+                data => {
+                    this.setState({
+                        content: data.content,
+                        isLoading: false,
+                    })
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
     }
-  
+
     render() {
-  
-  const { error, isLoaded, content } = this.state;
-      if (error) {
-        return <div>Ошибка: {error.message}</div>;
-      } else {
-        return (
-          <div>
-              <Table responsive striped hover>
-                                      <thead>
-                                          <tr>
-                                            <th>ФИО</th>
-                                            <th >Наименование услуги</th>
-                                            <th>Email</th>
-                                            <th >Статус заказа</th>
-                                            <th >Дата заказа</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                          {content.map(item => (
-                                              <tr key={item.id}>
-                                                  <td>{item.user.firstname} {item.user.lastname}</td>
-                                                  <td>{item.offer.title}</td>
-                                                  <td>{item.user.email}</td>
-                                                  {item.status ==="REVIEW" &&
-                                                    <td>
-                                                      В обработке
-                                                    </td>
-                                                  }
-                                                  { item.status ==="ACCEPTED" &&
-                                                          <td>Одобрен</td>
-                                                    }
-                                                  {/* <td>
+
+        const {error, isLoaded, content, expandedRow} = this.state;
+        if (error) {
+            return <div>Ошибка: {error.message}</div>;
+        } else {
+            return (
+                <div>
+                    <Table responsive striped hover>
+                        <thead>
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Наименование услуги</th>
+                            <th>Email</th>
+                            <th>Статус заказа</th>
+                            <th>Дата заказа</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {content.map(item => (
+                            <React.Fragment key={item.id}>
+                                <tr onClick={() => this.toggleRow(item.id)}>
+                                    <td>
+                                        <span className="arrow-icon">
+                                         {expandedRow === item.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
+                                         )}
+                                        </span>
+                                        {item.user.firstname} {item.user.lastname}</td>
+                                    <td>{item.offer.title}</td>
+                                    <td>{item.user.email}</td>
+                                    {item.status === "REVIEW" &&
+                                        <td>
+                                            В обработке
+                                        </td>
+                                    }
+                                    {item.status === "ACCEPTED" &&
+                                        <td>Одобрен</td>
+                                    }
+                                    {/* <td>
                                                     {item.payments.map(pay=>(
                                                       <p>
                                                         {pay.status ==="UNAVAILABLE" &&
@@ -173,13 +188,21 @@ export default class OrdersHistoryTable extends React.Component {
                                                       </p>
                                                     ))}
                                                   </td> */}
-                                                  <td>{item.createdAt}</td>
-                                              </tr>
-                                            ))}
-                                      </tbody>
-                </Table>
-          </div>
-        );
-      }
+                                    <td>{item.createdAt}</td>
+                                </tr>
+                                {expandedRow === item.id && (
+                                    <tr className="expanded_row">
+                                        <td colSpan={5}>
+                                            Пример разворачивающейся строки {item.createdAt}
+                                        </td>
+                                    </tr>
+                                )}
+                            </React.Fragment>
+                        ))}
+                        </tbody>
+                    </Table>
+                </div>
+            );
+        }
     }
-  }
+}
