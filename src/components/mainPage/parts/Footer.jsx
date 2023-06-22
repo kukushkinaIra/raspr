@@ -8,30 +8,30 @@ import binance from "./images/Binance.svg"
 function Footer() {
 	return(
 		<footer>
-            <div class="footer_container">
-                <div class="footer_info">
-                    <div class="logo">
-                        <img src={logo} />
+            <div className="footer_container">
+                <div className="footer_info">
+                    <div className="logo">
+                        <img src={logo}  alt="logo"/>
                     </div>
                     <div>
                         <a target="_blank" href="https://www.instagram.com/alex.hurevich/">
-                            <img src={insta} />
+                            <img src={insta}  alt="insta"/>
                         </a>
                         <a target="_blank" href="https://vk.com/alex.hurevich">
-                            <img src={vk} />
+                            <img src={vk}  alt="vk"/>
                         </a>
                         <a target="_blank" href="https://t.me/raspred_by">
-                            <img src={telegram} />
+                            <img src={telegram}  alt="tg"/>
                         </a>
                     </div>
                     <div>
-                        <img src={binance} />
+                        <img src={binance}  alt="binance"/>
                     </div>
                     <div>
                         <p>lorem_ipsum@gmail.com</p>
                     </div>
                 </div>
-                <div class="footer_year">
+                <div className="footer_year">
                     <p>Alexey Hurevich © 2023</p>
                 </div>
             </div>

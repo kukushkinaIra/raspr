@@ -3,11 +3,11 @@ import {Link} from "react-router-dom"
 
 function Prices(){
     return(
-        <section class="main_prices">
-            <div class="container">
+        <section className="main_prices">
+            <div className="container">
                 <h2>Цены</h2>
-                <div class="prices_blocks">
-                    <div class="price_block">
+                <div className="prices_blocks">
+                    <div className="price_block">
                         <h3>Распределение / перераспределение</h3>
                         <p>от 127 руб в месяц</p>
                         {/* <hr> */}
@@ -19,7 +19,7 @@ function Prices(){
                             <button>Подать заявку</button>
                         </ul>
                     </div>
-                    <div class="price_block">
+                    <div className="price_block">
                         <h3>Преддипломная практика</h3>
                         <p>от 80 руб в месяц</p>
                         {/* <hr> */}
@@ -31,7 +31,7 @@ function Prices(){
                             <button>Пройти практику</button>
                         </ul>
                     </div>
-                    <div class="price_block">
+                    <div className="price_block">
                         <h3>Прочие услуги</h3>
                         <p>от 7 руб</p>
                         {/* <hr> */}

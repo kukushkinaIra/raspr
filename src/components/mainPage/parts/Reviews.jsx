@@ -29,7 +29,7 @@ function Reviews(){
                             <img src={review1} />
                         </div>
                     </div>
-                    <div class="card">
+                    <div className="card">
                         <div>
                             <img src={reviewPerson2} />
                         </div>
@@ -39,7 +39,7 @@ function Reviews(){
                     </div>
                 </div>
                 <div className="cards">
-                    <div class="card">
+                    <div className="card">
                         <div>
                         <img src={reviewPerson3} />
                         </div>

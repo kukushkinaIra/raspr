@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab, Col, Nav, Row } from "react-bootstrap";
+import { Tab, Col, Nav, Row } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
@@ -93,12 +93,7 @@ const { error, isLoaded, offers } = this.state;
                                     {offers.map(item => (
                                         <div className="service" key={item.id}>
                                             <h4>{item.title}</h4>
-                                            <hr  style={{
-                                                color: 'black',
-                                                backgroundColor: 'black',
-                                                height: .5,
-                                                borderColor : 'black'
-                                            }}/>
+                                            <hr/>
                                             <p>от {item.price} руб в месяц</p>
                                         </div>
                                     ))}
