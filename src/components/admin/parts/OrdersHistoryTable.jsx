@@ -101,7 +101,7 @@ import Table from 'react-bootstrap/Table';
 //   );
 // }
 
-export default class TableHistoryOrder extends React.Component {
+export default class OrdersHistoryTable extends React.Component {
 
   constructor(props) {
       super(props);
