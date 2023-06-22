@@ -13,6 +13,7 @@ import Table from 'react-bootstrap/Table';
 import SimpleTable from "./TableOrders.jsx";
 import TableHistoryOrder from "./TableHistoryOrder.jsx";
 import AllClients from "./TableAllClients.jsx";
+import WorkWithPaymentsTable from "./WorkWithPaymentsTable.jsx";
 
 
 function Main(){
@@ -59,7 +60,7 @@ function Main(){
                                 
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">
-                                
+                                <WorkWithPaymentsTable/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="third">
                                 <h3 className="choose">Распределение заказов</h3>

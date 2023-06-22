@@ -30,12 +30,11 @@ constructor(props) {
       .then(res => res.json())
     .then(
         data => {
-        let some = data._embedded.offers;
         this.setState({
-            offers: data._embedded.offers, 
+            offers: data, 
           isLoading: false,
         })
-        console.log(some)
+
     },
         (error) => {
           this.setState({
