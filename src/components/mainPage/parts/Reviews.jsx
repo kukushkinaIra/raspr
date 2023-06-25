@@ -16,7 +16,7 @@ import review7 from "./images/image 13.png"
 
 function Reviews(){
     return(
-        <section className="rewies">
+        <section className="reviews" id="reviews">
         <div className="container">
             <h2>Мы - это наши клиенты</h2>
             <div className="reviews_cards">
