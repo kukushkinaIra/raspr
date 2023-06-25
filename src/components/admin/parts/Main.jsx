@@ -1,13 +1,13 @@
 // import { Tab } from "@mui/base"
 // import Tab, { Container } from "react-bootstrap/lib/Tab"
-import { Tabs, Tab, Col, Nav, Row } from "react-bootstrap";
+import {Tabs, Tab, Col, Nav, Row} from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
+import {useState} from 'react';
 import FormGarantLetter from "./formGarantLetter.jsx"
 import Table from 'react-bootstrap/Table';
 import ManagementTable from "./ManagementTable.jsx";
@@ -16,15 +16,15 @@ import AllClientsTable from "./AllClientsTable.jsx";
 import WorkWithOrdersTable from "./WorkWithOrdersTable.jsx";
 
 
-function Main(){
+function Main() {
     // const [show, setShow] = useState(false);
     // const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
-    return(
+    return (
         <Container className="user_container">
             <Tab.Container id="ledt-tabs-example" defaultActiveKey="first">
                 <Row>
-                    <Col sm={2} >
+                    <Col sm={2}>
                         <Nav variant="pills" className="flex-column mt-2 nav">
                             <Nav.Item className="tab_item_custom">
                                 <Nav.Link className="tab_link_custom" eventKey="first">
@@ -56,8 +56,7 @@ function Main(){
                     <Col sm={10}>
                         <Tab.Content>
                             <Tab.Pane eventKey="first">
-                                <p>Алексей Гуревич</p>
-                                
+                                <h3>Профиль</h3>
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">
                                 <h3>Управление заказами</h3>
@@ -76,7 +75,6 @@ function Main(){
                                 <AllClientsTable/>
                             </Tab.Pane>
                         </Tab.Content>
-
                     </Col>
                 </Row>
             </Tab.Container>
