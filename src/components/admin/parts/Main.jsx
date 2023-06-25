@@ -53,7 +53,7 @@ function Main(){
                             </Nav.Item>
                         </Nav>
                     </Col>
-                    <Col sm={9}>
+                    <Col sm={10}>
                         <Tab.Content>
                             <Tab.Pane eventKey="first">
                                 <p>Алексей Гуревич</p>
