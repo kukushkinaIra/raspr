@@ -191,10 +191,10 @@ export default class AllClientsTable extends React.Component {
                                     </td>
                                     <td>{item.email}</td>
                                     <td>
-                                        <button className="download_button">
+                                        <button className="table-white-button">
                                             pdf
                                         </button>
-                                        <button className="download_button">
+                                        <button className="table-white-button">
                                             doc
                                         </button>
                                     </td>
