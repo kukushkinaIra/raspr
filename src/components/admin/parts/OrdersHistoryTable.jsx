@@ -147,6 +147,29 @@ export default class OrdersHistoryTable extends React.Component {
         return lastPayment.price;
     }
 
+    parseOrderStatus(status) {
+        switch (status) {
+            case "REVIEW":
+                return "В обработке"
+            case "ACCEPTED":
+                return "Ожидание оплаты"
+            case "REJECTED":
+                return "Отклонён"
+            case "PAYMENT_REVIEW":
+                return "Проверка платежа"
+            case "PAYMENT_DONE":
+                return "Платёж одобрен"
+            case "PAYMENT_REJECTED":
+                return "Платёж отклонён"
+            case "MEETING_WAITING":
+                return "Документы готовы"
+            case "COMPLETED":
+                return "Завершён"
+            default:
+                return "Неизвестно"
+        }
+    }
+
     render() {
 
         const {error, isLoaded, content, expandedRow} = this.state;
@@ -181,23 +204,7 @@ export default class OrdersHistoryTable extends React.Component {
                                     <td>{item.offer.title}</td>
                                     <td>{this.getPrice(item.payments)}</td>
                                     <td>{item.user.email}</td>
-                                    {item.status === "REVIEW" &&
-                                        <td>
-                                            В обработке
-                                        </td>
-                                    }
-                                    {item.status === "ACCEPTED" &&
-                                        <td>Одобрен</td>
-                                    }
-                                    {/* <td>
-                                                    {item.payments.map(pay=>(
-                                                      <p>
-                                                        {pay.status ==="UNAVAILABLE" &&
-                                                          <span>Недоступно</span>
-                                                        }
-                                                      </p>
-                                                    ))}
-                                                  </td> */}
+                                    <td>{this.parseOrderStatus(item.status)}</td>
                                     <td>{new Date(Date.parse(item.createdAt)).toLocaleString()}</td>
                                 </tr>
                                 {expandedRow === item.id && (
