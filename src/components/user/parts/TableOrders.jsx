@@ -92,11 +92,8 @@ export default class TableOrders extends React.Component {
                                 </tr>
                                 {expandedRow === item.id && (
                                     <tr className="expanded_row">
-                                        <td colSpan={4}>
-                                            Пример разворачивающейся строки {item.createdAt}
-                                        </td>
-                                        <td>
-                                            123
+                                        <td colSpan={5}>
+                                            Дополнительная информация
                                         </td>
                                     </tr>
                                 )}

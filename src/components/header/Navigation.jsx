@@ -1,5 +1,5 @@
 import React from "react"
-import logo from "./images/Logo-01 1.svg"
+import logo from "../footer/images/Logo-01 1.svg"
 import {NavLink} from "react-router-dom"
 
 function Navigation(){
@@ -33,7 +33,7 @@ function Navigation(){
                     </ul>
                 </div>
                 <div className="user_variations">
-                    <NavLink className="registration" to="/register" style={{textDecoration:'none'}}>lorem_ipsum@gmail.com</NavLink>
+                    <NavLink className="username" to="/register" style={{textDecoration:'none'}}>lorem_ipsum@gmail.com</NavLink>
                     <NavLink className="enter" to="/login" style={{textDecoration:'none'}} >Выйти</NavLink>
                 </div>
             </div>

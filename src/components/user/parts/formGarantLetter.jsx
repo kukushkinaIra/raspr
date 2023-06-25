@@ -7,7 +7,6 @@ import Form from 'react-bootstrap/Form';
 function FormGarantLetter(){
     return(
         <Form>
-            <h6 className="form_heading">Заполните свои данные</h6>
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>ФИО (вин. падеж)</Form.Label>
                 <Form.Control
@@ -17,7 +16,7 @@ function FormGarantLetter(){
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="name">
+            <Form.Group className="mb-3" controlId="speciality">
                 <Form.Label>Специальность</Form.Label>
                 <Form.Control
                     type="text"
@@ -25,7 +24,7 @@ function FormGarantLetter(){
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="name">
+            <Form.Group className="mb-3" controlId="recepient">
                 <Form.Label>Кому адресовано письмо (род.падеж)</Form.Label>
                 <Form.Control
                     type="text"
@@ -33,7 +32,7 @@ function FormGarantLetter(){
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="name">
+            <Form.Group className="mb-3" controlId="recepient_position">
                 <Form.Label>Должность адресата (род. падеж)</Form.Label>
                 <Form.Control
                     type="text"
@@ -45,6 +44,7 @@ function FormGarantLetter(){
             <Form.Group className="mb-3" controlId="university">
                 <Form.Label>Наименование учереждения образования</Form.Label>
                 <Form.Select aria-label="Default select example">
+                    <option value="0" disabled selected hidden>Выберите свой университет</option>
                     <option value="1">БГУ</option>
                     <option value="2">БГУИР</option>
                     <option value="3">БНТУ</option>
@@ -52,7 +52,12 @@ function FormGarantLetter(){
                     <option value="3">МГЛУ</option>
                 </Form.Select>
             </Form.Group>
-
+            <Form.Group className="mb-3" controlId="document">
+                <Form.Label>Шаблон документа</Form.Label>
+                <Form.Control
+                    type="file" className="form-control-file"
+                />
+            </Form.Group>
         </Form>
 
     )

@@ -141,6 +141,12 @@ export default class OrdersHistoryTable extends React.Component {
             )
     }
 
+    getPrice(payments){
+        const lastPayment = payments
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+        return lastPayment.price;
+    }
+
     render() {
 
         const {error, isLoaded, content, expandedRow} = this.state;
@@ -152,17 +158,20 @@ export default class OrdersHistoryTable extends React.Component {
                     <Table responsive striped hover>
                         <thead>
                         <tr>
+                            <th>№</th>
                             <th>ФИО</th>
-                            <th>Наименование услуги</th>
+                            <th>Услуга</th>
+                            <th>Цена (руб.)</th>
                             <th>Email</th>
-                            <th>Статус заказа</th>
-                            <th>Дата заказа</th>
+                            <th>Статус</th>
+                            <th>Дата</th>
                         </tr>
                         </thead>
                         <tbody>
                         {content.map(item => (
                             <React.Fragment key={item.id}>
                                 <tr onClick={() => this.toggleRow(item.id)}>
+                                    <td>{item.id}</td>
                                     <td>
                                         <span className="arrow-icon">
                                          {expandedRow === item.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
@@ -170,6 +179,7 @@ export default class OrdersHistoryTable extends React.Component {
                                         </span>
                                         {item.user.firstname} {item.user.lastname}</td>
                                     <td>{item.offer.title}</td>
+                                    <td>{this.getPrice(item.payments)}</td>
                                     <td>{item.user.email}</td>
                                     {item.status === "REVIEW" &&
                                         <td>
@@ -188,12 +198,12 @@ export default class OrdersHistoryTable extends React.Component {
                                                       </p>
                                                     ))}
                                                   </td> */}
-                                    <td>{item.createdAt}</td>
+                                    <td>{new Date(Date.parse(item.createdAt)).toLocaleString()}</td>
                                 </tr>
                                 {expandedRow === item.id && (
                                     <tr className="expanded_row">
-                                        <td colSpan={5}>
-                                            Пример разворачивающейся строки {item.createdAt}
+                                        <td colSpan={7}>
+                                            Дополнительная информация
                                         </td>
                                     </tr>
                                 )}
