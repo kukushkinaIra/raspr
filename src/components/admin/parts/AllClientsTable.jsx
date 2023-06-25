@@ -1,6 +1,6 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
-import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
+import {MdKeyboardArrowDown, MdKeyboardArrowRight, MdSimCardDownload} from 'react-icons/md';
 
 
 // import { makeStyles } from "@material-ui/core/styles";
@@ -142,7 +142,20 @@ export default class AllClientsTable extends React.Component {
             )
     }
 
+    getUserInstitution(orders) {
+        const order = this.getLatestOrderWithInfo(orders);
+        return order ? (order.contract ? order.contract.institution.name : order.shortInfo.institution) : '';
+    }
+
+    getLatestOrderWithInfo(orders) {
+        const sortedOrders = orders
+            .filter(order => order.contract || order.shortInfo)
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        return sortedOrders[0] || null;
+    }
+
     render() {
+
 
         const {error, isLoaded, content, expandedRow} = this.state;
         if (error) {
@@ -158,6 +171,7 @@ export default class AllClientsTable extends React.Component {
                             <th>Телефон</th>
                             <th>Университет</th>
                             <th>Email</th>
+                            <th>Скачать</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -173,16 +187,22 @@ export default class AllClientsTable extends React.Component {
                                     <td>{item.firm}</td>
                                     <td>{item.phoneNumber}</td>
                                     <td>
-                                        {item.orders.map(orderItem => (
-                                            orderItem.contract.institution.name
-                                        ))}
+                                        {this.getUserInstitution(item.orders)}
                                     </td>
                                     <td>{item.email}</td>
+                                    <td>
+                                        <button className="download_button">
+                                            pdf
+                                        </button>
+                                        <button className="download_button">
+                                            doc
+                                        </button>
+                                    </td>
                                 </tr>
                                 {expandedRow === item.id && (
                                     <tr className="expanded_row">
-                                        <td colSpan={5}>
-                                            Пример разворачивающейся строки {item.createdAt}
+                                        <td colSpan={6}>
+                                            Дополнительная информация
                                         </td>
                                     </tr>
                                 )}

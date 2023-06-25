@@ -191,7 +191,7 @@ export default class WorkWithOrdersTable extends React.Component {
                                 {expandedRow === item.id && (
                                     <tr className="expanded_row">
                                         <td colSpan={5}>
-                                            Пример разворачивающейся строки {item.createdAt}
+                                            Дополнительная информация
                                         </td>
                                     </tr>
                                 )}
