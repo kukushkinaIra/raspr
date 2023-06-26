@@ -40,6 +40,46 @@ export default class TableOrders extends React.Component {
             )
     }
 
+    buildPaymentColumn(item) {
+        const lastPayment = item.payments
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+        switch (lastPayment.status) {
+            case "UNAVAILABLE":
+                return <button className="table-white-button" disabled>Оплатить</button>;
+            case "AVAILABLE":
+                return <button className="table-yellow-button">Оплатить</button>;
+            case "REVIEW":
+                return "Проверяется";
+            case "ACCEPTED":
+                return "Завершена";
+            case "REJECTED":
+                return "Недоступна";
+        }
+    }
+
+    parseOrderStatus(status) {
+        switch (status) {
+            case "REVIEW":
+                return "В обработке"
+            case "ACCEPTED":
+                return "Ожидание оплаты"
+            case "REJECTED":
+                return "Отклонён"
+            case "PAYMENT_REVIEW":
+                return "Проверка платежа"
+            case "PAYMENT_DONE":
+                return "Платёж одобрен"
+            case "PAYMENT_REJECTED":
+                return "Платёж отклонён"
+            case "MEETING_WAITING":
+                return "Документы готовы"
+            case "COMPLETED":
+                return "Завершён"
+            default:
+                return "Неизвестно"
+        }
+    }
+
     render() {
 
         const {error, isLoaded, content, expandedRow} = this.state;
@@ -53,7 +93,7 @@ export default class TableOrders extends React.Component {
                         <tr>
                             <th>Наименование услуги</th>
                             <th>Статус заказа</th>
-                            <th>Статус оплаты</th>
+                            <th>Оплата</th>
                             <th>Примечания</th>
                             <th>Дата заказа</th>
                         </tr>
@@ -62,33 +102,16 @@ export default class TableOrders extends React.Component {
                         {content.map(item => (
                             <React.Fragment key={item.id}>
                                 <tr onClick={() => this.toggleRow(item.id)}>
-                                    <td>
+                                    <td style={{'text-wrap':'nowrap'}}>
                                         <span className="arrow-icon">
                                          {expandedRow === item.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
                                          )}
                                         </span>
                                         {item.offer.title}</td>
-                                    {item.status === "REVIEW" &&
-                                        <td>
-                                            В обработке
-                                        </td>
-                                    }
-                                    {item.status === "ACCEPTED" &&
-                                        <td>
-                                            Ожидание платежа
-                                        </td>
-                                    }
-                                    <td>
-                                        {item.payments.map(pay => (
-                                            <p>
-                                                {pay.status === "UNAVAILABLE" &&
-                                                    <span>Недоступно</span>
-                                                }
-                                            </p>
-                                        ))}
-                                    </td>
-                                    <td>Менеджер проверяет ваш заказ</td>
-                                    <td>03.09.2023</td>
+                                    <td>{this.parseOrderStatus(item.status)}</td>
+                                    <td>{this.buildPaymentColumn(item)}</td>
+                                    <td>{item.note}</td>
+                                    <td>{new Date(Date.parse(item.createdAt)).toLocaleString()}</td>
                                 </tr>
                                 {expandedRow === item.id && (
                                     <tr className="expanded_row">

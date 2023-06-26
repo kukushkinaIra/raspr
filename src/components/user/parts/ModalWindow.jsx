@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
-import FormGarantLetter from "./formGarantLetter.jsx"
+import FormGuaranteeLetter from "./FormGuaranteeLetter.jsx"
 
 function ModalWindow(){
     const [show, setShow] = useState(false);
@@ -17,7 +17,7 @@ function ModalWindow(){
                                         <Modal.Title>Оформление услуги</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
-                                            <FormGarantLetter/>
+                                            <FormGuaranteeLetter/>
                                         </Modal.Body>
                                         <Modal.Footer>
                                         {/* <Button variant="secondary" onClick={handleClose}>

@@ -36,7 +36,6 @@ export default class ProfileInfo extends React.Component {
 
     render() {
         const {error, isLoaded, userInfo} = this.state;
-        console.log(JSON.stringify(userInfo));
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         }

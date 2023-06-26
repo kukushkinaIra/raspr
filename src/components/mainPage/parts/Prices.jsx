@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 
 function Prices(){
     return(
-        <section className="main_prices">
+        <section className="main_prices" id="offers">
             <div className="container">
                 <h2>Цены</h2>
                 <div className="prices_blocks">
