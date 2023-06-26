@@ -63,6 +63,18 @@ export default class TableOrders extends React.Component {
                                     <option value="2">Другие реквизиты</option>
                                 </Form.Select>
                             </Form.Group>
+                            {/*<Form.Group className="mb-3" controlId="note">*/}
+                            {/*    <Form.Label>Сумма к оплате</Form.Label>*/}
+                            {/*    <Form.Control type="text" className="form-control-text"*/}
+                            {/*                  placeholder={lastPayment.price + " руб."}*/}
+                            {/*                  disabled*/}
+                            {/*                  ref={this.noteRef}*/}
+                            {/*    />*/}
+                            {/*</Form.Group>*/}
+                            <Form.Group className="mb-3" controlId="price">
+                                <div className="form-label">Суммма к оплате:</div>
+                                <div className="form-control">{lastPayment.price + " руб."}</div>
+                            </Form.Group>
                             <Form.Group className="mb-3" controlId="receiptImage">
                                 <Form.Label>Скриншот/фото квитанции об оплате</Form.Label>
                                 <Form.Control

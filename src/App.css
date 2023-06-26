@@ -559,11 +559,12 @@ footer {
 
 .form-control-file {
     font-family: 'Montserrat', sans-serif;
-    border: 1px solid !important;
+    border: 1px solid;
     background: white;
 }
 textarea {
     background-color: #ECECEC !important;
+    border: unset !important;
 }
 /* admin page */
 
