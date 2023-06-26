@@ -2,16 +2,23 @@ import React from "react";
 import Table from 'react-bootstrap/Table';
 import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
 import {RxCheck, RxCross2} from "react-icons/rx";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export default class WorkWithOrdersTable extends React.Component {
 
     constructor(props) {
         super(props);
+        this.noteRef = React.createRef();
         this.state = {
             error: null,
             isLoaded: false,
             expandedRow: null,
-            orders: []
+            orders: [],
+            show: false,
+            modalBody: <div></div>,
+            note: null
         };
     }
 
@@ -40,37 +47,253 @@ export default class WorkWithOrdersTable extends React.Component {
                 }
             )
     }
-
-    buildPaymentColumn(item) {
-        const lastPayment = item.payments
-            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
-        switch (lastPayment.status) {
-            case "UNAVAILABLE":
-                return "Недоступна";
-            case "AVAILABLE":
-                return "Ожидание";
-            case "REVIEW":
-                return (<span style={{'text-wrap': 'nowrap'}}>
-                        <button className="table-yellow-button"><RxCheck/></button>
-                        <button className="table-yellow-button"><RxCross2/></button>
-                        </span>
-                );
-            case "REJECTED":
-                return "Недоступна";
-        }
+    handleRejectOrder(order) {
+        this.setState({
+            show: true,
+            modalBody: (<div>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Оставьте комментарий клиенту</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="reject-note">
+                                <Form.Label>Опишите причину отказа</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    ref={this.noteRef}
+                                />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => {
+                            order.note = this.noteRef.current.value;
+                            this.rejectOrder(order);
+                            this.setState({
+                                show: false,
+                                modal: <div></div>
+                            });
+                        }}>
+                            Подтвердить
+                        </Button>
+                    </Modal.Footer>
+                </div>
+            )
+        })
     }
 
-    buildStatusColumn(status) {
-        switch (status) {
+    handleAcceptOrder(order) {
+        this.setState({
+            show: true,
+            modalBody: (<div>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Оставьте комментарий клиенту</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="reject-note">
+                                <Form.Label>Примечание</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    ref={this.noteRef}
+                                />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => {
+                            order.note = this.noteRef.current.value;
+                            this.acceptOrder(order);
+                            this.setState({
+                                show: false,
+                                modal: <div></div>
+                            });
+                        }}>
+                            Подтвердить
+                        </Button>
+                    </Modal.Footer>
+                </div>
+            )
+        })
+    }
+    handleAcceptPayment(order) {
+        this.setState({
+            show: true,
+            modalBody: (<div>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Оставьте комментарий клиенту</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="reject-note">
+                                <Form.Label>Примечание к платежу</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    ref={this.noteRef}
+                                />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => {
+                            order.note = this.noteRef.current.value;
+                            this.acceptPayment(order);
+                            this.setState({
+                                show: false,
+                                modal: <div></div>
+                            });
+                        }}>
+                            Подтвердить
+                        </Button>
+                    </Modal.Footer>
+                </div>
+            )
+        })
+    }
+
+    handleRejectPayment(order) {
+        this.setState({
+            show: true,
+            modalBody: (<div>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Оставьте комментарий клиенту</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="reject-note">
+                                <Form.Label>Опишите причину отказа</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    ref={this.noteRef}
+                                />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => {
+                            order.note = this.noteRef.current.value;
+                            this.rejectPayment(order);
+                            this.setState({
+                                show: false,
+                                modal: <div></div>
+                            });
+                        }}>
+                            Подтвердить
+                        </Button>
+                    </Modal.Footer>
+                </div>
+            )
+        })
+    }
+
+    handleCompleteOrder(order) {
+        this.setState({
+            show: true,
+            modalBody: (<div>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Оставьте комментарий клиенту</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="reject-note">
+                                <Form.Label>Примечание</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    ref={this.noteRef}
+                                />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => {
+                            order.note = this.noteRef.current.value;
+                            this.completeOrder(order);
+                            this.setState({
+                                show: false,
+                                modal: <div></div>
+                            });
+                        }}>
+                            Подтвердить
+                        </Button>
+                    </Modal.Footer>
+                </div>
+            )
+        })
+    }
+    fetchActionRequest(order){
+        const requestBody = {
+            status: order.status,
+            note: order.note
+        }
+        fetch(`http://213.109.204.76:8080/orders/${order.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        })
+            .then(res => res.json())
+            .then(
+                data => {
+                    const updatedOrder = data;
+                    this.setState(prevState => ({
+                        orders: prevState.orders.map(orderItem => {
+                            if (orderItem.id === updatedOrder.id) {
+                                return updatedOrder;
+                            }
+                            return orderItem;
+                        })
+                    }));
+                })
+            .catch(error => {
+                this.setState({
+                    error
+                });
+            });
+    }
+    acceptOrder(order) {
+        order.status = "ACCEPTED";
+        this.fetchActionRequest(order);
+    }
+
+    acceptPayment(order) {
+        order.status = "PAYMENT_DONE";
+        this.fetchActionRequest(order);
+    }
+
+    rejectPayment(order) {
+        order.status = "PAYMENT_REJECTED";
+        this.fetchActionRequest(order);
+    }
+
+    rejectOrder(order) {
+        order.status = "REJECTED";
+        this.fetchActionRequest(order)
+    }
+
+    completeOrder(order) {
+        order.status = "COMPLETED";
+        this.fetchActionRequest(order)
+    }
+    buildStatusColumn(order) {
+        switch (order.status) {
             case "REVIEW":
                 return (<span style={{'text-wrap': 'nowrap'}}>
-                        <button className="table-yellow-button">Одобрить</button>
-                        <button className="table-white-button">Отклонить</button>
+                        <button className="table-yellow-button"
+                                onClick={() => this.handleAcceptOrder(order)}>Одобрить</button>
+                        <button className="table-white-button"
+                                onClick={() => this.handleRejectOrder(order)}>Отклонить</button>
                 </span>
                 )
             case "ACCEPTED":
                 return (<span style={{'text-wrap': 'nowrap'}}>
-                        <button className="table-white-button">Отклонить</button>
+                        <button className="table-white-button"
+                                onClick={() => this.handleRejectOrder(order)}>Отклонить</button>
                 </span>
                 )
             case "REJECTED":
@@ -78,26 +301,31 @@ export default class WorkWithOrdersTable extends React.Component {
             case "PAYMENT_REVIEW":
                 return (
                     <span style={{'text-wrap': 'nowrap'}}>
-                        <button className="table-white-button">Отклонить</button>
+                        <button className="table-white-button"
+                                onClick={() => this.handleRejectOrder(order)}>Отклонить</button>
                 </span>
                 )
             case "PAYMENT_DONE":
                 return (
                     <span style={{'text-wrap': 'nowrap'}}>
-                        <button className="table-white-button">Отклонить</button>
+                        <button className="table-white-button"
+                                onClick={() => this.handleRejectOrder(order)}>Отклонить</button>
                 </span>
                 )
             case "PAYMENT_REJECTED":
                 return (
                     <span style={{'text-wrap': 'nowrap'}}>
-                        <button className="table-white-button">Отклонить</button>
+                        <button className="table-white-button"
+                                onClick={() => this.handleRejectOrder(order)}>Отклонить</button>
                 </span>
                 )
             case "MEETING_WAITING":
                 return (
                     <span style={{'text-wrap': 'nowrap'}}>
-                        <button className="table-yellow-button">Завершить</button>
-                        <button className="table-white-button">Отклонить</button>
+                        <button className="table-yellow-button"
+                                onClick={() => this.handleCompleteOrder(order)}>Завершить</button>
+                        <button className="table-white-button"
+                                onClick={() => this.handleRejectOrder(order)}>Отклонить</button>
                 </span>
                 )
             case "COMPLETED":
@@ -106,6 +334,27 @@ export default class WorkWithOrdersTable extends React.Component {
                 return "Неизвестно"
         }
     }
+    buildPaymentColumn(order) {
+        const lastPayment = order.payments
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+        switch (lastPayment.status) {
+            case "UNAVAILABLE":
+                return "Недоступна";
+            case "AVAILABLE":
+                return "Ожидание";
+            case "REVIEW":
+                return (<span style={{'text-wrap': 'nowrap'}}>
+                        <button className="table-yellow-button"
+                                onClick={() => this.handleAcceptPayment(order)}><RxCheck/></button>
+                        <button className="table-yellow-button"
+                                onClick={() => this.handleRejectPayment(order)}><RxCross2/></button>
+                        </span>
+                );
+            case "REJECTED":
+                return "Недоступна";
+        }
+    }
+
 
 
 
@@ -117,6 +366,9 @@ export default class WorkWithOrdersTable extends React.Component {
         } else {
             return (
                 <div>
+                    <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
+                        {this.state.modalBody}
+                    </Modal>
                     <Table responsive striped hover>
                         <thead>
                         <tr>
@@ -142,7 +394,7 @@ export default class WorkWithOrdersTable extends React.Component {
                                         {item.user.firstname} {item.user.lastname}</td>
                                     <td>{item.offer.title}</td>
                                     <td>{item.user.email}</td>
-                                    <td>{this.buildStatusColumn(item.status)}</td>
+                                    <td>{this.buildStatusColumn(item)}</td>
                                     <td>{this.buildPaymentColumn(item)}</td>
                                     <td>{new Date(Date.parse(item.createdAt)).toLocaleString()}</td>
                                 </tr>
