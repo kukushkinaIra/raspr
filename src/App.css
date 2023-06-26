@@ -547,6 +547,8 @@ footer {
     background-color: #ECECEC;
 }
 
+
+
 .form-select {
     font-family: 'Montserrat', sans-serif;
     border-radius: 0;
@@ -557,10 +559,13 @@ footer {
 
 .form-control-file {
     font-family: 'Montserrat', sans-serif;
-    border: 1px solid !important;
+    border: 1px solid;
     background: white;
 }
-
+textarea {
+    background-color: #ECECEC !important;
+    border: unset !important;
+}
 /* admin page */
 
 .orders {
@@ -615,7 +620,7 @@ span.arrow-icon svg {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
     padding: 5px 10px 5px 10px;
-    background-color: #FAC600;
+    background-color: white;
 }
 
 .home_main_button {
