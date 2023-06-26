@@ -1,6 +1,5 @@
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 
@@ -144,7 +143,7 @@ function FormContract(){
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="suoervisor">
+            <Form.Group className="mb-3" controlId="supervisor">
                 <Form.Label>Куратор распределения (ФИО, должность, телефон городской, мобильный, telegram,
                     viber, полный адрес местонахождения, дни и время работы, e-mail, адрес для почтовой
                     корреспонденции)</Form.Label>

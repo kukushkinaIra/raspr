@@ -3,7 +3,7 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import FormGuaranteeLetter from "./FormGuaranteeLetter.jsx"
+import FormGuaranteeLetter from "./FormGuaranteeLetter";
 import FormContract from "./FormContract";
 
 

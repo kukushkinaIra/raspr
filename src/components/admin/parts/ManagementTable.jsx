@@ -48,8 +48,7 @@ export default class ManagementTable extends React.Component {
     handleAssignManager = (orderId) => {
         const managerId = document.getElementById("select_" + orderId).value;
         if (managerId==='') {
-            console.log("Менеджер не выбран");
-            return;
+                return;
         }
         fetch(`http://213.109.204.76:8080/orders/${orderId}/assign/${managerId}`, {
             method: 'PATCH'
@@ -58,7 +57,6 @@ export default class ManagementTable extends React.Component {
                 if (response.ok) {
                     const filteredOrders = this.state.orders.filter((order) => order.id !== orderId);
                     this.setState({orders: filteredOrders});
-                    console.log('Менеджер назначен');
                 } else {
                     throw new Error('Ошибка при назначении менеджера');
                 }
