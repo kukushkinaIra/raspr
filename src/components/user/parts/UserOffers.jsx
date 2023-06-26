@@ -1,16 +1,11 @@
 import React from 'react';
-import {Tab, Col, Nav, Row} from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import {useState} from 'react';
-import FormGarantLetter from "./formGarantLetter.jsx"
-import ModalWindow from "./ModalWindow";
-import Table from 'react-bootstrap/Table';
+import FormGuaranteeLetter from "./FormGuaranteeLetter.jsx"
+import FormContract from "./FormContract";
 
-// import axios from 'axios';
 
 export default class UserOffers extends React.Component {
 
@@ -21,7 +16,7 @@ export default class UserOffers extends React.Component {
             isLoaded: false,
             offers: [],
             show: false,
-            setShow: false
+            modalContent: <FormGuaranteeLetter/>
         };
     }
 
@@ -46,41 +41,61 @@ export default class UserOffers extends React.Component {
             )
     }
 
+    handleOfferClick(title) {
+        switch (title) {
+            case "Гарантийное письмо": {
+                this.setState({
+                    show: true,
+                    modalContent: <FormGuaranteeLetter/>
+                });
+                break;
+            }
+            case "Распределение": {
+                this.setState({
+                    show: true,
+                    modalContent: <FormContract/>
+                });
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
     render() {
-        const {error, isLoaded, offers, show} = this.state;
-        const handleClose = () => this.setState({show : false});
-        const handleShow = () => this.setState({show : true});
+        const {error, isLoaded, offers, show, modalContent} = this.state;
+
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
             return (
                 <div>
-                    <div className="services" onClick={handleShow}>
+                    <div className="services">
                         {offers.map(item => (
-                            <div className="service" key={item.id}>
+                            <div className="service" key={item.id}
+                                 onClick={() => this.handleOfferClick(item.title)}
+                            >
                                 <h4>{item.title}</h4>
                                 <hr/>
-                                <p>от {item.price} руб в месяц</p>
+                                <p>от {item.price} руб. в месяц</p>
                             </div>
                         ))}
                     </div>
                     <div>
-                        <Modal show={show} onHide={handleClose}>
+                        <Modal show={show} onHide={() => this.setState({show: false})}>
                             <Modal.Header closeButton>
                                 <Modal.Title>Заполните данные</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <FormGarantLetter/>
+                                {this.state.modalContent}
                             </Modal.Body>
                             <Modal.Footer>
-                                {/* <Button variant="secondary" onClick={handleClose}>
-                                            Close
-                                        </Button> */}
-                                <Button variant="primary" onClick={handleClose}>
+                                <Button variant="primary" onClick={() => this.setState({show: false})}>
                                     Подтвердить
                                 </Button>
                             </Modal.Footer>
-                        </Modal></div>
+                        </Modal>
+                    </div>
                 </div>
             );
         }

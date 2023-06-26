@@ -1,15 +1,8 @@
-// import { Tab } from "@mui/base"
-// import Tab, { Container } from "react-bootstrap/lib/Tab"
+
 import {Tabs, Tab, Col, Nav, Row} from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import {useState} from 'react';
-import FormGarantLetter from "./formGarantLetter.jsx"
-import Table from 'react-bootstrap/Table';
 import ManagementTable from "./ManagementTable.jsx";
 import OrdersHistoryTable from "./OrdersHistoryTable.jsx";
 import AllClientsTable from "./AllClientsTable.jsx";

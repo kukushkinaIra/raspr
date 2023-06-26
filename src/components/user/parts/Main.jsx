@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
-import FormGarantLetter from "./formGarantLetter.jsx"
+import FormGuaranteeLetter from "./FormGuaranteeLetter.jsx"
 import TableOrders from "./TableOrders";
 import ProfileInfo from "./ProfileInfo";
 import UserOffers from "./UserOffers";

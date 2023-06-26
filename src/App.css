@@ -672,3 +672,7 @@ span.arrow-icon svg {
     padding: 5px 5px 5px 5px;
 }
 
+.modal-dialog {
+    max-width: 600px;
+}
+
