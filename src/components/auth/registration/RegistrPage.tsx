@@ -1,21 +1,27 @@
-import React, { Fragment } from "react"
-import {TextField} from "@mui/material"
+import React, { Fragment, useState } from "react"
+// import {TextField} from "@mui/material"
 import {Button} from "@mui/material"
 import {Link} from "react-router-dom"
+import { Registration } from "../../../actions/user"
+import Input from "../../utils/input/Input";
 
 const RegistrPage = () => {
+    const [name, setName] = useState("")
+    const [surName, setSurName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     return(
         <Fragment>
             <div className="root">
                 <div className="form">
                     <h2>Регистрация</h2>
                     <p>Введите данные для регистрации</p>
-                    <TextField fullWidth={true} margin='normal' id="outlined-basic" label="Name" variant="outlined" placeholder="Введите ваше Имя"/>
-                    <TextField fullWidth={true} margin='normal' id="outlined-basic" label="Surname" variant="outlined" placeholder="Введите вашу Фамилию"/>
-                    <TextField fullWidth={true} margin='normal' id="outlined-basic" label="Email" variant="outlined" placeholder="Введите ваш email"/>
-                    <TextField type="password" fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Введите ваш пароль"/>
-                    <TextField type="password" fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Повторите ваш пароль"/>
-                    <Button style={{backgroundColor:'#FAC600'}} variant="contained">Зарегистрироваться</Button>
+                    <Input required type="text" value={name} setValue={setName} label="Name" variant="outlined" placeholder="Введите ваше Имя"/>
+                    <Input type="text" value={surName} setValue={setSurName} label="Surname" variant="outlined" placeholder="Введите вашу Фамилию"/>
+                    <Input type="email" value={email} setValue={setEmail} label="Email" variant="outlined" placeholder="Введите ваш email"/>
+                    <Input type="password" value={password} setValue={setPassword} fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Введите ваш пароль"/>
+                    {/* <TextField type="password" fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Повторите ваш пароль"/> */}
+                    <Button style={{backgroundColor:'#FAC600'}} onClick={()=>Registration(name, surName, email, password)} variant="contained">Зарегистрироваться</Button>
                     <p>Уже есть аккаунт? <Link to="/login" style={{textDecoration:'none'}}>Войти</Link></p>
                 </div>
             </div>
