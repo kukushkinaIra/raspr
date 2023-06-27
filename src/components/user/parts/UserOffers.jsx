@@ -57,6 +57,20 @@ export default class UserOffers extends React.Component {
                 });
                 break;
             }
+            case "Перераспределение": {
+                this.setState({
+                    show: true,
+                    modalContent: <FormContract/>
+                });
+                break;
+            }
+            case "Практика": {
+                this.setState({
+                    show: true,
+                    modalContent: <FormGuaranteeLetter/>
+                });
+                break;
+            }
             default:
                 break;
         }

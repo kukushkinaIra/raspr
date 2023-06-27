@@ -593,7 +593,6 @@ thead * {
 
 tbody * {
     font-family: "Montserrat", sans-serif;
-    font-weight: normal;
     margin: 0;
     padding: 0;
     vertical-align: middle;
@@ -606,8 +605,21 @@ tbody * {
     --bs-table-hover-bg: transparent;
 }
 
+.expanded_info_div {
+    display: flex;
+    padding: 5px 10px 5px 10px;
+}
+.expanded_row b{
+    margin-right: 10px;
+}
+
 span.arrow-icon svg {
     font-size: 22px;
+}
+
+.payment-receipt-image{
+    max-width: 300px;
+    max-height: 500px;
 }
 
 
