@@ -19,7 +19,12 @@
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.12.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "pizzip": "^3.1.4",
+    "@react-pdf/renderer": "^3.1.12",
+    "docxtemplater": "^3.37.11",
+    "file-saver": "^2.0.5",
+    "jspdf": "^2.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
