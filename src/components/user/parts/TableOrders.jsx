@@ -219,6 +219,7 @@ export default class TableOrders extends React.Component {
                             <th>Наименование услуги</th>
                             <th>Статус заказа</th>
                             <th>Оплата</th>
+                            <th>Сумма(руб.)</th>
                             <th>Примечания</th>
                             <th>Дата заказа</th>
                         </tr>
@@ -235,13 +236,16 @@ export default class TableOrders extends React.Component {
                                         {order.offer.title}</td>
                                     <td>{this.parseOrderStatus(order.status)}</td>
                                     <td>{this.buildPaymentColumn(order)}</td>
+                                    <td>{}</td>
                                     <td>{order.note}</td>
                                     <td>{new Date(Date.parse(order.createdAt)).toLocaleString()}</td>
                                 </tr>
                                 {expandedRow === order.id && (
                                     <tr className="expanded_row">
-                                        <td colSpan={5}>
-                                            Дополнительная информация
+                                        <td colSpan={6}>
+                                            <div className="expended_padding_block">
+                                                Дополнительная информация
+                                            </div>
                                         </td>
                                     </tr>
                                 )}
