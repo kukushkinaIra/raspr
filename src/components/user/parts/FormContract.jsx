@@ -10,7 +10,7 @@ function FormContract(){
                 <Form.Label>ФИО полностью</Form.Label>
                 <Form.Control
                     type="text"
-                    placeholder="Иванову Татьяну Викторовну"
+                    placeholder="Иванова Татьяна Викторовна"
                     autoFocus
                 />
             </Form.Group>
@@ -80,7 +80,7 @@ function FormContract(){
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="address-real">
-                <Form.Label>Адресс прописки</Form.Label>
+                <Form.Label>Адресс проживания</Form.Label>
                 <Form.Control
                     type="text"
                     placeholder=""

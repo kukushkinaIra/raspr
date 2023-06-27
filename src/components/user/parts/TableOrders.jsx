@@ -224,21 +224,21 @@ export default class TableOrders extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {orders.map(item => (
-                            <React.Fragment key={item.id}>
-                                <tr onClick={() => this.toggleRow(item.id)}>
-                                    <td style={{'text-wrap': 'nowrap'}}>
+                        {orders.map(order => (
+                            <React.Fragment key={order.id}>
+                                <tr>
+                                    <td onClick={() => this.toggleRow(order.id)} style={{'text-wrap': 'nowrap'}}>
                                         <span className="arrow-icon">
-                                         {expandedRow === item.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
+                                         {expandedRow === order.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
                                          )}
                                         </span>
-                                        {item.offer.title}</td>
-                                    <td>{this.parseOrderStatus(item.status)}</td>
-                                    <td>{this.buildPaymentColumn(item)}</td>
-                                    <td>{item.note}</td>
-                                    <td>{new Date(Date.parse(item.createdAt)).toLocaleString()}</td>
+                                        {order.offer.title}</td>
+                                    <td>{this.parseOrderStatus(order.status)}</td>
+                                    <td>{this.buildPaymentColumn(order)}</td>
+                                    <td>{order.note}</td>
+                                    <td>{new Date(Date.parse(order.createdAt)).toLocaleString()}</td>
                                 </tr>
-                                {expandedRow === item.id && (
+                                {expandedRow === order.id && (
                                     <tr className="expanded_row">
                                         <td colSpan={5}>
                                             Дополнительная информация
