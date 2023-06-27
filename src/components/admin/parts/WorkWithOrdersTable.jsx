@@ -364,7 +364,7 @@ export default class WorkWithOrdersTable extends React.Component {
         if (order.contract) {
             const contract = order.contract;
             contractBlock = (
-                <div>
+                <div className="expended_padding_block">
                     <div className="expanded_info_div"><b>ФИО полностью:</b> soon...</div>
                     <div className="expanded_info_div"><b>Телефон:</b> soon...</div>
                     <div className="expanded_info_div"><b>Дата начала:</b> {contract.startDate}</div>
@@ -399,7 +399,7 @@ export default class WorkWithOrdersTable extends React.Component {
         if (order.shortInfo) {
             const shortInfo = order.shortInfo;
             shortInfoBlock = (
-                <div>
+                <div className="expended_padding_block">
                     <div className="expanded_info_div"><b>ФИО полностью:</b> {shortInfo.fullname}</div>
                     <div className="expanded_info_div"><b>Университет:</b> {shortInfo.institution}</div>
                     <div className="expanded_info_div"><b>Специальность:</b> {shortInfo.speciality}</div>
@@ -412,7 +412,7 @@ export default class WorkWithOrdersTable extends React.Component {
         const payments = order.payments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         paymentBlock = (
-            <div>
+            <div className="expended_padding_block">
                 {payments.map(payment => (<div>
                     <div className="expanded_info_div"><b>Id платежа:</b> {payment.id}</div>
                     <div className="expanded_info_div"><b>Сумма к оплате:</b> {payment.price + " руб."}</div>
