@@ -22,7 +22,7 @@ export default class UserOffers extends React.Component {
 
 
     componentDidMount() {
-        fetch("http://213.109.204.76:8080/offers")
+        fetch("/offers")
             .then(res => res.json())
             .then(
                 data => {

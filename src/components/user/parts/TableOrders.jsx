@@ -30,7 +30,7 @@ export default class TableOrders extends React.Component {
     };
 
     componentDidMount() {
-        fetch("http://213.109.204.76:8080/orders")
+        fetch("/orders")
             .then(res => res.json())
             .then(
                 data => {
@@ -133,7 +133,7 @@ export default class TableOrders extends React.Component {
             note: payment.note
 
         }
-        fetch(`http://213.109.204.76:8080/orders/${orderId}/update-payment`, {
+        fetch(`/orders/${orderId}/update-payment`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

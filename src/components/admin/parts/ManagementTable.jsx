@@ -22,7 +22,7 @@ export default class ManagementTable extends React.Component {
     };
 
     componentDidMount() {
-        fetch("http://213.109.204.76:8080/orders/notAssigned")
+        fetch("/orders/notAssigned")
             .then(res => res.json())
             .then(
                 data => {
@@ -37,7 +37,7 @@ export default class ManagementTable extends React.Component {
                 }
             )
 
-        fetch("http://213.109.204.76:8080/users/managers")
+        fetch("/users/managers")
             .then(res => res.json())
             .then(
                 data => {
@@ -117,7 +117,7 @@ export default class ManagementTable extends React.Component {
         if (managerId === '') {
             return;
         }
-        fetch(`http://213.109.204.76:8080/orders/${orderId}/assign/${managerId}`, {
+        fetch(`/orders/${orderId}/assign/${managerId}`, {
             method: 'PATCH'
         })
             .then((response) => {

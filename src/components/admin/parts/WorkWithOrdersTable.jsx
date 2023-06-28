@@ -29,7 +29,7 @@ export default class WorkWithOrdersTable extends React.Component {
 
     componentDidMount() {
         const managerId = 21;
-        fetch(`http://213.109.204.76:8080/orders/manager/${managerId}`)
+        fetch(`/orders/manager/${managerId}`)
             .then(res => res.json())
             .then(
                 data => {
@@ -230,7 +230,7 @@ export default class WorkWithOrdersTable extends React.Component {
             status: order.status,
             note: order.note
         }
-        fetch(`http://213.109.204.76:8080/orders/${order.id}`, {
+        fetch(`/orders/${order.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

@@ -20,7 +20,7 @@ export default class OrdersHistoryTable extends React.Component {
     };
 
     componentDidMount() {
-        fetch("http://213.109.204.76:8080/orders")
+        fetch("/orders")
             .then(res => res.json())
             .then(
                 data => {

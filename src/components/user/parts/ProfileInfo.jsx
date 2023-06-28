@@ -14,7 +14,7 @@ export default class ProfileInfo extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://213.109.204.76:8080/users/15", {
+        fetch("/users/15", {
             method: "GET"
         })
             .then(res => res.json())
