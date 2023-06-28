@@ -55,16 +55,16 @@ import {useDispatch} from "react-redux";
 import { login } from "../../../actions/user"
 
 const LoginPage = () => {
-    const [email, setEmail] = useState("")
+    const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
 
     return (
         <div className='authorization'>
             <div className="authorization__header">Авторизация</div>
-            <Input value={email} setValue={setEmail} type="text" placeholder="Введите email..."/>
+            <Input value={username} setValue={setUserName} type="text" placeholder="Введите email..."/>
             <Input value={password} setValue={setPassword} type="password" placeholder="Введите пароль..."/>
-            <button className="authorization__btn" onClick={() => dispatch(login(email, password))}>Войти</button>
+            <button className="authorization__btn" onClick={() => dispatch(login(username, password))}>Войти</button>
         </div>
     );
 };

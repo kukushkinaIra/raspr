@@ -29,6 +29,7 @@ function Footer() {
                     </div>
                     <div>
                         <p>lorem_ipsum@gmail.com</p>
+                        <p>+375 (33) 398-88-11</p>
                     </div>
                 </div>
                 <div className="footer_year">
