@@ -642,7 +642,7 @@ tbody * {
 .expended_padding_block {
     margin: 15px;
     padding: 5px !important;
-    border: 1px dashed #adadad;
+    border: 1px solid #adadad;
 }
 
 .expanded_info_div {

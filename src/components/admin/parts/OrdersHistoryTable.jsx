@@ -72,8 +72,8 @@ export default class OrdersHistoryTable extends React.Component {
             const contract = order.contract;
             contractBlock = (
                 <div className="expended_padding_block">
-                    <div className="expanded_info_div"><b>ФИО полностью:</b> soon...</div>
-                    <div className="expanded_info_div"><b>Телефон:</b> soon...</div>
+                    <div className="expanded_info_div"><b>ФИО полностью:</b> {contract.fullname}</div>
+                    <div className="expanded_info_div"><b>Телефон:</b> {contract.phoneNumber}</div>
                     <div className="expanded_info_div"><b>Дата начала:</b> {contract.startDate}</div>
                     <div className="expanded_info_div"><b>Дата окончания:</b> {contract.endDate}</div>
                     <div className="expanded_info_div"><b>Должности:</b> {contract.position}</div>
@@ -91,8 +91,8 @@ export default class OrdersHistoryTable extends React.Component {
                     <div className="expanded_info_div"><b>Университет:</b> {contract.institution.name}</div>
                     <div className="expanded_info_div"><b>Факультет:</b> {contract.institution.faculty}</div>
                     <div className="expanded_info_div"><b>Специальность:</b> {contract.institution.specoality}</div>
-                    <div className="expanded_info_div"><b>Руководитель группы:</b> soon...</div>
-                    <div className="expanded_info_div"><b>Староста:</b> soon...</div>
+                    <div className="expanded_info_div"><b>Руководитель группы:</b> {contract.supervisor}</div>
+                    <div className="expanded_info_div"><b>Староста:</b> {contract.groupHead}</div>
                     <div className="expanded_info_div"><b>ФИО в родительном
                         падаже:</b> {contract.fullnameCases.genitiveCase}</div>
                     <div className="expanded_info_div"><b>ФИО в дательном
@@ -184,7 +184,7 @@ export default class OrdersHistoryTable extends React.Component {
                                          {expandedRow === order.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
                                          )}
                                         </span>
-                                        {order.user.firstname} {order.user.lastname}</td>
+                                        {order.user.fullname}</td>
                                     <td>{order.offer.title}</td>
                                     <td>{this.getPrice(order.payments)}</td>
                                     <td>{order.user.email}</td>

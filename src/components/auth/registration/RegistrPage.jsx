@@ -16,9 +16,9 @@ const RegistrPage = () => {
                 <div className="form">
                     <h2>Регистрация</h2>
                     <p>Введите данные для регистрации</p>
-                    <Input required type="text" value={username} setValue={setName} label="Name" variant="outlined" placeholder="Введите ваше Имя"/>
-                    <Input type="text" value={surName} setValue={setSurName} label="Surname" variant="outlined" placeholder="Введите вашу Фамилию"/>
-                    <Input type="email" value={email} setValue={setEmail} label="Email" variant="outlined" placeholder="Введите ваш email"/>
+                    <Input required type="email" value={username} setValue={setName} label="Name" variant="outlined" placeholder="Введите ваш email"/>
+                    {/*<Input type="text" value={surName} setValue={setSurName} label="Surname" variant="outlined" placeholder="Введите вашу Фамилию"/>*/}
+                    {/*<Input type="email" value={email} setValue={setEmail} label="Email" variant="outlined" placeholder="Введите ваш email"/>*/}
                     <Input type="password" value={password} setValue={setPassword} fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Введите ваш пароль"/>
                     {/* <TextField type="password" fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Повторите ваш пароль"/> */}
                     <Button style={{backgroundColor:'#FAC600'}} onClick={()=>Registration(username, password)} variant="contained">Зарегистрироваться</Button>

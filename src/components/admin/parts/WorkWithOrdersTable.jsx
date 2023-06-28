@@ -481,7 +481,7 @@ export default class WorkWithOrdersTable extends React.Component {
                                          {expandedRow === order.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
                                          )}
                                         </span>
-                                        {order.user.firstname} {order.user.lastname}</td>
+                                        {order.user.fullname}</td>
                                     <td>{order.offer.title}</td>
                                     <td>{order.user.email}</td>
                                     <td>{this.buildStatusColumn(order)}</td>

@@ -163,7 +163,7 @@ export default class ManagementTable extends React.Component {
                                          {expandedRow === item.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
                                          )}
                                         </span>
-                                {item.user.firstname} {item.user.lastname}</td>
+                                {item.user.fullname}</td>
                             <td>{item.offer.title}</td>
                             <td>{item.id}</td>
                             <td>{item.user.email}</td>
@@ -174,7 +174,7 @@ export default class ManagementTable extends React.Component {
                                         <option disabled selected hidden value="">Выбрать</option>
                                         {managers.map(manager => (
                                             <option key={manager.id} value={manager.id}>
-                                                {manager.firstname}
+                                                {manager.email}
                                             </option>
                                         ))}
                                     </select>
