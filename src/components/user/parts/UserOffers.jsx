@@ -101,7 +101,7 @@ export default class UserOffers extends React.Component {
                                 <Modal.Title>Заполните данные</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                {this.state.modalContent}
+                                {modalContent}
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button variant="primary" onClick={() => this.setState({show: false})}>

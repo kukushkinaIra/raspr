@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import Table from 'react-bootstrap/Table';
 import {saveAs} from 'file-saver';
 import Docxtemplater from 'docxtemplater';
@@ -10,6 +10,10 @@ import jsPDF from "jspdf";
 import {renderToString} from "react-dom/server";
 import './Montserrat-Regular-normal.js';
 import './Montserrat-SemiBold-bold.js';
+import {ImSearch} from "react-icons/im";
+import {HiOutlineSearch} from "react-icons/hi";
+import {IoMdSearch} from "react-icons/io";
+import {GrRefresh} from "react-icons/gr";
 
 export default class AllClientsTable extends React.Component {
 
@@ -18,33 +22,55 @@ export default class AllClientsTable extends React.Component {
         this.state = {
             error: null,
             expandedRow: null,
-            content: []
+            content: [],
+            search: '',
         };
     }
 
     toggleRow = (rowId) => {
         this.setState((prevState) => ({
-            expandedRow: prevState.expandedRow === rowId ? null : rowId
+            expandedRow: prevState.expandedRow === rowId ? null : rowId,
         }));
     };
 
-    componentDidMount() {
-        fetch("http://213.109.204.76:8080/users")
-            .then(res => res.json())
+    handleSearchChange = (e) => {
+        this.setState({search: e.target.value});
+    };
+
+    handleSearchSubmit = (e) => {
+        e.preventDefault();
+        // Выполнение запроса с новым параметром поиска
+        this.fetchUsers();
+    };
+
+    handleRefresh = () => {
+        this.fetchUsers();
+    };
+
+    fetchUsers = () => {
+        const {search} = this.state;
+        const url = `http://213.109.204.76:8080/users?search=${encodeURIComponent(search)}`;
+
+        fetch(url)
+            .then((res) => res.json())
             .then(
-                data => {
+                (data) => {
                     this.setState({
                         content: data.content,
                         isLoading: false,
-                    })
+                    });
                 },
                 (error) => {
                     this.setState({
                         isLoaded: true,
-                        error
+                        error,
                     });
                 }
-            )
+            );
+    };
+
+    componentDidMount() {
+        this.fetchUsers();
     }
 
     getUserInstitution(orders) {
@@ -310,12 +336,26 @@ export default class AllClientsTable extends React.Component {
 
 
     render() {
-        const {error, content, expandedRow} = this.state;
+        const {error, content, expandedRow, search, isRefreshing} = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
             return (
-                <div>
+                <div className="table-container">
+                    <div className="table-container-header">
+                        <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={this.handleSearchChange}
+                                placeholder="Ключевое слово"
+                            />
+                            <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
+                        </form>
+                        <button className="table-refresh-button" onClick={this.handleRefresh}>
+                            <GrRefresh/>
+                        </button>
+                    </div>
                     <Table responsive striped hover>
                         <thead>
                         <tr>
