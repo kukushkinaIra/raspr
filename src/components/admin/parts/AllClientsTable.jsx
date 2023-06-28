@@ -29,7 +29,7 @@ export default class AllClientsTable extends React.Component {
     };
 
     componentDidMount() {
-        fetch("http://213.109.204.76:8080/users")
+        fetch("/users")
             .then(res => res.json())
             .then(
                 data => {

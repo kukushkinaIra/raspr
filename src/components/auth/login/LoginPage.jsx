@@ -49,22 +49,38 @@
 // export default LoginPage
 
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Input from "../../utils/input/Input";
-import {useDispatch} from "react-redux";
 import { login } from "../../../actions/user"
+import {useNavigate} from "react-router-dom";
 
 const LoginPage = () => {
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const [role, setRole]  = useState(undefined);
+    useEffect(()=>{
+        if (role) {
+            console.log("YA ", role)
+            localStorage.setItem('role', role)
+            for (let i = 0; i < 100; i += 1)
+            navigate('/home');
+        }
+    }, [role])
+
+    const roleCb = (role) => {
+        console.log("OLOLO", role)
+        setRole(role)
+    }
 
     return (
         <div className='authorization'>
             <div className="authorization__header">Авторизация</div>
             <Input value={username} setValue={setUserName} type="text" placeholder="Введите email..."/>
             <Input value={password} setValue={setPassword} type="password" placeholder="Введите пароль..."/>
-            <button className="authorization__btn" onClick={() => dispatch(login(username, password))}>Войти</button>
+            <button className="authorization__btn"
+                    onClick={() => login(username, password, roleCb)}>Войти</button>
         </div>
     );
 };

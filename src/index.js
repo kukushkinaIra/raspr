@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import {store} from "./reducers";
 import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,9 +13,7 @@ root.render(
   //     <App />
   //   </BrowserRouter>
   // </React.StrictMode>
-  <Provider store={store}>
-        <App />
-    </Provider>,
+    <App />
 );
 
 // If you want to start measuring performance in your app, pass a function

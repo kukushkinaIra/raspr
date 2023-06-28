@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const Registration = async (username, password) => {
-    try{
+    try {
         const response = await axios.post('http://213.109.204.76:8080/auth/signUp', {
             // name,
             // surname,
@@ -9,8 +9,7 @@ export const Registration = async (username, password) => {
             password
         })
         alert(response.data.message)
-    }
-    catch(e){
+    } catch (e) {
         alert(e.response.data.message)
     }
 }
@@ -34,19 +33,19 @@ export const Registration = async (username, password) => {
 //     }
 // }
 
-export const login =  (username, password) => {
-    return async dispatch => {
-        try {
-            const response = await axios.post(`http://213.109.204.76:8080/auth/signIn`, {
-                username,
-                password
-            })
-            console.log(response.data)
-            console.log(response)
-            // dispatch(setUser(response.data.user))
-            // localStorage.setItem('token', response.data.token)
-        } catch (e) {
-            alert(e.response.data.message)
-        }
-    }
+export const login = async (username, password, roleCb) => {
+    const response = await fetch(`/auth/signIn`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            username,
+            password
+        }),
+        credentials: "same-origin"
+    })
+
+    const role = "admin" // "user" or null
+    roleCb(role)
 }
