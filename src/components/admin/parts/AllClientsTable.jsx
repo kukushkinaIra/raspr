@@ -225,6 +225,9 @@ export default class AllClientsTable extends React.Component {
                                         <button className="table-download-button">
                                             doc
                                         </button>
+                                        {/* {item.orders.map(orderItem => (
+                                            orderItem.contract.institution.name
+                                        ))} */}
                                     </td>
                                 </tr>
                                 {expandedRow === user.id && (this.buildExpandedRow(user))}

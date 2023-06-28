@@ -255,7 +255,28 @@ section.main {
     padding-top: 10px;
 }
 
-@media (max-width: 1100px) {
+.price_block button{
+    width: 200px;
+    background-color: #FAC600;
+    border: unset;
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    height: 40px;
+    padding-top: 6px;
+    margin-top: 20px;
+}
+
+.regist_link{
+    color: #000000;
+}
+
+.buttom_div{
+    text-align: center;
+}
+
+@media (max-width: 1300px) {
     .main h1 {
         font-size: 40px;
     }
@@ -267,6 +288,7 @@ section.main {
     .price_block {
         width: 50%;
         margin-bottom: 20px;
+        margin-left: 10px;
     }
 
     .prices_blocks {
@@ -284,6 +306,17 @@ section.main {
 
     .navigation_cotainer .enter {
         padding-top: 12px;
+    }
+
+    .price_block{
+        width: 60%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .price_block{
+        width: 80%;
     }
 }
 
@@ -701,5 +734,60 @@ span.arrow-icon svg {
 
 .modal-dialog {
     max-width: 600px;
+}
+
+.main_container h2, .reviews h2{
+    text-align: center;
+}
+
+
+/* referal programm */
+
+.referal_main{
+    background-color: #efba00;
+    padding: 40px;
+    text-align: center;
+}
+
+.referal_main ul li{
+    list-style-type: none;
+}
+
+.myIcon{
+    width: 25px;
+}
+
+section.referal, section.team{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mainImg{
+    width: 50%;
+}
+
+.main_description_team{
+    width: 100%;
+}
+
+.team_info{
+    display: flex;
+}
+
+.hire_main ul{
+    text-align: left;
+}
+
+.vacansies{
+    margin-bottom: 70px;
+}
+
+
+@media (max-width: 450px) {
+    .main h1 {
+        font-size: 30px;
+    }
+
+    
 }
 

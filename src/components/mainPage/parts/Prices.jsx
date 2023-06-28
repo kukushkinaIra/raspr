@@ -9,27 +9,31 @@ function Prices(){
                 <div className="prices_blocks">
                     <div className="price_block">
                         <h3>Распределение / перераспределение</h3>
-                        <p>от 127 руб в месяц</p>
+                        <p>Затратная часть от 148 руб в месяц</p>
                         {/* <hr> */}
                         <ul>
                             <li>Какие-то плюсы</li>
                             <li>служба в армии идет в срок отработки</li>
-                            <li>аванс 381 руб за три месяца для гарантии сотрудничества</li>
+                            <li>аванс 534 руб за три месяца для гарантии сотрудничества</li>
                             <li>просто пример дизайна</li>
-                            <button>Подать заявку</button>
                         </ul>
+                        <div className="buttom_div">
+                                <button>Подать заявку</button>
+                            </div>
                     </div>
                     <div className="price_block">
                         <h3>Преддипломная практика</h3>
-                        <p>от 80 руб в месяц</p>
+                        <p>Затратная часть от 148 руб в месяц</p>
                         {/* <hr> */}
                         <ul>
                             <li>Какие-то плюсы</li>
                             <li>служба в армии идет в срок отработки</li>
-                            <li>аванс 381 руб за три месяца для гарантии сотрудничества</li>
+                            <li>аванс 534 руб за три месяца для гарантии сотрудничества</li>
                             <li>просто пример дизайна</li>
-                            <button>Пройти практику</button>
                         </ul>
+                        <div className="buttom_div">
+                            <button>Пройти практику</button>
+                        </div>
                     </div>
                     <div className="price_block">
                         <h3>Прочие услуги</h3>
@@ -41,11 +45,15 @@ function Prices(){
                             <li>подписание дневника, характеристики</li>
                             <li>Справки для посольства</li>
                             <li>выдача гарантийного письма</li>
-                            <button>
-                                <Link to="/login" style={{textDecoration:'none'}}>Зарегистрироваться</Link>
-                            </button>
+                            
                         </ul>
+                        <div className="buttom_div">
+                            <button>
+                                    <Link to="/login" className="regist_link" style={{textDecoration:'none'}}>Зарегистрироваться</Link>
+                            </button>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </section>
