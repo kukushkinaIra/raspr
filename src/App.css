@@ -703,3 +703,48 @@ span.arrow-icon svg {
     max-width: 600px;
 }
 
+.main_container h2, .reviews h2{
+    text-align: center;
+}
+
+
+/* referal programm */
+
+.referal_main{
+    background-color: #efba00;
+    padding: 40px;
+    text-align: center;
+}
+
+.referal_main ul li{
+    list-style-type: none;
+}
+
+.myIcon{
+    width: 25px;
+}
+
+section.referal, section.team{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mainImg{
+    width: 50%;
+}
+
+.main_description_team{
+    width: 100%;
+}
+
+.team_info{
+    display: flex;
+}
+
+.hire_main ul{
+    text-align: left;
+}
+
+.vacansies{
+    margin-bottom: 70px;
+}
