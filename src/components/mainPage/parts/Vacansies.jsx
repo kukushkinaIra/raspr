@@ -4,7 +4,7 @@ import icon from "./images/662218.svg"
 
 function Vacansies(){
     return(
-        <section className="about_us vacansies referal">
+        <section className="about_us vacansies referal" id="vacansies">
             <div className="container main_container">
                  <h2>Вакансии</h2>
                 <div className="referal_main hire_main">

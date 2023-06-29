@@ -6,7 +6,7 @@ import doneIcon from "./images/27098.svg"
 
 function Service(){
     return(
-        <section className="services_block">
+        <section id="services" className="services_block">
             <h2>Наши услуги</h2>
             <div className="container">
                 <div className="service_block">

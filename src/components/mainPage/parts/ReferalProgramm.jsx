@@ -4,7 +4,7 @@ import icon from "./images/662218.svg"
 
 function ReferalProgramm(){
     return(
-        <section className="about_us referal">
+        <section className="about_us referal" id="referal">
             <div className="container main_container">
                  <h2>Реферальная программа</h2>
                 <div className="referal_main">

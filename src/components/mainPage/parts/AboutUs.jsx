@@ -3,7 +3,7 @@ import work from "./images/2163673.svg"
 
 function AboutUs(){
     return(
-        <section className="about_us">
+        <section id="about" className="about_us">
             <div className="container main_container">
                  <h2>О нас</h2>
                 <div>
