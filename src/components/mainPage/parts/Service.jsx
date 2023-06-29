@@ -11,20 +11,20 @@ function Service(){
             <div className="container">
                 <div className="service_block">
                     <div className="servise_img">
-                        <img className="round" src={serviceBoy} />
+                        <img alt="image"className="round" src={serviceBoy} />
                     </div>
                     <div className="service_text">
                         <h3>Распределение и перераспределение</h3>
                         <ul>
                             <li>
-                                <img className="doneIcon" src={doneIcon} />
+                                <img alt="image"className="doneIcon" src={doneIcon} />
                                 заказать заявку на распределение/гарантийное письмо
                             </li>
                             <li>
-                            <img className="doneIcon" src={doneIcon} />
+                            <img alt="image"className="doneIcon" src={doneIcon} />
                                 оформить пакет на трудоустройство
                             </li>
-                            <li> <img className="doneIcon" src={doneIcon} />
+                            <li> <img alt="image" className="doneIcon" src={doneIcon} />
                                 заказать справку, характеристику, копию трудовой книжки;</li>
                         </ul>
                     </div>
@@ -34,15 +34,15 @@ function Service(){
                         <h3>Производственная/
                             преддипломная практика</h3>
                         <ul>
-                            <li><img className="doneIcon" src={doneIcon} />
+                            <li><img alt="image" className="doneIcon" src={doneIcon} />
                             оформить договор на практику
                             </li>
-                            <li><img className="doneIcon" src={doneIcon} />
+                            <li><img alt="image" className="doneIcon" src={doneIcon} />
                             подписать дневник,отчет,титульный лист</li>
                         </ul>
                     </div>
                     <div className="servise_img">
-                        <img className="round" src={serviceGirl} />
+                        <img alt="image" className="round" src={serviceGirl} />
                     </div>
                 </div>
             </div>

@@ -3,8 +3,8 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import FormGuaranteeLetter from "./FormGuaranteeLetter";
-import FormContract from "./FormContract";
+import FormGuaranteeLetter from "./forms/FormGuaranteeLetter";
+import FormContract from "./forms/FormContract";
 
 
 export default class UserOffers extends React.Component {
@@ -22,7 +22,8 @@ export default class UserOffers extends React.Component {
 
 
     componentDidMount() {
-        fetch("/offers")
+        const userId = localStorage.getItem("id");
+        fetch(`/offers/${userId}`)
             .then(res => res.json())
             .then(
                 data => {

@@ -23,62 +23,62 @@ function Reviews(){
                 <div className="cards">
                     <div className="card">
                         <div>
-                            <img src={reviewPerson1} />
+                            <img alt="image" src={reviewPerson1} />
                         </div>
                         <div>
-                            <img src={review1} />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div>
-                            <img src={reviewPerson2} />
-                        </div>
-                        <div>
-                            <img src={review2} />
-                        </div>
-                    </div>
-                </div>
-                <div className="cards">
-                    <div className="card">
-                        <div>
-                        <img src={reviewPerson3} />
-                        </div>
-                        <div>
-                        <img src={review3} />
+                            <img alt="image" src={review1} />
                         </div>
                     </div>
                     <div className="card">
                         <div>
-                        <img src={reviewPerson4} />
+                            <img alt="image" src={reviewPerson2} />
                         </div>
                         <div>
-                        <img src={review4} />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div>
-                        <img src={reviewPerson5} />
-                        </div>
-                        <div>
-                        <img src={review5} />
+                            <img alt="image" src={review2} />
                         </div>
                     </div>
                 </div>
                 <div className="cards">
                     <div className="card">
                         <div>
-                        <img src={reviewPerson6} />
+                        <img alt="image" src={reviewPerson3} />
                         </div>
                         <div>
-                        <img src={review6} />
+                        <img alt="image" src={review3} />
                         </div>
                     </div>
                     <div className="card">
                         <div>
-                        <img src={reviewPerson7} />
+                        <img alt="image" src={reviewPerson4} />
                         </div>
                         <div>
-                        <img src={review7} />
+                        <img alt="image" src={review4} />
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div>
+                        <img alt="image" src={reviewPerson5} />
+                        </div>
+                        <div>
+                        <img alt="image" src={review5} />
+                        </div>
+                    </div>
+                </div>
+                <div className="cards">
+                    <div className="card">
+                        <div>
+                        <img alt="image" src={reviewPerson6} />
+                        </div>
+                        <div>
+                        <img alt="image" src={review6} />
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div>
+                        <img alt="image" src={reviewPerson7} />
+                        </div>
+                        <div>
+                        <img alt="image" src={review7} />
                         </div>
                     </div>
                 </div>

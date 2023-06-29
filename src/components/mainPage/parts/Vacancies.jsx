@@ -2,44 +2,44 @@ import React from "react"
 import icon from "./images/662218.svg"
 
 
-function Vacansies(){
+function Vacancies(){
     return(
         <section className="about_us vacansies referal" id="vacansies">
             <div className="container main_container">
                  <h2>Вакансии</h2>
                 <div className="referal_main hire_main">
                     <div>
-                        <h3>МЕНЕДЖЕР, МЫ ИЩЕМ ТЕБЯ <img className="myIcon" src={icon} /></h3>
+                        <h3>МЕНЕДЖЕР, МЫ ИЩЕМ ТЕБЯ <img alt="image" className="myIcon" src={icon} /></h3>
                         <h5>Какие задачи тебя ожидают</h5>
                         <ul className="hire">
-                            <li> <img className="myIcon" src={icon} />
+                            <li> <img alt="image" className="myIcon" src={icon} />
                             	Активный поиск и привлечение новых клиентов (переписки, звонки, проведение переговоров и встреч, заключение договоров)
                               </li>
                              <li>
-                                <img className="myIcon" src={icon} />
+                                <img alt="image" className="myIcon" src={icon} />
                                 Формирование базы клиентов, ведение текущих клиентов
                             </li>
                         </ul>
 
                         <h5>Что мы ждем от тебя</h5>
                         <ul className="hire">
-                            <li> <img className="myIcon" src={icon} />
+                            <li> <img alt="image" className="myIcon" src={icon} />
                             Желание развиваться в сфере продаж
                             </li>
                              <li>
-                                <img className="myIcon" src={icon} />
+                                <img alt="image" className="myIcon" src={icon} />
                                 Желание работать с людьми
                             </li>
                             <li>
-                                <img className="myIcon" src={icon} />
+                                <img alt="image" className="myIcon" src={icon} />
                                 Готовность к обучению
                             </li>
                             <li>
-                                <img className="myIcon" src={icon} />
+                                <img alt="image" className="myIcon" src={icon} />
                                 Желание достигать результатов и зарабатывать
                             </li>
                             <li>
-                                <img className="myIcon" src={icon} />
+                                <img alt="image" className="myIcon" src={icon} />
                                 Коммуникабельность, активность, стрессоустойчивость
                             </li>
                         </ul>
@@ -53,4 +53,4 @@ function Vacansies(){
     )
 }
 
-export default Vacansies
+export default Vacancies

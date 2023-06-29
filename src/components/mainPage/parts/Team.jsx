@@ -16,11 +16,11 @@ function Team(){
                             </p>
                         </div>
                         <div className="mainImgDiv">
-                            <img className="mainImg" src={main} />
+                            <img alt="image" className="mainImg" src={main} />
                         </div>
                     </div>
                     {/* <div>
-                        <img className="mainImg" src={main} />
+                        <img alt="image" className="mainImg" src={main} />
                     </div> */}
                 </div>
             </div>

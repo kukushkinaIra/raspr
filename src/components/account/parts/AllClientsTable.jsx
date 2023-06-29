@@ -3,14 +3,14 @@ import Table from 'react-bootstrap/Table';
 import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
 import jsPDF from "jspdf";
 import {renderToString} from "react-dom/server";
-import './Montserrat-Regular-normal.js';
-import './Montserrat-SemiBold-bold.js';
+import '../../../fonts/pdf/Montserrat-Regular-normal.js';
+import '../../../fonts/pdf/Montserrat-SemiBold-bold.js';
 import {IoMdSearch} from "react-icons/io";
 import {GrRefresh} from "react-icons/gr";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
+import {useNavigate} from "react-router-dom";
 
 export default class AllClientsTable extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -134,6 +134,14 @@ export default class AllClientsTable extends React.Component {
                     }
                 },
                 (error) => {
+                    if (error.response && error.response.status === 401) {
+                        //TODO: смотьрю пустая ли куки
+                        localStorage.clear();
+                        this.props.history.push('/login')
+                    } else {
+                        // Обработка других ошибок
+                        // ...
+                    }
                     this.setState({
                         isLoaded: true,
                         error,
