@@ -123,7 +123,7 @@ export default class WorkWithOrdersTable extends React.Component {
     fetchOrders = () => {
         const {search, currentPage, pageSize, sortParams} = this.state;
         console.log(search)
-        const url = `http://localhost:8080/orders/manager/21`;
+        const url = `/orders/manager/21`;
         console.log(url)
         fetch(url)
             .then((res) => res.json())

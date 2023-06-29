@@ -3,7 +3,7 @@ import main from "./images/alex.jpg"
 
 function Team(){
     return(
-        <section className="about_us team">
+        <section className="about_us team" id="team">
             <div className="container main_container">
                  <h2>Наша Команда</h2>
                 <div className="main_description_team">

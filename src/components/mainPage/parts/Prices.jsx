@@ -5,7 +5,7 @@ import doneIcon from "./images/27098.svg"
 
 function Prices(){
     return(
-        <section className="main_prices" id="offers">
+        <section className="main_prices" id="prices">
             <div className="container">
                 <h2>Цены</h2>
                 <div className="prices_blocks">

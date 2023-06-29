@@ -118,7 +118,7 @@ export default class ManagementTable extends React.Component {
     fetchOrders = () => {
         const {search, currentPage, pageSize, sortParams} = this.state;
         console.log(search)
-        const url = `http://localhost:8080/orders/notAssigned`;
+        const url = `/orders/notAssigned`;
         console.log(url)
         fetch(url)
             .then((res) => res.json())
@@ -142,7 +142,7 @@ export default class ManagementTable extends React.Component {
 
     componentDidMount() {
         this.fetchOrders();
-        fetch("http://localhost:8080/users/managers")
+        fetch("/users/managers")
             .then(res => res.json())
             .then(
                 data => {

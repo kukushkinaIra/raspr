@@ -33,7 +33,7 @@ function Navigation(){
                     </ul>
                 </div>
                 <div className="user_variations">
-                    <NavLink className="username" to="/register" style={{textDecoration:'none'}}>lorem_ipsum@gmail.com</NavLink>
+                    <NavLink className="username" to="/registration" style={{textDecoration:'none'}}>lorem_ipsum@gmail.com</NavLink>
                     <NavLink className="enter" to="/login" style={{textDecoration:'none'}} >Выйти</NavLink>
                 </div>
             </div>
