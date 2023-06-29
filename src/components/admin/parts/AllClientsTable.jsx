@@ -1,15 +1,13 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
-import {saveAs} from 'file-saver';
-import Docxtemplater from 'docxtemplater';
-import {MdKeyboardArrowDown, MdKeyboardArrowRight, MdSimCardDownload} from 'react-icons/md';
-import {Document, Page, PDFDownloadLink, Text, StyleSheet, Font, View} from "@react-pdf/renderer";
-import MontserratRegular from '../../../fonts/Montserrat/Montserrat-Regular.ttf';
-import MontserratMedium from '../../../fonts/Montserrat/Montserrat-Medium.ttf';
+import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
 import jsPDF from "jspdf";
 import {renderToString} from "react-dom/server";
 import './Montserrat-Regular-normal.js';
 import './Montserrat-SemiBold-bold.js';
+import {IoMdSearch} from "react-icons/io";
+import {GrRefresh} from "react-icons/gr";
+import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
 
 export default class AllClientsTable extends React.Component {
 
@@ -18,33 +16,135 @@ export default class AllClientsTable extends React.Component {
         this.state = {
             error: null,
             expandedRow: null,
-            content: []
+            content: [],
+            search: '',
+            currentPage: 0,
+            totalPages: 0,
+            pageSize: 10,
+            sortParams: 'fullname,asc'
         };
     }
 
     toggleRow = (rowId) => {
         this.setState((prevState) => ({
-            expandedRow: prevState.expandedRow === rowId ? null : rowId
+            expandedRow: prevState.expandedRow === rowId ? null : rowId,
         }));
     };
 
-    componentDidMount() {
-        fetch("/users")
-            .then(res => res.json())
+    handleSearchChange = (e) => {
+        this.setState({search: e.target.value});
+    };
+
+    handlePageSizeChange = (e) => {
+        const newSize = parseInt(e.target.value, 10);
+        this.setState(
+            {
+                pageSize: newSize,
+                currentPage: 0,
+            },
+            () => {
+                this.fetchUsers();
+            }
+        );
+    };
+
+    handleSearchSubmit = (e) => {
+        e.preventDefault();
+        this.fetchUsers();
+    };
+
+    handleRefresh = () => {
+        this.fetchUsers();
+    };
+
+    handlePageChange = (pageNumber) => {
+        this.setState(
+            {
+                currentPage: pageNumber,
+            },
+            () => {
+                this.fetchUsers();
+            }
+        );
+    };
+
+
+    goToPreviousPage = () => {
+        const {currentPage} = this.state;
+        if (currentPage > 0) {
+            this.handlePageChange(currentPage - 1);
+        }
+    };
+
+    goToNextPage = () => {
+        const {currentPage, totalPages} = this.state;
+        if (currentPage < totalPages - 1) {
+            this.handlePageChange(currentPage + 1);
+        }
+    };
+
+    renderPageNumbers() {
+        const {currentPage, totalPages} = this.state;
+        const pageNumbers = [];
+
+        for (let i = Math.max(0, currentPage - 2); i <= Math.min(currentPage + 2, totalPages - 1); i++) {
+            pageNumbers.push(
+                <a
+                    key={i}
+                    className={`pagination-link ${i === currentPage ? 'active' : ''}`}
+                    onClick={() => this.handlePageChange(i)}
+                    href="#"
+                >
+                    {i + 1}
+                </a>
+            );
+        }
+
+        return pageNumbers;
+    }
+
+    handleSortChange = (e) => {
+        const value = e.target.value;
+        this.setState(
+            {
+                sortParams: value,
+                currentPage: 0,
+            },
+            () => {
+                this.fetchUsers();
+            }
+        );
+    };
+
+
+    fetchUsers = () => {
+        const {search, currentPage, pageSize, sortParams} = this.state;
+        const url = `/users?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}`;
+
+        fetch(url)
+            .then((res) => res.json())
             .then(
-                data => {
-                    this.setState({
-                        content: data.content,
-                        isLoading: false,
-                    })
+                (data) => {
+                    if (data.content) {
+                        this.setState({
+                            content: data.content,
+                            totalPages: data.totalPages,
+                            isLoading: false,
+                        });
+                    }
                 },
                 (error) => {
                     this.setState({
                         isLoaded: true,
-                        error
+                        error,
                     });
                 }
-            )
+            );
+    };
+
+
+    componentDidMount() {
+        this.fetchUsers();
     }
 
     getUserInstitution(orders) {
@@ -171,22 +271,24 @@ export default class AllClientsTable extends React.Component {
         }
         const payments = order.payments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-        paymentBlock = (
-            <div className="expended_padding_block">
-                {payments.map(payment => (<div>
-                    <div className="expanded_info_div"><b>Id платежа:</b> {payment.id}</div>
-                    <div className="expanded_info_div"><b>Сумма к оплате:</b> {payment.price + " руб."}</div>
-                    <div className="expanded_info_div"><b>Реквизиты счёта:</b> {payment.targetDetails}</div>
-                    <div className="expanded_info_div"><b>Время платежа:</b>
-                        {new Date(Date.parse(payment.paymentTime)).toLocaleString()}
-                    </div>
-                    <div className="expanded_info_div"><b>Квитанция:</b> {payment.receiptText}</div>
-                    <div className="expanded_info_div"><b>Квитанция:</b></div>
-                    <div>{this.getPaymentImageBlock(payment)}</div>
-                    <hr/>
-                </div>))}
-            </div>
-        )
+        if (payments) {
+            paymentBlock = (
+                <div className="expended_padding_block">
+                    {payments.map(payment => (<div>
+                        <div className="expanded_info_div"><b>Id платежа:</b> {payment.id}</div>
+                        <div className="expanded_info_div"><b>Сумма к оплате:</b> {payment.price + " руб."}</div>
+                        <div className="expanded_info_div"><b>Реквизиты счёта:</b> {payment.targetDetails}</div>
+                        <div className="expanded_info_div"><b>Время платежа:</b>
+                            {new Date(Date.parse(payment.paymentTime)).toLocaleString()}
+                        </div>
+                        <div className="expanded_info_div"><b>Квитанция:</b> {payment.receiptText}</div>
+                        <div className="expanded_info_div"><b>Квитанция:</b></div>
+                        <div>{this.getPaymentImageBlock(payment)}</div>
+                        <hr/>
+                    </div>))}
+                </div>
+            )
+        }
 
         return (<tr>
                 <td colSpan={4}>
@@ -310,12 +412,59 @@ export default class AllClientsTable extends React.Component {
 
 
     render() {
-        const {error, content, expandedRow} = this.state;
+        const {error, content, expandedRow, search, currentPage, totalPages, pageSize, sortParams} = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
             return (
-                <div>
+                <div className="table-container">
+                    <div className="table-container-header">
+                        <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={this.handleSearchChange}
+                                placeholder="Ключевое слово"
+                            />
+                            <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
+                        </form>
+                        <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
+                            <option value="fullname,asc"> ФИО &#9650; </option>
+                            <option value="fullname,desc"> ФИО &#9660;</option>
+                            <option value="email,asc">Email &#9650;</option>
+                            <option value="email,desc">Email &#9660;</option>
+                        </select>
+                        <div className="pagination-container">
+                            <a
+                                className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}
+                                onClick={this.goToPreviousPage}
+                                href="#"
+                            >
+                                <RiArrowLeftDoubleFill/>
+                            </a>
+                            {this.renderPageNumbers()}
+                            <a
+                                className={`pagination-link ${currentPage === totalPages - 1 ? 'disabled' : ''}`}
+                                onClick={this.goToNextPage}
+                                href="#"
+                            >
+                                <RiArrowRightDoubleFill/>
+                            </a>
+                            <div className="page-size-block">
+                                <span>Кол-во: </span>
+                                <select className="page-size-select" value={pageSize}
+                                        onChange={this.handlePageSizeChange}>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button className="table-refresh-button" onClick={this.handleRefresh}>
+                            <GrRefresh/>
+                        </button>
+                    </div>
                     <Table responsive striped hover>
                         <thead>
                         <tr>
