@@ -4,6 +4,9 @@ import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import {IoMdSearch} from "react-icons/io";
+import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
+import {GrRefresh} from "react-icons/gr";
 
 
 export default class TableOrders extends React.Component {
@@ -19,9 +22,100 @@ export default class TableOrders extends React.Component {
             expandedRow: null,
             orders: [],
             show: false,
-            modal: <div></div>
+            modal: <div></div>,
+            search: '',
+            currentPage: 0,
+            totalPages: 0,
+            pageSize: 10,
+            sortParams: 'createdAt,desc'
         };
     }
+
+
+    handleSearchChange = (e) => {
+        this.setState({search: e.target.value});
+    };
+
+    handlePageSizeChange = (e) => {
+        const newSize = parseInt(e.target.value, 10);
+        this.setState(
+            {
+                pageSize: newSize,
+                currentPage: 0,
+            },
+            () => {
+                this.fetchOrders();
+            }
+        );
+    };
+
+    handleSearchSubmit = (e) => {
+        e.preventDefault();
+        this.fetchOrders();
+    };
+
+    handleRefresh = () => {
+        this.fetchOrders();
+    };
+
+    handlePageChange = (pageNumber) => {
+        this.setState(
+            {
+                currentPage: pageNumber,
+            },
+            () => {
+                this.fetchOrders();
+            }
+        );
+    };
+
+
+    goToPreviousPage = () => {
+        const {currentPage} = this.state;
+        if (currentPage > 0) {
+            this.handlePageChange(currentPage - 1);
+        }
+    };
+
+    goToNextPage = () => {
+        const {currentPage, totalPages} = this.state;
+        if (currentPage < totalPages - 1) {
+            this.handlePageChange(currentPage + 1);
+        }
+    };
+
+    renderPageNumbers() {
+        const {currentPage, totalPages} = this.state;
+        const pageNumbers = [];
+
+        for (let i = Math.max(0, currentPage - 2); i <= Math.min(currentPage + 2, totalPages - 1); i++) {
+            pageNumbers.push(
+                <a
+                    key={i}
+                    className={`pagination-link ${i === currentPage ? 'active' : ''}`}
+                    onClick={() => this.handlePageChange(i)}
+                    href="#"
+                >
+                    {i + 1}
+                </a>
+            );
+        }
+
+        return pageNumbers;
+    }
+
+    handleSortChange = (e) => {
+        const value = e.target.value;
+        this.setState(
+            {
+                sortParams: value,
+                currentPage: 0,
+            },
+            () => {
+                this.fetchOrders();
+            }
+        );
+    };
 
     toggleRow = (rowId) => {
         this.setState((prevState) => ({
@@ -29,21 +123,34 @@ export default class TableOrders extends React.Component {
         }));
     };
 
-    componentDidMount() {
-        fetch("http://213.109.204.76:8080/orders")
-            .then(res => res.json())
+    fetchOrders = () => {
+        const {search, currentPage, pageSize, sortParams} = this.state;
+        console.log(search)
+        const url = `http://localhost:8080/orders?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}`;
+        console.log(url)
+        fetch(url)
+            .then((res) => res.json())
             .then(
-                data => {
-                    this.setState({
-                        orders: data.content,
-                    })
+                (data) => {
+                    if (data.content) {
+                        this.setState({
+                            content: data.content,
+                            totalPages: data.totalPages,
+                            isLoading: false,
+                        });
+                    }
                 },
                 (error) => {
                     this.setState({
-                        error
+                        isLoaded: true,
+                        error,
                     });
                 }
-            )
+            );
+    }
+
+    componentDidMount() {
+        this.fetchOrders();
     }
 
     handlePaymentCreate(order, lastPayment) {
@@ -133,7 +240,7 @@ export default class TableOrders extends React.Component {
             note: payment.note
 
         }
-        fetch(`http://213.109.204.76:8080/orders/${orderId}/update-payment`, {
+        fetch(`http://localhost:8080/orders/${orderId}/update-payment`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -204,15 +311,64 @@ export default class TableOrders extends React.Component {
 
     render() {
 
-        const {error, orders, expandedRow} = this.state;
+        const {error, orders, expandedRow, search, currentPage, totalPages, pageSize, sortParams} = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
             return (
-                <div>
+                <div className="table-container">
                     <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
                         {this.state.modal}
                     </Modal>
+                    <div className="table-container-header">
+                        <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={this.handleSearchChange}
+                                placeholder="Ключевое слово"
+                            />
+                            <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
+                        </form>
+                        <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
+                            <option value="offer.price,asc"> Цена &#9660; </option>
+                            <option value="offer.price,desc"> Цена &#9650;</option>
+                            <option value="user.fullname,asc"> ФИО &#9660;</option>
+                            <option value="user.fullname,desc"> ФИО &#9650;</option>
+                            <option value="user.email,asc"> Email &#9660;</option>
+                            <option value="user.email,desc"> Email &#9650;</option>
+                        </select>
+                        <div className="pagination-container">
+                            <a
+                                className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}
+                                onClick={this.goToPreviousPage}
+                                href="#"
+                            >
+                                <RiArrowLeftDoubleFill/>
+                            </a>
+                            {this.renderPageNumbers()}
+                            <a
+                                className={`pagination-link ${currentPage === totalPages - 1 ? 'disabled' : ''}`}
+                                onClick={this.goToNextPage}
+                                href="#"
+                            >
+                                <RiArrowRightDoubleFill/>
+                            </a>
+                            <div className="page-size-block">
+                                <span>Кол-во: </span>
+                                <select className="page-size-select" value={pageSize}
+                                        onChange={this.handlePageSizeChange}>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button className="table-refresh-button" onClick={this.handleRefresh}>
+                            <GrRefresh/>
+                        </button>
+                    </div>
                     <Table responsive striped hover>
                         <thead>
                         <tr>

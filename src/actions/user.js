@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const Registration = async (username, password) => {
     try{
-        const response = await axios.post('http://213.109.204.76:8080/auth/signUp', {
+        const response = await axios.post('http://localhost:8080/auth/signUp', {
             // name,
             // surname,
             username,
@@ -20,7 +20,7 @@ export const Registration = async (username, password) => {
 //     return async dispatch => {
 
 //         try{
-//             const response = await axios.post('http://213.109.204.76:8080/auth/signIn', {
+//             const response = await axios.post('http://localhost:8080/auth/signIn', {
 //                 email,
 //                 password
 //             })
@@ -37,7 +37,7 @@ export const Registration = async (username, password) => {
 export const login =  (username, password) => {
     return async dispatch => {
         try {
-            const response = await axios.post(`http://213.109.204.76:8080/auth/signIn`, {
+            const response = await axios.post(`http://localhost:8080/auth/signIn`, {
                 username,
                 password
             })
