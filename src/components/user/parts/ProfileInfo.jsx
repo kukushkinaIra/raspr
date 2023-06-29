@@ -1,5 +1,4 @@
 import React from 'react';
-import data from "bootstrap/js/src/dom/data";
 
 
 export default class ProfileInfo extends React.Component {

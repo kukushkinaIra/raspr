@@ -194,7 +194,7 @@ section.main {
     margin-top: 25px;
 }
 
-.services_block img {
+.services_block img.round {
     width: 400px;
     height: 400px;
 }
@@ -209,6 +209,15 @@ section.main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.service_block ul li {
+    list-style-type: none;
+}
+
+.service_block ul li.doneIcon {
+    width: 17px;
+    height: 17px;
 }
 
 /* prices style */
@@ -268,12 +277,34 @@ section.main {
     margin-top: 20px;
 }
 
+.doneIcon {
+    width: 17px;
+    margin-right: 10px;
+}
+
 .regist_link {
     color: #000000;
 }
 
 .buttom_div {
     text-align: center;
+}
+
+.more_info_prices {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 50px;
+}
+
+.more_info_prices h4 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.more_info_prices ul li {
+    list-style-type: none;
+    padding-top: 10px;
+    /* text-align: center; */
 }
 
 @media (max-width: 1300px) {
@@ -294,6 +325,58 @@ section.main {
     .prices_blocks {
         justify-content: center;
     }
+
+}
+
+@media (max-width: 1200px) {
+    .team_info {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .team_infoText {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .more_info_prices {
+        display: block;
+    }
+
+    .team_infoText p {
+        font-size: 2.8vw;
+    }
+
+    .referal_main ul {
+        text-align: left;
+    }
+
+    .referal_main {
+        padding: 25px;
+    }
+
+    .about_first {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1000px) {
+    .servise_img {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .servise_block {
+        justify-content: center;
+    }
+
+    .servise_block_2 {
+        flex-wrap: wrap-reverse;
+        margin-top: 35px;
+    }
 }
 
 @media (max-width: 800px) {
@@ -311,6 +394,11 @@ section.main {
     .price_block {
         width: 60%;
     }
+
+    .navigation_cotainer ul {
+        display: block;
+    }
+
 }
 
 @media (max-width: 600px) {
@@ -318,6 +406,12 @@ section.main {
     .price_block {
         width: 80%;
     }
+
+    .services_block img.round {
+        width: 320px;
+        height: 320px;
+    }
+
 }
 
 
@@ -581,7 +675,6 @@ footer {
 }
 
 
-
 .form-select {
     font-family: 'Montserrat', sans-serif;
     border-radius: 0;
@@ -612,7 +705,9 @@ textarea {
 }
 
 .table {
-    border-top: 1px solid #ECECEC;
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2));
+    margin: 3px;
+    width: calc(100% - 6px);
 }
 
 thead {
@@ -734,7 +829,7 @@ tbody * {
     justify-content: space-between;
 }
 
-.table-container-header *{
+.table-container-header * {
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -746,7 +841,7 @@ tbody * {
     align-items: center;
 }
 
-.table-refresh-button:hover{
+.table-refresh-button:hover {
     transform: rotate(360deg);
     transition: transform 0.6s ease-in-out;
 }
@@ -882,8 +977,21 @@ section.referal, section.team {
     margin-bottom: 50px;
 }
 
+.mainImgDiv {
+    display: flex;
+    justify-content: center;
+}
+
 .mainImg {
-    width: 50%;
+    width: 60%;
+}
+
+.team_infoText {
+    width: 70%;
+}
+
+.team_infoText p {
+    font-size: 1.8vw;
 }
 
 .main_description_team {
@@ -908,5 +1016,40 @@ section.referal, section.team {
         font-size: 30px;
     }
 
+    .workImg {
+        width: 300px;
+    }
+
+    .main_description {
+        width: 100%;
+    }
 }
 
+h4 {
+    text-transform: uppercase;
+}
+
+
+.workImg {
+    width: 90%;
+}
+
+section.about_us {
+    margin-top: 35px;
+}
+
+.about_first {
+    display: flex;
+}
+
+.about_first p {
+    font-size: 24px;
+}
+
+.about_text {
+    margin-left: 40px;
+}
+
+h4.offer_seller {
+    margin-top: 25px;
+}

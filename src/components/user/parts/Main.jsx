@@ -1,25 +1,15 @@
-import { Tabs, Tab, Col, Nav, Row } from "react-bootstrap";
+import {Tab, Col, Nav, Row} from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
-import FormGuaranteeLetter from "./FormGuaranteeLetter.jsx"
 import TableOrders from "./TableOrders";
 import ProfileInfo from "./ProfileInfo";
 import UserOffers from "./UserOffers";
 
-// import Form from 'react-bootstrap/Form';
-// import Table from 'react-bootstrap/Table';
-// import axios from 'axios';
-// import { Tab } from "@mui/base"
-// import Tab, { Container } from "react-bootstrap/lib/Tab"
 
+function Main() {
 
-function Main(){
-    
-    return(
+    return (
         <Container className="user_container">
             <Tab.Container id="ledt-tabs-example" defaultActiveKey="first">
                 <Row>
@@ -49,7 +39,6 @@ function Main(){
                                 <ProfileInfo/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">
-                            {/* <Button onClick={getAllOffers}>Logout</Button> */}
                                 <h3>Выберите услугу для заказа</h3>
                                 <UserOffers/>
                             </Tab.Pane>

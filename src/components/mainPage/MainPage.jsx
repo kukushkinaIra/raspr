@@ -11,7 +11,6 @@ import Team from "./parts/Team.jsx"
 import Vacansies from "./parts/Vacansies.jsx"
 
 
-
 function MainPage() {
     return (
       <>
