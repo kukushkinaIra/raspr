@@ -7,34 +7,25 @@ import {useAuth} from "./AuthProvider";
 
 const RegistrationPage = () => {
     const navigate = useNavigate()
-    const { role, setRole } = useAuth();
-    const [id, setId] = useState(undefined);
+    const {role, id, setRole, setId} = useAuth();
     const [form, setForm] = useState({
         username: '',
         password: '',
     });
 
-
     useEffect(() => {
-        if (role && id) {
-            localStorage.setItem('id', id);
-            setRole(role);
+        if (role && id && ["ROLE_ADMIN", "ROLE_USER", "ROLE_MANAGER"].includes(role)) {
             navigate('/home');
         }
     }, [role, id])
 
-    const roleCallback = (role, id) => {
-        setRole(role)
-        setId(id)
-    }
-
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setForm({...form, [e.target.name]: e.target.value});
     }
 
     const submitButton = (e) => {
         e.preventDefault();
-        registration(form.username, form.password, roleCallback)
+        registration(form.username, form.password, setRole, setId)
         resetButton();
     }
 
@@ -50,26 +41,26 @@ const RegistrationPage = () => {
             <div className="root">
                 <Form className="form">
                     <h3>Регистрация</h3>
-                    <Form.Group className="mb-3" controlId="recepient">
+                    <Form.Group className="mb-3" controlId="form-registration">
                         <Form.Label>E-mail</Form.Label>
                         <Form.Control
                             onChange={handleChange}
+                            name="username"
                             value={form.username}
                             type="text"
                             placeholder="Введите ваш E-mail"
-                            required={true}
                         />
                         <Form.Label>Пароль</Form.Label>
                         <Form.Control
                             onChange={handleChange}
                             value={form.password}
+                            name="password"
                             type="password"
                             placeholder="Введите ваш пароль"
-                            required={true}
                         />
                     </Form.Group>
                     <Button className="table-yellow-button"
-                            onClick={submitButton}>Войти
+                            onClick={submitButton}>Зарегистрироваться
                     </Button>
                     <p>Уже есть аккаунт? <Link className="registration" to="/login"
                                                style={{textDecoration: 'none'}}>Войти</Link></p>

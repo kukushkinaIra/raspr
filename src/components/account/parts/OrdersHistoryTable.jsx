@@ -114,11 +114,27 @@ export default class OrdersHistoryTable extends React.Component {
 
     fetchOrders = () => {
         const {search, currentPage, pageSize, sortParams} = this.state;
-        console.log(search)
         const url = `/orders?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}`;
         console.log(url)
         fetch(url)
             .then((res) => res.json())
+            .catch((error) => {
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find((cookie) => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        this.props.setId(null);
+                        this.props.setRole(null);
+                        this.props.navigate('/login');
+                    }
+                }
+                this.setState({
+                    isLoaded: true,
+                    error,
+                });
+                return Promise.reject();
+            })
             .then(
                 (data) => {
                     if (data.content) {

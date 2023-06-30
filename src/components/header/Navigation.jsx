@@ -16,38 +16,29 @@ function Navigation() {
         <Nav.Link href="/registration" className="registration">Регистрация</Nav.Link>
     </Fragment>);
 
-    const {role, setRole} = useAuth();
+    const {role, setRole, setId} = useAuth();
 
     useEffect(() => {
         if (role === "ROLE_GUEST") {
-            handleNotLogged()
+            setButtonBlock(<Fragment>
+                <Nav.Link className="enter" href="/login">Войти</Nav.Link>
+                <Nav.Link href="/registration" className="registration">Регистрация</Nav.Link>
+            </Fragment>)
         } else if (role === "ROLE_ADMIN" || role === "ROLE_USER" || role === "ROLE_MANAGER") {
-            handleLogged()
+            setButtonBlock(<Fragment>
+                    <Nav.Link className="home-button" href="/home">Личный кабинет</Nav.Link>
+                    <Button className="table-yellow-button logout" onClick={handleLogoutButton}
+                            style={{textDecoration: 'none'}}>Выйти</Button>
+                </Fragment>
+            )
         }
     }, [role]);
 
+
     const handleLogoutButton = (e) => {
         e.preventDefault();
-        logout();
-        setRole("ROLE_GUEST");
+        logout(setRole, setId);
         navigate('/');
-    }
-
-
-    const handleNotLogged = () => {
-        setButtonBlock(<Fragment>
-            <Nav.Link className="enter" href="/login">Войти</Nav.Link>
-            <Nav.Link href="/registration" className="registration">Регистрация</Nav.Link>
-        </Fragment>)
-    }
-
-    const handleLogged = () => {
-        setButtonBlock(<Fragment>
-                <Nav.Link className="home-button" href="/home">Личный кабинет</Nav.Link>
-                <Button className="table-yellow-button logout" onClick={handleLogoutButton}
-                        style={{textDecoration: 'none'}}>Выйти</Button>
-            </Fragment>
-        )
     }
 
     return (

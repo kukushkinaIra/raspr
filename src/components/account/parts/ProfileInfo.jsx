@@ -13,10 +13,28 @@ export default class ProfileInfo extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/users/15", {
+        const userId = localStorage.getItem('id')
+        fetch(`/users/${userId}`, {
             method: "GET"
         })
             .then(res => res.json())
+            .catch((error) => {
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find((cookie) => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        this.props.setId(null);
+                        this.props.setRole(null);
+                        this.props.navigate('/login');
+                    }
+                }
+                this.setState({
+                    isLoaded: true,
+                    error,
+                });
+                return Promise.reject();
+            })
             .then(
                 data => {
                     this.setState({

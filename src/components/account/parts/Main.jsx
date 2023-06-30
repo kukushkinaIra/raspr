@@ -9,10 +9,13 @@ import WorkWithOrdersTable from "./WorkWithOrdersTable.jsx";
 import UserOffers from "./UserOffers";
 import TableOrders from "./TableOrders";
 import {useAuth} from "../../auth/AuthProvider";
+import {useNavigate} from "react-router-dom";
 
 
 function Main() {
-    const {role, setRole} = useAuth();
+    const {role, id, setRole, setId} = useAuth();
+    const navigate = useNavigate();
+
     const menu = () => {
         switch (role) {
             case "ROLE_USER" : {
@@ -80,6 +83,64 @@ function Main() {
         }
     }
 
+    const load = () => {
+        switch (role) {
+            case "ROLE_USER" : {
+                return (
+                    <Fragment>
+                        <Tab.Pane eventKey="sixs">
+                            <h3>Выберите услугу для заказа</h3>
+                            <UserOffers setId={setId} setRole={setRole} navigate={navigate}/>
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="seventh">
+                            <h3>Информация о заказах</h3>
+                            <TableOrders setId={setId} setRole={setRole} navigate={navigate}/>
+                        </Tab.Pane>
+                    </Fragment>
+                );
+            }
+            case "ROLE_ADMIN" : {
+                return (<Fragment>
+                    <Tab.Pane eventKey="second">
+                        <h3>Управление заказами</h3>
+                        <WorkWithOrdersTable setId={setId} setRole={setRole} navigate={navigate}/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="third">
+                        <h3 className="choose">Распределение заказов</h3>
+                        <ManagementTable setId={setId} setRole={setRole} navigate={navigate}/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="forth">
+                        <h3>Информация о заказах</h3>
+                        <OrdersHistoryTable setId={setId} setRole={setRole} navigate={navigate}/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fifth">
+                        <h3>Информация о клиентах</h3>
+                        <AllClientsTable setId={setId} setRole={setRole} navigate={navigate}/>
+                    </Tab.Pane>
+                </Fragment>);
+            }
+            case "ROLE_MANAGER" : {
+                return (<Fragment>
+                    <Tab.Pane eventKey="second">
+                        <h3>Управление заказами</h3>
+                        <WorkWithOrdersTable setId={setId} setRole={setRole} navigate={navigate}/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="forth">
+                        <h3>Информация о заказах</h3>
+                        <OrdersHistoryTable setId={setId} setRole={setRole} navigate={navigate}/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fifth">
+                        <h3>Информация о клиентах</h3>
+                        <AllClientsTable setId={setId} setRole={setRole} navigate={navigate}/>
+                    </Tab.Pane>
+                </Fragment>);
+            }
+            default : {
+                return (<Fragment></Fragment>);
+            }
+        }
+    }
+
     return (
         <Container className="user_container">
             <Tab.Container id="ledt-tabs-example" defaultActiveKey="first">
@@ -99,30 +160,7 @@ function Main() {
                             <Tab.Pane eventKey="first">
                                 <h3>Профиль</h3>
                             </Tab.Pane>
-                            <Tab.Pane eventKey="second">
-                                <h3>Управление заказами</h3>
-                                <WorkWithOrdersTable/>
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="third">
-                                <h3 className="choose">Распределение заказов</h3>
-                                <ManagementTable/>
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="forth">
-                                <h3>Информация о заказах</h3>
-                                <OrdersHistoryTable/>
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="fifth">
-                                <h3>Информация о клиентах</h3>
-                                <AllClientsTable/>
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="sixs">
-                                <h3>Выберите услугу для заказа</h3>
-                                <UserOffers/>
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="seventh">
-                                <h3>Информация о заказах</h3>
-                                <TableOrders/>
-                            </Tab.Pane>
+                            {load()}
                         </Tab.Content>
                     </Col>
                 </Row>

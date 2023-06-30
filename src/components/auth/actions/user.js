@@ -1,7 +1,7 @@
 import jwt_decode from "jwt-decode";
+import {useAuth} from "../AuthProvider";
 
-
-export const registration = async (username, password, roleCallback) => {
+export const registration = async (username, password, setRole, setId) => {
     await fetch(`/auth/signUp`, {
         method: "POST",
         headers: {
@@ -21,11 +21,12 @@ export const registration = async (username, password, roleCallback) => {
         const decodedToken = jwt_decode(token);
         const {role, id} = decodedToken;
 
-        roleCallback(role, id)
+        setId(id);
+        setRole(role);
     }
 }
 
-export const login = async (username, password, roleCallback) => {
+export const login = async (username, password, setRole, setId) => {
     await fetch(`/auth/signIn`, {
         method: "POST",
         headers: {
@@ -45,11 +46,12 @@ export const login = async (username, password, roleCallback) => {
         const decodedToken = jwt_decode(token);
         const {role, id} = decodedToken;
 
-        roleCallback(role, id)
+        setId(id);
+        setRole(role);
     }
 }
 
-export const logout = async () => {
+export const logout = async (setRole, setId) => {
     await fetch(`/auth/signOut`, {
         method: "POST",
         headers: {
@@ -57,4 +59,7 @@ export const logout = async () => {
         },
         credentials: "include"
     });
+
+    setId(null);
+    setRole("ROLE_GUEST");
 }

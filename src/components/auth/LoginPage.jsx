@@ -43,34 +43,25 @@ import {useAuth} from "./AuthProvider";
 
 const LoginPage = () => {
     const navigate = useNavigate()
-    const { role, setRole } = useAuth();
-    const [id, setId] = useState(undefined);
+    const {role, id, setRole, setId} = useAuth();
     const [form, setForm] = useState({
         username: '',
         password: '',
     });
 
-
     useEffect(() => {
-        if (role && id) {
-            localStorage.setItem('id', id);
-            setRole(role);
+        if (role && id && ["ROLE_ADMIN", "ROLE_USER", "ROLE_MANAGER"].includes(role)) {
             navigate('/home');
         }
     }, [role, id])
 
-    const roleCallback = (role, id) => {
-        setRole(role)
-        setId(id)
-    }
-
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setForm({...form, [e.target.name]: e.target.value});
     }
 
     const submitButton = (e) => {
         e.preventDefault();
-        login(form.username, form.password, roleCallback)
+        login(form.username, form.password, setRole, setId)
         resetButton();
     }
 
@@ -86,7 +77,7 @@ const LoginPage = () => {
             <div className="root">
                 <Form className="form">
                     <h3>Авторизация</h3>
-                    <Form.Group className="mb-3" controlId="recepient">
+                    <Form.Group className="mb-3" controlId="form-login">
                         <Form.Label>E-mail</Form.Label>
                         <Form.Control
                             onChange={handleChange}

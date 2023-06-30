@@ -122,11 +122,27 @@ export default class WorkWithOrdersTable extends React.Component {
 
     fetchOrders = () => {
         const {search, currentPage, pageSize, sortParams} = this.state;
-        console.log(search)
-        const url = `/orders/manager/21`;
-        console.log(url)
+        const managerId = localStorage.getItem('id');
+        const url = `/orders/manager/${managerId}`;
         fetch(url)
             .then((res) => res.json())
+            .catch((error) => {
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find((cookie) => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        this.props.setId(null);
+                        this.props.setRole(null);
+                        this.props.navigate('/login');
+                    }
+                }
+                this.setState({
+                    isLoaded: true,
+                    error,
+                });
+                return Promise.reject();
+            })
             .then(
                 (data) => {
                     if (data.content) {
@@ -344,6 +360,23 @@ export default class WorkWithOrdersTable extends React.Component {
             body: JSON.stringify(requestBody)
         })
             .then(res => res.json())
+            .catch((error) => {
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find((cookie) => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        this.props.setId(null);
+                        this.props.setRole(null);
+                        this.props.navigate('/login');
+                    }
+                }
+                this.setState({
+                    isLoaded: true,
+                    error,
+                });
+                return Promise.reject();
+            })
             .then(
                 data => {
                     const updatedOrder = data;

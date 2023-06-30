@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import MainPage from "./components/mainPage/MainPage.jsx"
 import LoginPage from './components/auth/LoginPage.jsx';
 import RegistrationPage from './components/auth/RegistrationPage.jsx';
@@ -7,21 +7,21 @@ import {BrowserRouter, Route, Routes} from "react-router-dom"
 import './App.css';
 
 import {useNavigate} from 'react-router-dom';
-import {AuthProvider} from "./components/auth/AuthProvider";
+import {AuthProvider, useAuth} from "./components/auth/AuthProvider";
 
 function PageContainer() {
     const navigate = useNavigate()
-
-    const role = localStorage.getItem("role");
-    const valid = ["ROLE_ADMIN", "ROLE_USER", "ROLE_MANAGER"].includes(role)
-
-    React.useEffect(() => {
+    const {role, setRole, setId} = useAuth();
+    const valid = role && ["ROLE_ADMIN", "ROLE_USER", "ROLE_MANAGER"].includes(role)
+    useEffect(() => {
         if (!valid)
             navigate('/login', {replace: true})
     })
 
-    if (!valid)
-        return <b>Сюда нельзя</b>
+    if (!valid) {
+        navigate('/login', {replace: true})
+        return <></>
+    }
 
     return <AccountPage/>
 }

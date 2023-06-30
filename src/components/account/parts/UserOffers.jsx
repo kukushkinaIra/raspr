@@ -23,8 +23,25 @@ export default class UserOffers extends React.Component {
 
     componentDidMount() {
         const userId = localStorage.getItem("id");
-        fetch(`/offers/${userId}`)
+        fetch(`/offers/user/${userId}`)
             .then(res => res.json())
+            .catch((error) => {
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find((cookie) => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        this.props.setId(null);
+                        this.props.setRole(null);
+                        this.props.navigate('/login');
+                    }
+                }
+                this.setState({
+                    isLoaded: true,
+                    error,
+                });
+                return Promise.reject();
+            })
             .then(
                 data => {
                     this.setState({
@@ -102,7 +119,7 @@ export default class UserOffers extends React.Component {
                                 <Modal.Title>Заполните данные</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                {this.state.modalContent}
+                                {modalContent}
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button variant="primary" onClick={() => this.setState({show: false})}>

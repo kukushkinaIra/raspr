@@ -8,9 +8,10 @@ import '../../../fonts/pdf/Montserrat-SemiBold-bold.js';
 import {IoMdSearch} from "react-icons/io";
 import {GrRefresh} from "react-icons/gr";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
-import {useNavigate} from "react-router-dom";
+
 
 export default class AllClientsTable extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +22,7 @@ export default class AllClientsTable extends React.Component {
             currentPage: 0,
             totalPages: 0,
             pageSize: 10,
-            sortParams: 'fullname,asc'
+            sortParams: 'fullname,asc',
         };
     }
 
@@ -122,7 +123,29 @@ export default class AllClientsTable extends React.Component {
         const url = `/users?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}`;
 
         fetch(url)
-            .then((res) => res.json())
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
+            .catch((error) => {
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find((cookie) => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        this.props.setId(null);
+                        this.props.setRole(null);
+                        this.props.navigate('/login');
+                    }
+                }
+                this.setState({
+                    isLoaded: true,
+                    error,
+                });
+                return Promise.reject();
+            })
             .then(
                 (data) => {
                     if (data.content) {
@@ -134,21 +157,13 @@ export default class AllClientsTable extends React.Component {
                     }
                 },
                 (error) => {
-                    if (error.response && error.response.status === 401) {
-                        //TODO: смотьрю пустая ли куки
-                        localStorage.clear();
-                        this.props.history.push('/login')
-                    } else {
-                        // Обработка других ошибок
-                        // ...
-                    }
                     this.setState({
                         isLoaded: true,
                         error,
                     });
                 }
-            );
-    };
+            )
+    }
 
 
     componentDidMount() {
@@ -240,14 +255,18 @@ export default class AllClientsTable extends React.Component {
                     <div className="expanded_info_div"><b>Должности:</b> {contract.position}</div>
                     <div className="expanded_info_div"><b>Адрес проживания:</b> {contract.addressActual}</div>
                     <div className="expanded_info_div"><b>Адрес прописки:</b> {contract.addressResidence}</div>
-                    <div className="expanded_info_div"><b>Серия и номер пасспорта:</b> {contract.passport.number}</div>
+                    <div className="expanded_info_div"><b>Серия и номер пасспорта:</b> {contract.passport.number}
+                    </div>
                     <div className="expanded_info_div"><b>Идентификационный номер
                         паспорта:</b> {contract.passport.identification}</div>
                     <div className="expanded_info_div"><b>Фото пасспорта:</b> soon...</div>
-                    <div className="expanded_info_div"><b>Дата выдачи пасспорта:</b> {contract.passport.issueDate}</div>
-                    <div className="expanded_info_div"><b>Дата окончания паспорта:</b> {contract.passport.expiryDate}
+                    <div className="expanded_info_div"><b>Дата выдачи пасспорта:</b> {contract.passport.issueDate}
                     </div>
-                    <div className="expanded_info_div"><b>Орган, выдавший пасспорт:</b> {contract.passport.authority}
+                    <div className="expanded_info_div"><b>Дата окончания
+                        паспорта:</b> {contract.passport.expiryDate}
+                    </div>
+                    <div className="expanded_info_div"><b>Орган, выдавший
+                        пасспорт:</b> {contract.passport.authority}
                     </div>
                     <div className="expanded_info_div"><b>Университет:</b> {contract.institution.name}</div>
                     <div className="expanded_info_div"><b>Факультет:</b> {contract.institution.faculty}</div>
@@ -260,7 +279,8 @@ export default class AllClientsTable extends React.Component {
                         падеже:</b> {contract.fullnameCases.dativeCase}</div>
                     <div className="expanded_info_div"><b>ФИО в творительном
                         падеже:</b> {contract.fullnameCases.instrumentalCase}</div>
-                    <div className="expanded_info_div"><b>Фамилия И.О:</b> {contract.fullnameCases.abbreviation}</div>
+                    <div className="expanded_info_div"><b>Фамилия И.О:</b> {contract.fullnameCases.abbreviation}
+                    </div>
                 </div>
             )
         }
@@ -272,7 +292,8 @@ export default class AllClientsTable extends React.Component {
                     <div className="expanded_info_div"><b>Университет:</b> {shortInfo.institution}</div>
                     <div className="expanded_info_div"><b>Специальность:</b> {shortInfo.speciality}</div>
                     <div className="expanded_info_div"><b>Получатель:</b> {shortInfo.recipient}</div>
-                    <div className="expanded_info_div"><b>Должность получателя:</b> {shortInfo.recipientPosition}</div>
+                    <div className="expanded_info_div"><b>Должность получателя:</b> {shortInfo.recipientPosition}
+                    </div>
                     <div className="expanded_info_div"><b>Бланк:</b> soon...</div>
                 </div>
             )
@@ -501,7 +522,8 @@ export default class AllClientsTable extends React.Component {
                                     </td>
                                     <td onClick={() => this.toggleRow(user.id)}>{user.email}</td>
                                     <td>
-                                        <button className="table-download-button" onClick={() => this.buildPdf(user)}>
+                                        <button className="table-download-button"
+                                                onClick={() => this.buildPdf(user)}>
                                             pdf
                                         </button>
                                         <button className="table-download-button">
