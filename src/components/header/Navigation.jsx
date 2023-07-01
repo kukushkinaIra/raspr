@@ -54,7 +54,7 @@ function Navigation() {
                         <Nav.Link href="/#services">Наши услуги</Nav.Link>
                         <Nav.Link href="/#prices">Цены</Nav.Link>
                         <Nav.Link href="/#referal">Реферальная программа</Nav.Link>
-                        <Nav.Link href="/#team">Наша команда</Nav.Link>
+                        <Nav.Link href="/#team">О нас</Nav.Link>
                         <Nav.Link href="/#vacansies">Вакансии</Nav.Link>
                         <Nav.Link href="/#reviews">Отзывы</Nav.Link>
                         <Nav.Link href="/#contact">Контакты</Nav.Link>

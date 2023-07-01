@@ -8,6 +8,11 @@ import Form from "react-bootstrap/Form";
 import {IoMdSearch} from "react-icons/io";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
 import {GrRefresh} from "react-icons/gr";
+import buildContractBlock from "./BuilderContract";
+import buildShortInfoBlock from "./BuildShortInfoBlock";
+import buildPaymentsBlock from "./BuildPaymentsBlock";
+import DatePicker from "react-datepicker";
+import moment from "moment";
 
 export default class WorkWithOrdersTable extends React.Component {
 
@@ -25,7 +30,9 @@ export default class WorkWithOrdersTable extends React.Component {
             currentPage: 0,
             totalPages: 0,
             pageSize: 10,
-            sortParams: 'createdAt,desc'
+            sortParams: 'createdAt,desc',
+            startDate: null,
+            endDate: null,
         };
     }
 
@@ -49,6 +56,14 @@ export default class WorkWithOrdersTable extends React.Component {
     handleSearchSubmit = (e) => {
         e.preventDefault();
         this.fetchOrders();
+    };
+
+    handleStartDateChange = (date) => {
+        this.setState({startDate: date});
+    };
+
+    handleEndDateChange = (date) => {
+        this.setState({endDate: date});
     };
 
     handleRefresh = () => {
@@ -121,9 +136,11 @@ export default class WorkWithOrdersTable extends React.Component {
     };
 
     fetchOrders = () => {
-        const {search, currentPage, pageSize, sortParams} = this.state;
-        const managerId = localStorage.getItem('id');
-        const url = `/orders/manager/${managerId}`;
+        const {search, currentPage, pageSize, sortParams, startDate, endDate} = this.state;
+        const managerId = localStorage.getItem('id')
+        const formattedStartDate = startDate ? moment(startDate).format('YYYY-MM-DDTHH:mm:ss') : '';
+        const formattedEndDate = endDate ? moment(endDate).format('YYYY-MM-DDTHH:mm:ss') : '';
+        const url = `/orders/manager/${managerId}?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
         fetch(url)
             .then((res) => res.json())
             .catch((error) => {
@@ -147,7 +164,7 @@ export default class WorkWithOrdersTable extends React.Component {
                 (data) => {
                     if (data.content) {
                         this.setState({
-                            content: data.content,
+                            orders: data.content,
                             totalPages: data.totalPages,
                             isLoading: false,
                         });
@@ -502,70 +519,15 @@ export default class WorkWithOrdersTable extends React.Component {
             paymentBlock = (<div hidden></div>);
         if (order.contract) {
             const contract = order.contract;
-            contractBlock = (
-                <div className="expended_padding_block">
-                    <div className="expanded_info_div"><b>ФИО полностью:</b> soon...</div>
-                    <div className="expanded_info_div"><b>Телефон:</b> soon...</div>
-                    <div className="expanded_info_div"><b>Дата начала:</b> {contract.startDate}</div>
-                    <div className="expanded_info_div"><b>Дата окончания:</b> {contract.endDate}</div>
-                    <div className="expanded_info_div"><b>Должности:</b> {contract.position}</div>
-                    <div className="expanded_info_div"><b>Адрес проживания:</b> {contract.addressActual}</div>
-                    <div className="expanded_info_div"><b>Адрес прописки:</b> {contract.addressResidence}</div>
-                    <div className="expanded_info_div"><b>Серия и номер пасспорта:</b> {contract.passport.number}</div>
-                    <div className="expanded_info_div"><b>Идентификационный номер
-                        паспорта:</b> {contract.passport.identification}</div>
-                    <div className="expanded_info_div"><b>Фото пасспорта:</b> soon...</div>
-                    <div className="expanded_info_div"><b>Дата выдачи пасспорта:</b> {contract.passport.issueDate}</div>
-                    <div className="expanded_info_div"><b>Дата окончания паспорта:</b> {contract.passport.expiryDate}
-                    </div>
-                    <div className="expanded_info_div"><b>Орган, выдавший пасспорт:</b> {contract.passport.authority}
-                    </div>
-                    <div className="expanded_info_div"><b>Университет:</b> {contract.institution.name}</div>
-                    <div className="expanded_info_div"><b>Факультет:</b> {contract.institution.faculty}</div>
-                    <div className="expanded_info_div"><b>Специальность:</b> {contract.institution.specoality}</div>
-                    <div className="expanded_info_div"><b>Руководитель группы:</b> soon...</div>
-                    <div className="expanded_info_div"><b>Староста:</b> soon...</div>
-                    <div className="expanded_info_div"><b>ФИО в родительном
-                        падаже:</b> {contract.fullnameCases.genitiveCase}</div>
-                    <div className="expanded_info_div"><b>ФИО в дательном
-                        падеже:</b> {contract.fullnameCases.dativeCase}</div>
-                    <div className="expanded_info_div"><b>ФИО в творительном
-                        падеже:</b> {contract.fullnameCases.instrumentalCase}</div>
-                    <div className="expanded_info_div"><b>Фамилия И.О:</b> {contract.fullnameCases.abbreviation}</div>
-                </div>
-            )
+            contractBlock = buildContractBlock(contract)
         }
         if (order.shortInfo) {
             const shortInfo = order.shortInfo;
-            shortInfoBlock = (
-                <div className="expended_padding_block">
-                    <div className="expanded_info_div"><b>ФИО полностью:</b> {shortInfo.fullname}</div>
-                    <div className="expanded_info_div"><b>Университет:</b> {shortInfo.institution}</div>
-                    <div className="expanded_info_div"><b>Специальность:</b> {shortInfo.speciality}</div>
-                    <div className="expanded_info_div"><b>Получатель:</b> {shortInfo.recipient}</div>
-                    <div className="expanded_info_div"><b>Должность получателя:</b> {shortInfo.recipientPosition}</div>
-                    <div className="expanded_info_div"><b>Бланк:</b> soon...</div>
-                </div>
-            )
+            shortInfoBlock = buildShortInfoBlock(shortInfo)
         }
         const payments = order.payments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-        paymentBlock = (
-            <div className="expended_padding_block">
-                {payments.map(payment => (<div>
-                    <div className="expanded_info_div"><b>Id платежа:</b> {payment.id}</div>
-                    <div className="expanded_info_div"><b>Сумма к оплате:</b> {payment.price + " руб."}</div>
-                    <div className="expanded_info_div"><b>Реквизиты счёта:</b> {payment.targetDetails}</div>
-                    <div className="expanded_info_div"><b>Время платежа:</b>
-                        {new Date(Date.parse(payment.paymentTime)).toLocaleString()}
-                    </div>
-                    <div className="expanded_info_div"><b>Квитанция:</b> {payment.receiptText}</div>
-                    <div className="expanded_info_div"><b>Квитанция:</b></div>
-                    <div>{this.getPaymentImageBlock(payment)}</div>
-                    <hr/>
-                </div>))}
-            </div>
-        )
+        paymentBlock = buildPaymentsBlock(payments)
 
         return (<tr className="expanded_row">
                 <td colSpan={4}>
@@ -579,17 +541,9 @@ export default class WorkWithOrdersTable extends React.Component {
         );
     }
 
-    getPaymentImageBlock(payment) {
-        if (payment.receiptImage) {
-            const url = URL.createObjectURL(new Blob([payment.receiptImage], {type: 'image/png'}));
-            return (<img className="payment-receipt-image" src={url} alt="payment_image"/>);
-        } else
-            return null;
-    }
-
     render() {
 
-        const {error, orders, expandedRow, search, currentPage, totalPages, pageSize, sortParams} = this.state;
+        const {error, orders, expandedRow, search, currentPage, totalPages, pageSize, sortParams, startDate, endDate} = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
@@ -616,33 +570,22 @@ export default class WorkWithOrdersTable extends React.Component {
                             <option value="user.email,asc"> Email &#9660;</option>
                             <option value="user.email,desc"> Email &#9650;</option>
                         </select>
-                        <div className="pagination-container">
-                            <a
-                                className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}
-                                onClick={this.goToPreviousPage}
-                                href="#"
-                            >
-                                <RiArrowLeftDoubleFill/>
-                            </a>
-                            {this.renderPageNumbers()}
-                            <a
-                                className={`pagination-link ${currentPage === totalPages - 1 ? 'disabled' : ''}`}
-                                onClick={this.goToNextPage}
-                                href="#"
-                            >
-                                <RiArrowRightDoubleFill/>
-                            </a>
-                            <div className="page-size-block">
-                                <span>Кол-во: </span>
-                                <select className="page-size-select" value={pageSize}
-                                        onChange={this.handlePageSizeChange}>
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="50">50</option>
-                                </select>
-                            </div>
-                        </div>
-
+                        <span>Период:</span>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={this.handleStartDateChange}
+                            dateFormat="dd.MM.yyyy"
+                            className="date-picker"
+                            placeholderText="Начальная дата"
+                        />
+                        <span>-</span>
+                        <DatePicker
+                            selected={endDate}
+                            onChange={this.handleEndDateChange}
+                            dateFormat="dd.MM.yyyy"
+                            className="date-picker"
+                            placeholderText="Конечная дата"
+                        />
                         <button className="table-refresh-button" onClick={this.handleRefresh}>
                             <GrRefresh/>
                         </button>
@@ -681,6 +624,34 @@ export default class WorkWithOrdersTable extends React.Component {
                         ))}
                         </tbody>
                     </Table>
+                    <div className="table-container-footer">
+                        <div className="pagination-container">
+                            <a
+                                className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}
+                                onClick={this.goToPreviousPage}
+                                href="#"
+                            >
+                                <RiArrowLeftDoubleFill/>
+                            </a>
+                            {this.renderPageNumbers()}
+                            <a
+                                className={`pagination-link ${currentPage === totalPages - 1 ? 'disabled' : ''}`}
+                                onClick={this.goToNextPage}
+                                href="#"
+                            >
+                                <RiArrowRightDoubleFill/>
+                            </a>
+                            <div className="page-size-block">
+                                <span>Кол-во: </span>
+                                <select className="page-size-select" value={pageSize}
+                                        onChange={this.handlePageSizeChange}>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             );
         }

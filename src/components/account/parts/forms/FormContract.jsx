@@ -87,6 +87,22 @@ function FormContract(){
                 />
             </Form.Group>
 
+            <Form.Group className="mb-3" controlId="institution">
+                <Form.Label>Наименование учреждения образования</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder=""
+                />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="faculty">
+                <Form.Label>Наименование факультета</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder=""
+                />
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId="speciality">
                 <Form.Label>Наименование специальности</Form.Label>
                 <Form.Control
@@ -137,6 +153,14 @@ function FormContract(){
 
             <Form.Group className="mb-3" controlId="telegram">
                 <Form.Label>Имя пользователя в телеграме (ссылка)</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="https://t.me/AlexHurevich"
+                />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="group_channels">
+                <Form.Label>Ваши студенческие группы, каналы, аккаунты в телеграме и др. соцсетях</Form.Label>
                 <Form.Control
                     type="text"
                     placeholder="https://t.me/AlexHurevich"
@@ -229,7 +253,7 @@ function FormContract(){
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="position-genitive">
-                <Form.Label>Должность родительный падеж (нет кого?)</Form.Label>
+                <Form.Label>Должность в родительном падеже (нет кого?)</Form.Label>
                 <Form.Control
                     type="text"
                     placeholder="директора"

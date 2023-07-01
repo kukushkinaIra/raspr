@@ -7,6 +7,9 @@ import Button from "react-bootstrap/Button";
 import {IoMdSearch} from "react-icons/io";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
 import {GrRefresh} from "react-icons/gr";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from "moment/moment";
 
 
 export default class TableOrders extends React.Component {
@@ -28,6 +31,8 @@ export default class TableOrders extends React.Component {
             totalPages: 0,
             pageSize: 10,
             sortParams: 'createdAt,desc',
+            startDate: null,
+            endDate: null,
         };
     }
 
@@ -52,6 +57,14 @@ export default class TableOrders extends React.Component {
     handleSearchSubmit = (e) => {
         e.preventDefault();
         this.fetchOrders();
+    };
+
+    handleStartDateChange = (date) => {
+        this.setState({startDate: date});
+    };
+
+    handleEndDateChange = (date) => {
+        this.setState({endDate: date});
     };
 
     handleRefresh = () => {
@@ -124,9 +137,15 @@ export default class TableOrders extends React.Component {
     };
 
     componentDidMount() {
-        const {search, currentPage, pageSize, sortParams} = this.state;
-        const userId = localStorage.getItem('id');
-        fetch(`/orders/user/${userId}`)
+        this.fetchOrders();
+    }
+
+    fetchOrders = () => {
+        const {search, currentPage, pageSize, sortParams, startDate, endDate} = this.state;
+        const formattedStartDate = startDate ? moment(startDate).format('YYYY-MM-DDTHH:mm:ss') : '';
+        const formattedEndDate = endDate ? moment(endDate).format('YYYY-MM-DDTHH:mm:ss') : '';
+        const url = `/orders?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
+        fetch(url)
             .then(res => res.json())
             .catch((error) => {
                 if (error.message === "401") {
@@ -148,7 +167,7 @@ export default class TableOrders extends React.Component {
             .then(
                 data => {
                     this.setState({
-                        orders: data,
+                        orders: data.content,
                     })
                 },
                 (error) => {
@@ -334,7 +353,18 @@ export default class TableOrders extends React.Component {
 
     render() {
 
-        const {error, orders, expandedRow, search, currentPage, totalPages, pageSize, sortParams} = this.state;
+        const {
+            error,
+            orders,
+            expandedRow,
+            search,
+            currentPage,
+            totalPages,
+            pageSize,
+            sortParams,
+            startDate,
+            endDate
+        } = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
@@ -361,33 +391,22 @@ export default class TableOrders extends React.Component {
                             <option value="user.email,asc"> Email &#9660;</option>
                             <option value="user.email,desc"> Email &#9650;</option>
                         </select>
-                        <div className="pagination-container">
-                            <a
-                                className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}
-                                onClick={this.goToPreviousPage}
-                                href="#"
-                            >
-                                <RiArrowLeftDoubleFill/>
-                            </a>
-                            {this.renderPageNumbers()}
-                            <a
-                                className={`pagination-link ${currentPage === totalPages - 1 ? 'disabled' : ''}`}
-                                onClick={this.goToNextPage}
-                                href="#"
-                            >
-                                <RiArrowRightDoubleFill/>
-                            </a>
-                            <div className="page-size-block">
-                                <span>Кол-во: </span>
-                                <select className="page-size-select" value={pageSize}
-                                        onChange={this.handlePageSizeChange}>
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="50">50</option>
-                                </select>
-                            </div>
-                        </div>
-
+                        <span>Период:</span>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={this.handleStartDateChange}
+                            dateFormat="dd.MM.yyyy"
+                            className="date-picker"
+                            placeholderText="Начальная дата"
+                        />
+                        <span>-</span>
+                        <DatePicker
+                            selected={endDate}
+                            onChange={this.handleEndDateChange}
+                            dateFormat="dd.MM.yyyy"
+                            className="date-picker"
+                            placeholderText="Конечная дата"
+                        />
                         <button className="table-refresh-button" onClick={this.handleRefresh}>
                             <GrRefresh/>
                         </button>
@@ -432,6 +451,34 @@ export default class TableOrders extends React.Component {
                         ))}
                         </tbody>
                     </Table>
+                    <div className="table-container-footer">
+                        <div className="pagination-container">
+                            <a
+                                className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}
+                                onClick={this.goToPreviousPage}
+                                href="#"
+                            >
+                                <RiArrowLeftDoubleFill/>
+                            </a>
+                            {this.renderPageNumbers()}
+                            <a
+                                className={`pagination-link ${currentPage === totalPages - 1 ? 'disabled' : ''}`}
+                                onClick={this.goToNextPage}
+                                href="#"
+                            >
+                                <RiArrowRightDoubleFill/>
+                            </a>
+                            <div className="page-size-block">
+                                <span>Кол-во: </span>
+                                <select className="page-size-select" value={pageSize}
+                                        onChange={this.handlePageSizeChange}>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             );
         }

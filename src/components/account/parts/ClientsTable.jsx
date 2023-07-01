@@ -8,16 +8,22 @@ import '../../../fonts/pdf/Montserrat-SemiBold-bold.js';
 import {IoMdSearch} from "react-icons/io";
 import {GrRefresh} from "react-icons/gr";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
+import buildUserInfo from "./BuildUserInfo";
+import buildQuestionnaire from "./BuilderQuestionnaire";
+import buildPaymentsBlock from "./BuildPaymentsBlock";
+import buildShortInfoBlock from "./BuildShortInfoBlock";
+import buildContractBlock from "./BuilderContract";
+import DatePicker from "react-datepicker";
 
 
-export default class AllClientsTable extends React.Component {
+export default class ClientsTable extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             error: null,
             expandedRow: null,
-            content: [],
+            users: [],
             search: '',
             currentPage: 0,
             totalPages: 0,
@@ -150,7 +156,7 @@ export default class AllClientsTable extends React.Component {
                 (data) => {
                     if (data.content) {
                         this.setState({
-                            content: data.content,
+                            users: data.content,
                             totalPages: data.totalPages,
                             isLoading: false,
                         });
@@ -182,52 +188,15 @@ export default class AllClientsTable extends React.Component {
         return sortedOrders[0] || null;
     }
 
-    parseUserStatus(status) {
-        switch (status) {
-            case "PRACTICE": {
-                return "На практике";
-            }
-            case "GUARANTEE": {
-                return "Оформил гарантийное письмо";
-            }
-            case "CONTRACT": {
-                return "Подписан контракт";
-            }
-            case "DEFAULT": {
-                return "Простой пользователь";
-            }
-            default: {
-                return "Простой пользователь";
-            }
-        }
-    }
 
     buildExpandedRow(user) {
         let userBlock, questionnaireBlock = (<div hidden></div>);
 
-        userBlock = (
-            <div className="expended_padding_block">
-                <div className="expanded_info_div"><b>ФИО полностью:</b> {user.fullname}
-                </div>
-                <div className="expanded_info_div"><b>Телефон:</b> {user.phoneNumber}</div>
-                <div className="expanded_info_div"><b>Телеграм:</b> {user.telegram}</div>
-                <div className="expanded_info_div"><b>Инстаграм:</b> {user.instagram}</div>
-                <div className="expanded_info_div"><b>Статус:</b> {this.parseUserStatus(user.status)}</div>
-                <div className="expanded_info_div"><b>Дата рождения:</b> {user.birthDate}</div>
-                <div className="expanded_info_div"><b>Компания:</b> {user.firm}</div>
-            </div>)
+        userBlock = buildUserInfo(user)
 
         if (user.questionnaire.gender) {
             const questionnaire = user.questionnaire;
-            questionnaireBlock = (
-                <div className="expended_padding_block">
-                    <div className="expanded_info_div"><b>Пол: </b> {questionnaire.gender}</div>
-                    <div className="expanded_info_div"><b>Возраст: </b> {questionnaire.age}</div>
-                    <div className="expanded_info_div"><b>Город: </b> {questionnaire.city}</div>
-                    <div className="expanded_info_div"><b>Является студентом: </b> {questionnaire.studentFlag}</div>
-                    <div className="expanded_info_div"><b>Университет: </b> {questionnaire.instituition}</div>
-                </div>
-            )
+            questionnaireBlock = buildQuestionnaire(questionnaire)
         }
 
         return (<tr className="expanded_row">
@@ -246,77 +215,16 @@ export default class AllClientsTable extends React.Component {
             paymentBlock = (<div hidden></div>);
         if (order.contract) {
             const contract = order.contract;
-            contractBlock = (
-                <div className="expended_padding_block">
-                    <div className="expanded_info_div"><b>ФИО полностью:</b> {contract.fullname}</div>
-                    <div className="expanded_info_div"><b>Телефон:</b> {contract.phoneNumber}</div>
-                    <div className="expanded_info_div"><b>Дата начала:</b> {contract.startDate}</div>
-                    <div className="expanded_info_div"><b>Дата окончания:</b> {contract.endDate}</div>
-                    <div className="expanded_info_div"><b>Должности:</b> {contract.position}</div>
-                    <div className="expanded_info_div"><b>Адрес проживания:</b> {contract.addressActual}</div>
-                    <div className="expanded_info_div"><b>Адрес прописки:</b> {contract.addressResidence}</div>
-                    <div className="expanded_info_div"><b>Серия и номер пасспорта:</b> {contract.passport.number}
-                    </div>
-                    <div className="expanded_info_div"><b>Идентификационный номер
-                        паспорта:</b> {contract.passport.identification}</div>
-                    <div className="expanded_info_div"><b>Фото пасспорта:</b> soon...</div>
-                    <div className="expanded_info_div"><b>Дата выдачи пасспорта:</b> {contract.passport.issueDate}
-                    </div>
-                    <div className="expanded_info_div"><b>Дата окончания
-                        паспорта:</b> {contract.passport.expiryDate}
-                    </div>
-                    <div className="expanded_info_div"><b>Орган, выдавший
-                        пасспорт:</b> {contract.passport.authority}
-                    </div>
-                    <div className="expanded_info_div"><b>Университет:</b> {contract.institution.name}</div>
-                    <div className="expanded_info_div"><b>Факультет:</b> {contract.institution.faculty}</div>
-                    <div className="expanded_info_div"><b>Специальность:</b> {contract.institution.specoality}</div>
-                    <div className="expanded_info_div"><b>Руководитель группы:</b> {contract.supervisor}</div>
-                    <div className="expanded_info_div"><b>Староста:</b> {contract.groupHead}</div>
-                    <div className="expanded_info_div"><b>ФИО в родительном
-                        падаже:</b> {contract.fullnameCases.genitiveCase}</div>
-                    <div className="expanded_info_div"><b>ФИО в дательном
-                        падеже:</b> {contract.fullnameCases.dativeCase}</div>
-                    <div className="expanded_info_div"><b>ФИО в творительном
-                        падеже:</b> {contract.fullnameCases.instrumentalCase}</div>
-                    <div className="expanded_info_div"><b>Фамилия И.О:</b> {contract.fullnameCases.abbreviation}
-                    </div>
-                </div>
-            )
+            contractBlock = buildContractBlock(contract)
         }
         if (order.shortInfo) {
             const shortInfo = order.shortInfo;
-            shortInfoBlock = (
-                <div className="expended_padding_block">
-                    <div className="expanded_info_div"><b>ФИО полностью:</b> {shortInfo.fullname}</div>
-                    <div className="expanded_info_div"><b>Университет:</b> {shortInfo.institution}</div>
-                    <div className="expanded_info_div"><b>Специальность:</b> {shortInfo.speciality}</div>
-                    <div className="expanded_info_div"><b>Получатель:</b> {shortInfo.recipient}</div>
-                    <div className="expanded_info_div"><b>Должность получателя:</b> {shortInfo.recipientPosition}
-                    </div>
-                    <div className="expanded_info_div"><b>Бланк:</b> soon...</div>
-                </div>
-            )
+            shortInfoBlock = buildShortInfoBlock(shortInfo)
         }
         const payments = order.payments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         if (payments) {
-            paymentBlock = (
-                <div className="expended_padding_block">
-                    {payments.map(payment => (<div>
-                        <div className="expanded_info_div"><b>Id платежа:</b> {payment.id}</div>
-                        <div className="expanded_info_div"><b>Сумма к оплате:</b> {payment.price + " руб."}</div>
-                        <div className="expanded_info_div"><b>Реквизиты счёта:</b> {payment.targetDetails}</div>
-                        <div className="expanded_info_div"><b>Время платежа:</b>
-                            {new Date(Date.parse(payment.paymentTime)).toLocaleString()}
-                        </div>
-                        <div className="expanded_info_div"><b>Квитанция:</b> {payment.receiptText}</div>
-                        <div className="expanded_info_div"><b>Квитанция:</b></div>
-                        <div>{this.getPaymentImageBlock(payment)}</div>
-                        <hr/>
-                    </div>))}
-                </div>
-            )
+            paymentBlock = buildPaymentsBlock(payments)
         }
 
         return (<tr>
@@ -331,26 +239,11 @@ export default class AllClientsTable extends React.Component {
         );
     }
 
-    getPaymentImageBlock(payment) {
-        if (payment.receiptImage) {
-            const url = URL.createObjectURL(new Blob([payment.receiptImage], {type: 'image/png'}));
-            return (<img className="payment-receipt-image" src={url} alt="payment_image"/>);
-        } else
-            return null;
-    }
+
 
     buildFullUserInfo(user) {
         let userBlock, questionnaireBlock = (<div hidden></div>), ordersBlock = (<div hidden></div>);
-        userBlock = (
-            <div className="expended_padding_block">
-                <div className="expanded_info_div"><b>ФИО полностью:</b> {user.fullname}</div>
-                <div className="expanded_info_div"><b>Телефон:</b> {user.phoneNumber}</div>
-                <div className="expanded_info_div"><b>Телеграм:</b> {user.telegram}</div>
-                <div className="expanded_info_div"><b>Инстаграм:</b> {user.instagram}</div>
-                <div className="expanded_info_div"><b>Статус:</b> {this.parseUserStatus(user.status)}</div>
-                <div className="expanded_info_div"><b>Дата рождения:</b> {user.birthDate}</div>
-                <div className="expanded_info_div"><b>Компания:</b> {user.firm}</div>
-            </div>)
+        userBlock = buildUserInfo(user)
 
         const orders = user.orders;
         if (orders.length !== 0) {
@@ -363,15 +256,7 @@ export default class AllClientsTable extends React.Component {
 
         if (user.questionnaire.gender) {
             const questionnaire = user.questionnaire;
-            questionnaireBlock = (
-                <div className="expended_padding_block">
-                    <div className="expanded_info_div"><b>Пол: </b> {questionnaire.gender}</div>
-                    <div className="expanded_info_div"><b>Возраст: </b> {questionnaire.age}</div>
-                    <div className="expanded_info_div"><b>Город: </b> {questionnaire.city}</div>
-                    <div className="expanded_info_div"><b>Является студентом: </b> {questionnaire.studentFlag}</div>
-                    <div className="expanded_info_div"><b>Университет: </b> {questionnaire.instituition}</div>
-                </div>
-            )
+            questionnaireBlock = buildQuestionnaire(questionnaire)
         }
 
         return (
@@ -441,7 +326,7 @@ export default class AllClientsTable extends React.Component {
 
 
     render() {
-        const {error, content, expandedRow, search, currentPage, totalPages, pageSize, sortParams} = this.state;
+        const {error, users, expandedRow, search, currentPage, totalPages, pageSize, sortParams} = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
@@ -463,6 +348,53 @@ export default class AllClientsTable extends React.Component {
                             <option value="email,asc">Email &#9650;</option>
                             <option value="email,desc">Email &#9660;</option>
                         </select>
+                        <button className="table-refresh-button" onClick={this.handleRefresh}>
+                            <GrRefresh/>
+                        </button>
+                    </div>
+                    <Table responsive striped hover>
+                        <thead>
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Фирма</th>
+                            <th>Телефон</th>
+                            <th>Университет</th>
+                            <th>Email</th>
+                            <th>Скачать</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {users.map(user => (
+                            <React.Fragment key={user.id}>
+                                <tr>
+                                    <td onClick={() => this.toggleRow(user.id)}>
+                                         <span className="arrow-icon">
+                                         {expandedRow === user.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
+                                         )}
+                                        </span>
+                                        {user.fullname}</td>
+                                    <td onClick={() => this.toggleRow(user.id)}>{user.firm}</td>
+                                    <td onClick={() => this.toggleRow(user.id)}>{user.phoneNumber}</td>
+                                    <td onClick={() => this.toggleRow(user.id)}>
+                                        {this.getUserInstitution(user.orders)}
+                                    </td>
+                                    <td onClick={() => this.toggleRow(user.id)}>{user.email}</td>
+                                    <td>
+                                        <button className="table-download-button"
+                                                onClick={() => this.buildPdf(user)}>
+                                            pdf
+                                        </button>
+                                        <button className="table-download-button" disabled={true}>
+                                            doc
+                                        </button>
+                                    </td>
+                                </tr>
+                                {expandedRow === user.id && (this.buildExpandedRow(user))}
+                            </React.Fragment>
+                        ))}
+                        </tbody>
+                    </Table>
+                    <div className="table-container-footer">
                         <div className="pagination-container">
                             <a
                                 className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}
@@ -489,53 +421,7 @@ export default class AllClientsTable extends React.Component {
                                 </select>
                             </div>
                         </div>
-
-                        <button className="table-refresh-button" onClick={this.handleRefresh}>
-                            <GrRefresh/>
-                        </button>
                     </div>
-                    <Table responsive striped hover>
-                        <thead>
-                        <tr>
-                            <th>ФИО</th>
-                            <th>Фирма</th>
-                            <th>Телефон</th>
-                            <th>Университет</th>
-                            <th>Email</th>
-                            <th>Скачать</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {content.map(user => (
-                            <React.Fragment key={user.id}>
-                                <tr>
-                                    <td onClick={() => this.toggleRow(user.id)}>
-                                         <span className="arrow-icon">
-                                         {expandedRow === user.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
-                                         )}
-                                        </span>
-                                        {user.fullname}</td>
-                                    <td onClick={() => this.toggleRow(user.id)}>{user.firm}</td>
-                                    <td onClick={() => this.toggleRow(user.id)}>{user.phoneNumber}</td>
-                                    <td onClick={() => this.toggleRow(user.id)}>
-                                        {this.getUserInstitution(user.orders)}
-                                    </td>
-                                    <td onClick={() => this.toggleRow(user.id)}>{user.email}</td>
-                                    <td>
-                                        <button className="table-download-button"
-                                                onClick={() => this.buildPdf(user)}>
-                                            pdf
-                                        </button>
-                                        <button className="table-download-button">
-                                            doc
-                                        </button>
-                                    </td>
-                                </tr>
-                                {expandedRow === user.id && (this.buildExpandedRow(user))}
-                            </React.Fragment>
-                        ))}
-                        </tbody>
-                    </Table>
                 </div>
             );
         }

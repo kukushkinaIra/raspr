@@ -4,7 +4,7 @@ import React, {Fragment} from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
 import ManagementTable from "./ManagementTable.jsx";
 import OrdersHistoryTable from "./OrdersHistoryTable.jsx";
-import AllClientsTable from "./AllClientsTable.jsx";
+import ClientsTable from "./ClientsTable.jsx";
 import WorkWithOrdersTable from "./WorkWithOrdersTable.jsx";
 import UserOffers from "./UserOffers";
 import TableOrders from "./TableOrders";
@@ -115,7 +115,7 @@ function Main() {
                     </Tab.Pane>
                     <Tab.Pane eventKey="fifth">
                         <h3>Информация о клиентах</h3>
-                        <AllClientsTable setId={setId} setRole={setRole} navigate={navigate}/>
+                        <ClientsTable setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                 </Fragment>);
             }
@@ -131,7 +131,7 @@ function Main() {
                     </Tab.Pane>
                     <Tab.Pane eventKey="fifth">
                         <h3>Информация о клиентах</h3>
-                        <AllClientsTable setId={setId} setRole={setRole} navigate={navigate}/>
+                        <ClientsTable setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                 </Fragment>);
             }

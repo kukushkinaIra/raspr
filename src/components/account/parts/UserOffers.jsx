@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import FormGuaranteeLetter from "./forms/FormGuaranteeLetter";
 import FormContract from "./forms/FormContract";
+import {login} from "../../auth/actions/user";
 
 
 export default class UserOffers extends React.Component {
@@ -16,7 +17,8 @@ export default class UserOffers extends React.Component {
             isLoaded: false,
             offers: [],
             show: false,
-            modalContent: <FormGuaranteeLetter/>
+            modalContent: <Fragment/>,
+            modalTitle: "Заполните данные"
         };
     }
 
@@ -90,12 +92,23 @@ export default class UserOffers extends React.Component {
                 break;
             }
             default:
-                break;
+                this.setState({
+                    show: true,
+                    modalTitle: "Подтвердите заказ",
+                });
         }
     }
 
+    handleSubmitButton(e) {
+        e.preventDefault();
+        this.setState({
+            show: false,
+            modalTitle: "Заполните данные"
+        })
+    }
+
     render() {
-        const {error, isLoaded, offers, show, modalContent} = this.state;
+        const {error, isLoaded, offers, show, modalContent, modalTitle} = this.state;
 
         if (error) {
             return <div>Ошибка: {error.message}</div>;
@@ -116,13 +129,13 @@ export default class UserOffers extends React.Component {
                     <div>
                         <Modal show={show} onHide={() => this.setState({show: false})}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Заполните данные</Modal.Title>
+                                <Modal.Title>{modalTitle}</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 {modalContent}
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button variant="primary" onClick={() => this.setState({show: false})}>
+                                <Button variant="primary" onClick={(event) => this.handleSubmitButton(event)}>
                                     Подтвердить
                                 </Button>
                             </Modal.Footer>

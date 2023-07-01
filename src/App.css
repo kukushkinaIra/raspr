@@ -111,7 +111,7 @@ nav {
 }
 
 .container {
-    width: 90%;
+    width: 80%;
     margin: auto;
 }
 
@@ -546,6 +546,8 @@ footer {
     background-color: #ffce14;
 }
 
+
+
 .root .form-control {
     margin-bottom: 20px;
     padding: 10px;
@@ -789,8 +791,9 @@ tbody * {
     font-family: 'Montserrat', sans-serif;
     border: 0;
     background-color: #ECECEC;
-    padding: 2px 10px 2px 10px;
     outline: none;
+    padding: 0 5px;
+    height: 33px;
 }
 
 .pagination-container {
@@ -843,12 +846,24 @@ tbody * {
     background-color: #ececec;
 }
 
+.date-picker {
+    width: 150px;
+    padding: 0 5px;
+    border: none;
+    background-color: #ececec;
+    margin:0 5px;
+    height: 33px;
+    text-align: center;
+    outline: none;
+}
+
 .table-sort-select {
     background-color: #ececec;
     border: none;
     outline: none;
     margin: 0 20px;
     padding: 0 5px;
+    height: 33px;
 }
 
 .option-with-icon {
@@ -868,10 +883,26 @@ tbody * {
     display: flex;
     background-color: white;
     padding: 10px;
-    justify-content: space-between;
+    justify-content: left;
+    align-items: center;
 }
 
 .table-container-header * {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.table-container-footer {
+    display: flex;
+    background-color: white;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table-container-footer * {
     font-family: 'Montserrat', sans-serif;
 }
 
