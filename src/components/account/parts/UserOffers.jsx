@@ -1,11 +1,8 @@
 import React, {Fragment} from 'react';
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import FormGuaranteeLetter from "./forms/FormGuaranteeLetter";
 import FormContract from "./forms/FormContract";
-import {login} from "../../auth/actions/user";
 
 
 export default class UserOffers extends React.Component {
@@ -17,8 +14,8 @@ export default class UserOffers extends React.Component {
             isLoaded: false,
             offers: [],
             show: false,
-            modalContent: <Fragment/>,
-            modalTitle: "Заполните данные"
+            modal: <Fragment/>,
+            modalTitle: "Заполните данные",
         };
     }
 
@@ -61,54 +58,80 @@ export default class UserOffers extends React.Component {
             )
     }
 
+    handleShowUserOffer = () => {
+        this.setState({show: true});
+    };
+
+    handleCloseUserOffer = () => {
+        this.setState((prevState) => ({
+            show: !prevState.show, // Используем функцию в setState
+            modal: <Fragment />,
+        }));
+    };
+
     handleOfferClick(title) {
+        this.handleShowUserOffer()
+
+
         switch (title) {
             case "Гарантийное письмо": {
-                this.setState({
-                    show: true,
-                    modalContent: <FormGuaranteeLetter/>
-                });
+                this.setState((prevState) => ({
+                    modal: (
+                        <FormGuaranteeLetter
+                            showProp={true}
+                            setShowPropFalse={this.handleCloseUserOffer}
+                        />
+                    ),
+                    show: !prevState.show, // Используем функцию в setState
+                }));
                 break;
             }
             case "Распределение": {
-                this.setState({
-                    show: true,
-                    modalContent: <FormContract/>
-                });
+                this.setState((prevState) => ({
+                    modal: (
+                        <FormContract
+                            showProp={true}
+                            setShowPropFalse={this.handleCloseUserOffer}
+                        />
+                    ),
+                    show: !prevState.show, // Используем функцию в setState
+                }));
                 break;
             }
             case "Перераспределение": {
-                this.setState({
-                    show: true,
-                    modalContent: <FormContract/>
-                });
+                this.setState((prevState) => ({
+                    modal: (
+                        <FormContract
+                            showProp={true}
+                            setShowPropFalse={this.handleCloseUserOffer}
+                        />
+                    ),
+                    show: !prevState.show, // Используем функцию в setState
+                }));
                 break;
             }
             case "Практика": {
-                this.setState({
-                    show: true,
-                    modalContent: <FormGuaranteeLetter/>
-                });
+                this.setState((prevState) => ({
+                    modal: (
+                        <FormGuaranteeLetter
+                            showProp={true}
+                            setShowPropFalse={this.handleCloseUserOffer}
+                        />
+                    ),
+                    show: !prevState.show, // Используем функцию в setState
+                }));
                 break;
             }
             default:
-                this.setState({
-                    show: true,
-                    modalTitle: "Подтвердите заказ",
-                });
+                // this.setState({
+                //     show: true,
+                //     modalTitle: "Подтвердите заказ",
+                // });
         }
     }
 
-    handleSubmitButton(e) {
-        e.preventDefault();
-        this.setState({
-            show: false,
-            modalTitle: "Заполните данные"
-        })
-    }
-
     render() {
-        const {error, isLoaded, offers, show, modalContent, modalTitle} = this.state;
+        const {error, offers, modal, modalTitle} = this.state;
 
         if (error) {
             return <div>Ошибка: {error.message}</div>;
@@ -127,19 +150,7 @@ export default class UserOffers extends React.Component {
                         ))}
                     </div>
                     <div>
-                        <Modal show={show} onHide={() => this.setState({show: false})}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>{modalTitle}</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                {modalContent}
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="primary" onClick={(event) => this.handleSubmitButton(event)}>
-                                    Подтвердить
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+                        {modal}
                     </div>
                 </div>
             );
