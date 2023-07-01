@@ -153,6 +153,7 @@ export default class TableOrders extends React.Component {
                 return res.json();
             })
             .catch((error) => {
+                console.log(error.message)
                 if (error.message === "401") {
                     const authCookie = document.cookie
                         .split(";")
