@@ -1,4 +1,4 @@
-import {Tab, Col, Nav, Row} from "react-bootstrap";
+import {Col, Nav, Row, Tab} from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import React, {Fragment} from "react"
 import "bootstrap/dist/css/bootstrap.min.css";

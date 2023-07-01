@@ -3,10 +3,8 @@ import MainPage from "./components/mainPage/MainPage.jsx"
 import LoginPage from './components/auth/LoginPage.jsx';
 import RegistrationPage from './components/auth/RegistrationPage.jsx';
 import AccountPage from "./components/account/AccountPage.jsx"
-import {BrowserRouter, Route, Routes} from "react-router-dom"
+import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom"
 import './App.css';
-
-import {useNavigate} from 'react-router-dom';
 import {AuthProvider, useAuth} from "./components/auth/AuthProvider";
 
 function PageContainer() {

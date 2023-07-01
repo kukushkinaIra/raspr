@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect, useState} from "react"
 import logo from "../footer/images/Logo-01 1.svg"
-import {NavLink, useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import {logout} from "../auth/actions/user";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";

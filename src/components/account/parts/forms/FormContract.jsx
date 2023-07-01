@@ -25,7 +25,6 @@ function FormContract({showProp, setShowPropFalse}) {
     };
 
     const handleSubmit = () => {
-        console.log(formData)
         setShowState(false)
         setShowPropFalse();
     };

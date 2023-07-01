@@ -23,7 +23,12 @@ export default class UserOffers extends React.Component {
     componentDidMount() {
         const userId = localStorage.getItem("id");
         fetch(`/offers/user/${userId}`)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
             .catch((error) => {
                 if (error.message === "401") {
                     const authCookie = document.cookie
@@ -65,7 +70,7 @@ export default class UserOffers extends React.Component {
     handleCloseUserOffer = () => {
         this.setState((prevState) => ({
             show: !prevState.show, // Используем функцию в setState
-            modal: <Fragment />,
+            modal: <Fragment/>,
         }));
     };
 
@@ -123,10 +128,10 @@ export default class UserOffers extends React.Component {
                 break;
             }
             default:
-                // this.setState({
-                //     show: true,
-                //     modalTitle: "Подтвердите заказ",
-                // });
+            // this.setState({
+            //     show: true,
+            //     modalTitle: "Подтвердите заказ",
+            // });
         }
     }
 

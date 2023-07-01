@@ -136,7 +136,12 @@ export default class ManagementTable extends React.Component {
         const url = `/orders/notAssigned?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
 
         fetch(url)
-            .then((res) => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
             .catch((error) => {
                 if (error.message === "401") {
                     const authCookie = document.cookie
@@ -174,7 +179,12 @@ export default class ManagementTable extends React.Component {
     componentDidMount() {
         this.fetchOrders();
         fetch("/users/managers")
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
             .catch((error) => {
                 if (error.message === "401") {
                     const authCookie = document.cookie
@@ -239,7 +249,7 @@ export default class ManagementTable extends React.Component {
                     const filteredOrders = this.state.orders.filter((order) => order.id !== orderId);
                     this.setState({orders: filteredOrders});
                 } else {
-                    throw new Error('Ошибка при назначении менеджера');
+                    throw new Error(response.status);
                 }
             })
             .catch((error) => {

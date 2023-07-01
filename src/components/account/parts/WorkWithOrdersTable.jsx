@@ -142,7 +142,12 @@ export default class WorkWithOrdersTable extends React.Component {
         const formattedEndDate = endDate ? moment(endDate).format('YYYY-MM-DDTHH:mm:ss') : '';
         const url = `/orders/manager/${managerId}?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
         fetch(url)
-            .then((res) => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
             .catch((error) => {
                 if (error.message === "401") {
                     const authCookie = document.cookie
@@ -376,7 +381,12 @@ export default class WorkWithOrdersTable extends React.Component {
             },
             body: JSON.stringify(requestBody)
         })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
             .catch((error) => {
                 if (error.message === "401") {
                     const authCookie = document.cookie
@@ -543,7 +553,18 @@ export default class WorkWithOrdersTable extends React.Component {
 
     render() {
 
-        const {error, orders, expandedRow, search, currentPage, totalPages, pageSize, sortParams, startDate, endDate} = this.state;
+        const {
+            error,
+            orders,
+            expandedRow,
+            search,
+            currentPage,
+            totalPages,
+            pageSize,
+            sortParams,
+            startDate,
+            endDate
+        } = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {

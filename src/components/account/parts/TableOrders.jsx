@@ -146,7 +146,12 @@ export default class TableOrders extends React.Component {
         const formattedEndDate = endDate ? moment(endDate).format('YYYY-MM-DDTHH:mm:ss') : '';
         const url = `/orders?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
         fetch(url)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
             .catch((error) => {
                 if (error.message === "401") {
                     const authCookie = document.cookie
@@ -240,7 +245,6 @@ export default class TableOrders extends React.Component {
                                 const uint8Array = new Uint8Array(arrayBuffer);
                                 lastPayment.receiptImage = Array.from(uint8Array);
                                 lastPayment.targetDetails = this.targetDetailsRef.current.value;
-                                console.log(lastPayment.receiptImage);
                                 this.createPayment(order.id, lastPayment);
                                 this.setState({
                                     show: false,
