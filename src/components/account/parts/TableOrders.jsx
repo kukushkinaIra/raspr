@@ -146,8 +146,14 @@ export default class TableOrders extends React.Component {
         const formattedEndDate = endDate ? moment(endDate).format('YYYY-MM-DDTHH:mm:ss') : '';
         const url = `/orders?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
         fetch(url)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
             .catch((error) => {
+                console.log(error.message)
                 if (error.message === "401") {
                     const authCookie = document.cookie
                         .split(";")

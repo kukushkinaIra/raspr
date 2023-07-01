@@ -133,9 +133,13 @@ export default class OrdersHistoryTable extends React.Component {
         const formattedStartDate = startDate ? moment(startDate).format('YYYY-MM-DDTHH:mm:ss') : '';
         const formattedEndDate = endDate ? moment(endDate).format('YYYY-MM-DDTHH:mm:ss') : '';
         const url = `/orders?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
-        console.log(url)
         fetch(url)
-            .then((res) => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
             .catch((error) => {
                 if (error.message === "401") {
                     const authCookie = document.cookie

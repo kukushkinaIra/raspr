@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect, useState} from "react"
 import {Link, useNavigate} from "react-router-dom"
-import {login, registration} from "./actions/user"
+import {registration} from "./actions/user"
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {useAuth} from "./AuthProvider";

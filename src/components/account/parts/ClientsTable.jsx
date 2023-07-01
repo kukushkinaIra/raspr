@@ -13,7 +13,6 @@ import buildQuestionnaire from "./BuilderQuestionnaire";
 import buildPaymentsBlock from "./BuildPaymentsBlock";
 import buildShortInfoBlock from "./BuildShortInfoBlock";
 import buildContractBlock from "./BuilderContract";
-import DatePicker from "react-datepicker";
 
 
 export default class ClientsTable extends React.Component {
@@ -129,7 +128,7 @@ export default class ClientsTable extends React.Component {
         const url = `/users?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}`;
 
         fetch(url)
-            .then((res) => {
+            .then(res => {
                 if (!res.ok) {
                     throw new Error(res.status);
                 }
@@ -238,7 +237,6 @@ export default class ClientsTable extends React.Component {
             </tr>
         );
     }
-
 
 
     buildFullUserInfo(user) {

@@ -3,8 +3,8 @@ import {Link} from "react-router-dom"
 import doneIcon from "./images/27098.svg"
 
 
-function Prices(){
-    return(
+function Prices() {
+    return (
         <section className="main_prices" id="prices">
             <div className="container">
                 <h2>Цены</h2>
@@ -20,8 +20,8 @@ function Prices(){
                             <li>просто пример дизайна</li>
                         </ul>
                         <div className="buttom_div">
-                                <button>Подать заявку</button>
-                            </div>
+                            <button>Подать заявку</button>
+                        </div>
                     </div>
                     <div className="price_block">
                         <h3>Преддипломная практика</h3>
@@ -47,16 +47,17 @@ function Prices(){
                             <li>подписание дневника, характеристики</li>
                             <li>Справки для посольства</li>
                             <li>выдача гарантийного письма</li>
-                            
+
                         </ul>
                         <div className="buttom_div">
                             <button>
-                                    <Link to="/login" className="regist_link" style={{textDecoration:'none'}}>Зарегистрироваться</Link>
+                                <Link to="/login" className="regist_link"
+                                      style={{textDecoration: 'none'}}>Зарегистрироваться</Link>
                             </button>
                         </div>
                     </div>
 
-                    
+
                 </div>
 
                 <div className="more_info_prices">
@@ -64,24 +65,24 @@ function Prices(){
                         <h4>Трудоустройство</h4>
                         <ul>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
                                 Подписание пакета на трудоустройство - 50 р
                             </li>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                             Оформление процесса увольнения - 50 р
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Оформление процесса увольнения - 50 р
                             </li>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                              Завести трудовую книжку - 15 р
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Завести трудовую книжку - 15 р
                             </li>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                              Завести карту соц. страхования - 10 р
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Завести карту соц. страхования - 10 р
                             </li>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                            Характеристика на новое место работы - 15 р
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Характеристика на новое место работы - 15 р
                             </li>
                         </ul>
                     </div>
@@ -90,28 +91,28 @@ function Prices(){
                         <h4>Дополнительно</h4>
                         <ul>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                            Доставка корреспонденции в руки ЕМС по РБ за 24 часа - от 15 р 
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Доставка корреспонденции в руки ЕМС по РБ за 24 часа - от 15 р
                             </li>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                            Ксерокопии (контракта, приказа, направления, трудовой книжки) - 15 р
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Ксерокопии (контракта, приказа, направления, трудовой книжки) - 15 р
                             </li>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                            Справка для посольства - от 15 до 60 р 
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Справка для посольства - от 15 до 60 р
                             </li>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                            Справка для университета об окончании отработки - 15 р
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Справка для университета об окончании отработки - 15 р
                             </li>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                            Переделывание документа - 20 р
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Переделывание документа - 20 р
                             </li>
                             <li>
-                            <img alt="image" className="doneIcon" src={doneIcon} />
-                            Срочность работы (за 1 день справки, копии, ГП) - 15 р
+                                <img alt="image" className="doneIcon" src={doneIcon}/>
+                                Срочность работы (за 1 день справки, копии, ГП) - 15 р
                             </li>
                         </ul>
                     </div>

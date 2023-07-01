@@ -15,21 +15,21 @@ function MainPage() {
     const role = localStorage.getItem("role")
 
     return (
-      <>
-        <div className="main">
-          <Navigation/>
-          <MainInfo/>
-          <AboutUs/>
-          <Service/>
-          <Prices/>
-          <ReferralProgram/>
-          <Team/>
-          <Vacancies/>
-          <Reviews/>
-          <Footer/>
-        </div>
-      </>
+        <>
+            <div className="main">
+                <Navigation/>
+                <MainInfo/>
+                <AboutUs/>
+                <Service/>
+                <Prices/>
+                <ReferralProgram/>
+                <Team/>
+                <Vacancies/>
+                <Reviews/>
+                <Footer/>
+            </div>
+        </>
     );
-  }
-  
-  export default MainPage;
+}
+
+export default MainPage;
