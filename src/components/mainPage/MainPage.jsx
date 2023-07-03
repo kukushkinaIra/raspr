@@ -20,11 +20,11 @@ function MainPage() {
           <Navigation/>
           <MainInfo/>
           <AboutUs/>
+          <Team/>
+          <Vacancies/>
           <Service/>
           <Prices/>
           <ReferralProgram/>
-          <Team/>
-          <Vacancies/>
           <Reviews/>
           <Footer/>
         </div>

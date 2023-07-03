@@ -6,7 +6,7 @@ function Vacancies(){
     return(
         <section className="about_us vacansies referal" id="vacansies">
             <div className="container main_container">
-                 <h2>Вакансии</h2>
+                 <h2>Присоединяйся к нашей команде</h2>
                 <div className="referal_main hire_main">
                     <div>
                         <h3>МЕНЕДЖЕР, МЫ ИЩЕМ ТЕБЯ <img alt="image" className="myIcon" src={icon} /></h3>

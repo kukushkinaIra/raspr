@@ -15,13 +15,10 @@ function Team(){
                                 Он помогает сохранить и приумножить деньги предпринимателям и не только. А также сохраняет ваши нервы и ваше время во время отработки. Алексей уже изменил в лучшую сторону не одну жизнь, изменит и твою!
                             </p>
                         </div>
-                        <div className="mainImgDiv">
+                        {/* <div className="mainImgDiv">
                             <img alt="image" className="mainImg" src={main} />
-                        </div>
+                        </div> */}
                     </div>
-                    {/* <div>
-                        <img alt="image" className="mainImg" src={main} />
-                    </div> */}
                 </div>
             </div>
         </section>
