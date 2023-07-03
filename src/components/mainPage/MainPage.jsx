@@ -23,7 +23,6 @@ function MainPage() {
           <Team/>
           <Vacancies/>
           <Service/>
-          <Prices/>
           <ReferralProgram/>
           <Reviews/>
           <Footer/>
