@@ -91,7 +91,7 @@
 
 * {
     margin: 0;
-    font-family: 'Code Pro', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: normal;
     outline: none;
 }
@@ -106,8 +106,8 @@ h2, h1, h6 {
 
 /* navigation styles */
 
-nav {
-    background-color: transparent;
+.bg-body-tertiary {
+    background-color: #e1e1e1 !important;
     box-shadow: 0 -2px 9px 0 black;
 }
 
@@ -159,7 +159,6 @@ section.main {
     height: 90vh;
     background-size: cover;
     padding-top: 45px;
-    margin-top: 80px;
 }
 
 .main h1 {
@@ -519,7 +518,6 @@ footer {
 }
 
 .root p, .root a {
-    font-family: "Montserrat", sans-serif;
     font-size: 16px;
 }
 
@@ -529,11 +527,45 @@ footer {
 
 .logout {
     background-color: #fac600;
-    border: none;
-
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
+    border: 2px solid #fac600;
+    border-radius: 0;
+    color: black;
+    height: fit-content;
+    width: 110px;
+    align-self: center;
+    font-weight: 500;
+    padding: 3px 15px !important;
+    margin-left: 20px;
 }
 
-.root .table-yellow-button, .logout {
+.logout:hover {
+    background-color: #ffd433!important;
+    border: 1px solid #fac600;
+    color: black;
+}
+
+.home-button * {
+    font-size: 25px;
+}
+
+.nav-registration {
+    background-color: transparent;
+    border: 2px solid #fac600;
+    border-radius: 0;
+    color: black;
+    height: fit-content;
+    width: 170px;
+    align-self: center;
+    font-weight: 500;
+    padding: 5px 20px !important;
+}
+
+.nav-registration:hover {
+    background-color: #fac600;
+}
+
+.root .table-yellow-button {
     margin-bottom: 20px;
     padding: 8px 40px;
     height: fit-content;
@@ -548,7 +580,6 @@ footer {
     height: 35px;
     background-color: #FAC600 !important;
     color: black;
-    font-family: "Montserrat", sans-serif;
     filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
     border: 0;
     border-radius: 0;
@@ -557,9 +588,14 @@ footer {
     align-self: center;
 }
 
+
+.yellow-button:hover {
+    color: black;
+    background-color: #ffd433!important;
+}
+
 .toast-message {
     font-size: 16px;
-    font-family: "Montserrat", sans-serif;
     padding: 10px 10px;
 }
 
@@ -649,7 +685,7 @@ footer {
 }
 
 .service {
-    width: 220px;
+    max-width: 265px;
     height: 180px;
     padding: 20px;
     background-color: white;
@@ -705,7 +741,6 @@ footer {
     padding: 5px 40px 5px 40px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     color: black;
-    font-family: "Montserrat", sans-serif;
     border-color: #FAC600 !important;
     border-radius: 0;
 }
@@ -728,13 +763,7 @@ footer {
     border-radius: 0;
 }
 
-
-.form-label {
-    font-family: 'Montserrat', sans-serif;
-}
-
 .form-control {
-    font-family: 'Montserrat', sans-serif;
     border-radius: 0;
     border: 0;
     background-color: #ECECEC;
@@ -742,7 +771,6 @@ footer {
 
 
 .form-select {
-    font-family: 'Montserrat', sans-serif;
     border-radius: 0;
     border: 0;
     background-color: #ECECEC;
@@ -750,7 +778,6 @@ footer {
 }
 
 .form-control-file {
-    font-family: 'Montserrat', sans-serif;
     border: 1px solid;
     background: white;
 }
@@ -779,12 +806,10 @@ thead {
 }
 
 thead * {
-    font-family: "Montserrat", sans-serif;
     font-weight: 600;
 }
 
 tbody * {
-    font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
     vertical-align: middle;
@@ -798,7 +823,6 @@ tbody * {
     display: flex;
     align-items: center;
     background-color: #FAC600;
-    font-family: 'Montserrat', sans-serif;
     border: 0;
     padding: 0 15px 0 15px;
 }
@@ -808,7 +832,6 @@ tbody * {
 }
 
 .table-search-form input {
-    font-family: 'Montserrat', sans-serif;
     border: 0;
     background-color: #ECECEC;
     outline: none;
@@ -878,7 +901,6 @@ tbody * {
 }
 
 .invalid-feedback {
-    font-family: "Montserrat", sans-serif;
     font-size: 14px;
     margin-top: 0;
 }
@@ -913,10 +935,6 @@ tbody * {
     align-items: center;
 }
 
-.table-container-header * {
-    font-family: 'Montserrat', sans-serif;
-}
-
 .table-container-footer {
     display: flex;
     background-color: white;
@@ -926,10 +944,6 @@ tbody * {
 
 .table {
     margin-bottom: 0;
-}
-
-.table-container-footer * {
-    font-family: 'Montserrat', sans-serif;
 }
 
 .table-refresh-button {
@@ -983,22 +997,23 @@ span.arrow-icon svg {
 }
 
 .username {
-    font-family: "Montserrat", sans-serif;
     font-size: 18px;
     padding: 5px 10px 5px 10px;
     background-color: white;
 }
 
 .home_main_button {
-    font-size: 24px;
-    width: 290px;
+    font-size: 22px;
+    width: 280px;
     background-color: #FAC600;
     border: unset;
     filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
     text-align: center;
     text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
     color: black;
-    height: 50px;
+    height: 45px;
     padding-top: 6px;
 }
 
@@ -1033,7 +1048,6 @@ span.arrow-icon svg {
     height: 30px;
     background-color: #FAC600;
     color: black;
-    font-family: "Montserrat", sans-serif;
     filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
     border: 0;
     border-radius: 0;
@@ -1060,7 +1074,6 @@ span.arrow-icon svg {
 /* referal programm */
 
 .referal_main {
-    background-color: #efba00;
     padding: 40px;
     text-align: center;
 }
@@ -1165,13 +1178,14 @@ h4.offer_seller {
 }
 
 .user-info-block {
-    max-width: fit-content;
+    max-width: 700px;
+    width: fit-content;
     background-color: white;
     padding: 20px;
+    display: flex;
 }
 
 .user-info-block * {
-    font-family: "Montserrat", sans-serif;
     font-size: 16px !important;
 }
 
@@ -1187,7 +1201,6 @@ h4.offer_seller {
 .download-button {
     background-color: transparent !important;
     color: blue;
-    font-family: "Montserrat", sans-serif;
     text-decoration: underline;
     border: 0;
     border-radius: 0;
@@ -1196,7 +1209,7 @@ h4.offer_seller {
     align-self: center;
 }
 
-.why_us{
+.why_us {
     background-image: url('components/mainPage/parts/images/about.jpg');
     width: 50%;
     background-position: center;
@@ -1209,23 +1222,23 @@ h4.offer_seller {
     color: white;
 }
 
-.whu_us_text{
+.whu_us_text {
     background-color: black;
     width: 50%;
 }
 
-.why_us ul{
+.why_us ul {
     text-align: start;
 }
 
-.swiper-slide{
+.swiper-slide {
     border-radius: 20px;
     width: 410px;
     margin-right: 30px;
     border: 1px solid #d5d1d1;
 }
 
-.rts-client-reviews-h2{
+.rts-client-reviews-h2 {
     padding: 50px 50px 30px 50px;
 }
 
@@ -1233,9 +1246,11 @@ h4.offer_seller {
     display: flex;
     align-items: center;
 }
-.thumbnail{
+
+.thumbnail {
     position: relative;
 }
+
 .thumbnail::after {
     position: absolute;
     content: "";
@@ -1250,121 +1265,143 @@ h4.offer_seller {
 
 .swiper-slide img {
     display: block;
-    width: 100%;
     height: 100%;
     object-fit: cover;
     width: 70px;
     border-radius: 35px;
 }
 
-.reviews_cards .discription{
+.reviews_cards .discription {
     margin-left: 30px;
 }
 
-  .navbar a{
-    font-family: "Montserrat", sans-serif;
-    font-size: 18px;
-  }
+.navbar {
+    padding: 0 !important;
+}
 
-  .navbar .enter{
+.navbar a {
+    font-size: 18px;
+}
+
+.navbar .enter {
     margin-right: 10px;
     margin-top: 3px;
-  }
+    color: black;
+}
 
 
-  .flipcard {
-        position: relative;
-        width: 300px;
-        height: 300px;
-        perspective: 500px;
-        margin-bottom: 20px;
-    }
-    .flipcard.v:hover .front, .flipcard.v.flip .front{
+.flipcard {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    perspective: 500px;
+    margin-bottom: 20px;
+}
+
+.flipcard.v:hover .front, .flipcard.v.flip .front {
     transform: rotateX(180deg);
-    }
-    .flipcard.v:hover .back, .flipcard.v.flip .back{
+}
+
+.flipcard.v:hover .back, .flipcard.v.flip .back {
     transform: rotateX(0deg);
-    }
-    .flipcard.v .back{
+}
+
+.flipcard.v .back {
     transform: rotateX(-180deg);
-    }
-    .flipcard.h:hover .front, .flipcard.h.flip .front{
+}
+
+.flipcard.h:hover .front, .flipcard.h.flip .front {
     transform: rotateY(180deg);
+}
+
+.flipcard.h:hover .back, .flipcard.h.flip .back {
+    transform: rotateY(0deg);
+}
+
+.flipcard.h .back {
+    transform: rotateY(-180deg);
+}
+
+.flipcard .front, .flipcard .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    transition: all 0.5s ease-in;
+    padding: 10px;
+    backface-visibility: hidden;
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services_blocks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.flipcard ul li {
+    list-style-type: none;
+}
+
+@media (max-width: 850px) {
+
+    .about_text {
+        width: auto;
     }
 
-    .flipcard.h:hover .back, .flipcard.h.flip .back{
-        transform: rotateY(0deg);
-        }
-        .flipcard.h .back{
-        transform: rotateY(-180deg);
-        }
-        .flipcard .front, .flipcard .back
-        {
-            position:absolute;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-            transition: all 0.5s ease-in;
-            padding: 10px;
-            backface-visibility: hidden;
-            border: 1px solid rgb(202, 202, 202);
-            border-radius:20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .services_blocks{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-    .flipcard ul li{
-        list-style-type: none;
+    .flipcard.h .back {
+        transform: none;
+        border: none;
     }
 
-    @media (max-width: 850px) {
-
-        .about_text{
-            width: auto;
-        }
-        .flipcard.h .back {
-            transform: none;
-            border: none;
-        }
-
-          .flipcard .front{
-            position: relative;
-            align-items: flex-start;
-          }
-
-          .flipcard .back{
-            position:absolute;
-            transition: none;
-            top: 0px;
-          }
-
-          .flipcard.h .back:hover {
-            transform: none;
-            border: none;
-        }
-
-        .flipcard.h:hover .front, .flipcard.h.flip .front {
-            transform: none;
-          }
-
-        .back h6{
-            margin-top: 20px;
-        }
+    .flipcard .front {
+        position: relative;
+        align-items: flex-start;
     }
 
-    @media (max-width: 770px){
-        .services_blocks{
-            justify-content: center;
-        }
+    .flipcard .back {
+        position: absolute;
+        transition: none;
+        top: 0px;
     }
 
-    .navbar-nav .nav-link{
-        display: flex;
+    .flipcard.h .back:hover {
+        transform: none;
+        border: none;
     }
+
+    .flipcard.h:hover .front, .flipcard.h.flip .front {
+        transform: none;
+    }
+
+    .back h6 {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 770px) {
+    .services_blocks {
+        justify-content: center;
+    }
+}
+
+.navbar-nav .nav-link {
+    display: flex;
+}
+
+.form-password-change {
+    max-width: 300px;
+    margin-left: 40px;
+    padding-left: 20px;
+    border-left: 1px solid #9f9f9f;
+}
+
+.edit-button {
+    font-size: 20px;
+    border: none;
+    background-color: transparent;
+}

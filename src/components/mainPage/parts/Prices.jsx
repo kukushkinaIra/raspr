@@ -11,7 +11,7 @@ function Prices() {
                 <div className="prices_blocks">
                     <div className="price_block">
                         <h3>Распределение / перераспределение</h3>
-                        <p>Затратная часть от 148 руб в месяц</p>
+                        <p> от 148 руб в месяц</p>
                         {/* <hr> */}
                         <ul>
                             <li>Какие-то плюсы</li>
@@ -25,7 +25,7 @@ function Prices() {
                     </div>
                     <div className="price_block">
                         <h3>Преддипломная практика</h3>
-                        <p>Затратная часть от 148 руб в месяц</p>
+                        <p> от 148 руб в месяц</p>
                         {/* <hr> */}
                         <ul>
                             <li>Какие-то плюсы</li>

@@ -85,7 +85,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                 );
                 if (invalidFiles.length === 0) {
                     if (name === 'pinkBlank') {
-                       setPinkBlank(selectedFiles[0]);
+                        setPinkBlank(selectedFiles[0]);
                     } else if (name === 'passportPhotos') {
                         setPassportPhotos(selectedFiles);
                     }
@@ -106,7 +106,6 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
 
 
     const handleSubmit = (event) => {
-
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -225,7 +224,6 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                             autoFocus
                         />
                     </Form.Group>
-
                     <Form.Group className="mb-3" controlId="phoneNumber">
                         <Form.Label>Телефон (12 цифр)</Form.Label>
                         <Form.Control
@@ -237,7 +235,6 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                             placeholder="+375XXXXXXXXX"
                         />
                     </Form.Group>
-
                     <Form.Group className="mb-3" controlId="birthDate">
                         <Form.Label>Дата Рождения</Form.Label>
                         <Form.Control

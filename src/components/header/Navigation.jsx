@@ -7,6 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import {useAuth} from "../auth/AuthProvider";
+import {AiFillHome} from "react-icons/ai";
 
 function Navigation() {
 
@@ -21,13 +22,13 @@ function Navigation() {
     useEffect(() => {
         if (role === "ROLE_GUEST") {
             setButtonBlock(<Fragment>
-                <Nav.Link className="enter" href="/login">Войти</Nav.Link>
-                <Nav.Link href="/registration" className="registration">Регистрация</Nav.Link>
+                <Nav.Link className="enter" href="/login">Вход</Nav.Link>
+                <Nav.Link href="/registration" className="nav-registration">Регистрация</Nav.Link>
             </Fragment>)
         } else if (role === "ROLE_ADMIN" || role === "ROLE_USER" || role === "ROLE_MANAGER") {
             setButtonBlock(<Fragment>
-                    <Nav.Link className="home-button" href="/home">Личный кабинет</Nav.Link>
-                    <Button className="table-yellow-button logout" onClick={handleLogoutButton}
+                    <Nav.Link className="home-button" href="/home"><AiFillHome /></Nav.Link>
+                    <Button className="logout" onClick={handleLogoutButton}
                             style={{textDecoration: 'none'}}>Выйти</Button>
                 </Fragment>
             )

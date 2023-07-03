@@ -3,7 +3,6 @@ import React, {Fragment} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import ModalGuaranteeLetter from "./modals/ModalGuaranteeLetter";
 import ModalContract from "./modals/ModalContract";
-import {ToastContainer} from "react-toastify";
 
 
 export default class UserOffers extends React.Component {
@@ -139,6 +138,15 @@ export default class UserOffers extends React.Component {
         }
     }
 
+    getPricePeriod(item) {
+        if (['Распределение', 'Перераспределение'].includes(item.title)) {
+            return 'от ' + item.price / 3 + ' руб. в месяц ';
+        } else if (item.title === 'Практика') {
+            return 'от ' + item.price + ' руб. в месяц ';
+        } else
+            return 'от ' + item.price + ' руб.';
+    }
+
     render() {
         const {error, offers, modal} = this.state;
 
@@ -147,15 +155,14 @@ export default class UserOffers extends React.Component {
         } else {
             return (
                 <div>
-                    <ToastContainer />
                     <div className="services">
-                        {offers.map(item => (
+                        {offers.filter(item => item.title !== 'Ежемесячный платеж').map(item => (
                             <div className="service" key={item.id}
                                  onClick={() => this.handleOfferClick(item)}
                             >
                                 <h4>{item.title}</h4>
                                 <hr/>
-                                <p>от {item.price} руб. в месяц</p>
+                                <p>{this.getPricePeriod(item)}</p>
                             </div>
                         ))}
                     </div>

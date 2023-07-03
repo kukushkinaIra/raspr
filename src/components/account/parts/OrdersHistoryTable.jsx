@@ -276,6 +276,10 @@ export default class OrdersHistoryTable extends React.Component {
                             <option value="user.fullname,desc"> ФИО &#9650;</option>
                             <option value="user.email,asc"> Email &#9660;</option>
                             <option value="user.email,desc"> Email &#9650;</option>
+                            <option value="id,asc"> Id &#9660;</option>
+                            <option value="id,desc"> Id &#9650;</option>
+                            <option value="createdAt,desc"> Создание &#9660;</option>
+                            <option value="createdAt,asc"> Создание &#9650;</option>
                         </select>
                         <span>Период:</span>
                         <DatePicker

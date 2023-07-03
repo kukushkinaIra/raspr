@@ -57,7 +57,7 @@ function Service(){
                                     <ul>
                                         <li>
                                             <img alt="image" className="doneIcon" src={doneIcon} />
-                                            Затратная часть от <b>148</b> руб в месяц
+                                             от <b>148</b> руб в месяц
                                         </li>
                                         <li>
                                             <img alt="image" className="doneIcon" src={doneIcon} />
@@ -107,7 +107,7 @@ function Service(){
                             <ul>
                                     <li>
                                         <img alt="image" className="doneIcon" src={doneIcon} />
-                                        Затратная часть от <b>148</b> руб в месяц
+                                         от <b>148</b> руб в месяц
                                     </li>
                                     <li>
                                         <img alt="image" className="doneIcon" src={doneIcon} />

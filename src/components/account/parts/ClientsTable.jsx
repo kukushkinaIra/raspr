@@ -13,6 +13,8 @@ import BuildQuestionnaire from "./expandedRowBuilders/BuilderQuestionnaire";
 import BuildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
 import BuildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
 import BuildContractBlock from "./expandedRowBuilders/BuilderContract";
+import {FaUserEdit} from "react-icons/fa";
+import {LiaUserEditSolid} from "react-icons/lia";
 
 
 export default class ClientsTable extends React.Component {
@@ -319,6 +321,9 @@ export default class ClientsTable extends React.Component {
             })
     }
 
+    handleEditUser(){
+    }
+
 
     render() {
         const {error, users, expandedRow, search, currentPage, totalPages, pageSize, sortParams} = this.state;
@@ -342,6 +347,8 @@ export default class ClientsTable extends React.Component {
                             <option value="fullname,desc"> ФИО &#9660;</option>
                             <option value="email,asc">Email &#9650;</option>
                             <option value="email,desc">Email &#9660;</option>
+                            <option value="id,desc">Id &#9650;</option>
+                            <option value="id,asc">Id &#9660;</option>
                         </select>
                         <button className="table-refresh-button" onClick={this.handleRefresh}>
                             <GrRefresh/>
@@ -356,6 +363,7 @@ export default class ClientsTable extends React.Component {
                             <th>Университет</th>
                             <th>Email</th>
                             <th>Скачать</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -383,6 +391,7 @@ export default class ClientsTable extends React.Component {
                                             doc
                                         </button>
                                     </td>
+                                    <td><button className="edit-button" onClick={()=>this.handleEditUser(user)}><LiaUserEditSolid/></button></td>
                                 </tr>
                                 {expandedRow === user.id && (this.buildExpandedRow(user))}
                             </React.Fragment>

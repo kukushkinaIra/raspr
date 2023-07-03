@@ -11,6 +11,7 @@ import TableOrders from "./TableOrders";
 import {useAuth} from "../../auth/AuthProvider";
 import {useNavigate} from "react-router-dom";
 import ProfileInfo from "./ProfileInfo";
+import {ToastContainer} from "react-toastify";
 
 
 function Main() {
@@ -144,6 +145,7 @@ function Main() {
 
     return (
         <Container className="user_container">
+            <ToastContainer />
             <Tab.Container id="ledt-tabs-example" defaultActiveKey="first">
                 <Row>
                     <Col sm={2}>
