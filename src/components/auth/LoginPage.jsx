@@ -1,39 +1,3 @@
-//     return(
-//         // <div>
-//         //     <div className="root">
-//         //         <div className="form">
-//         //             <h2>Авторизация</h2>
-//         //             <p>Введите ваш логин и пароль</p>
-//         //             <TextField fullWidth={true} margin='normal' id="outlined-basic" label="Email" variant="outlined" placeholder="Введите ваш email"/>
-//         //             <TextField type="password" fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Введите ваш пароль"/>
-//         //             <Button style={{backgroundColor:'#FAC600'}} variant="contained">Войти</Button>
-//         //             <p>У Вас нет аккауна? <Link className="registration" to="/register" style={{textDecoration:'none'}}>Регистрация</Link></p>
-//         //         </div>
-//         //     </div>
-//         // </div>
-
-
-//         <Fragment>
-//             <div className="root">
-//                 <div className="form">
-//                     <h2>Авторизация</h2>
-//                     <p>Введите данные для регистрации</p>
-//                     <Input type="email" value={email} setValue={setEmail} label="Email" variant="outlined" placeholder="Введите ваш email"/>
-//                     <Input type="password" value={password} setValue={setPassword} fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Введите ваш пароль"/>
-//                     {/* <TextField type="password" fullWidth={true} margin='normal' id="outlined-basic" label="Password" variant="outlined" placeholder="Повторите ваш пароль"/> */}
-//                     <Button style={{backgroundColor:'#FAC600'}} onClick={() => dispatch(Login(email, password))} variant="contained">Войти</Button>
-//                     <p>У Вас нет аккауна? <Link className="registration" to="/register" style={{textDecoration:'none'}}>Регистрация</Link></p>
-//                 </div>
-//             </div>
-//         </Fragment>
-
-//     )
-
-// }
-
-// export default LoginPage
-
-
 import React, {Fragment, useEffect, useState} from 'react';
 import {login} from "./actions/user"
 import {Link, useNavigate} from "react-router-dom";

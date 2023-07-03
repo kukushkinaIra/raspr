@@ -25,7 +25,7 @@ function Footer() {
                         </a>
                     </div>
                     <div>
-                        <img src={binance} alt="binance"/>
+                        {/*<img src={binance} alt="binance"/>*/}
                     </div>
                     <div>
                         <p>lorem_ipsum@gmail.com</p>

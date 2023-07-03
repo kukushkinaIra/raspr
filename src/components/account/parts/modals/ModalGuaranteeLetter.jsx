@@ -68,7 +68,6 @@ function ModalGuaranteeLetter({showProp, setShowPropFalse, offerId}) {
             requestBody.append("order", new Blob([JSON.stringify(order)], { type: "application/json" }));
             requestBody.append("documentTemplate", documentTemplate);
 
-            console.log(requestBody)
             fetch("/orders/short", {
                 method: "POST",
                 body: requestBody,

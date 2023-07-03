@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export default function buildQuestionnaire(questionnaire) {
+export default function BuildQuestionnaire(questionnaire) {
     return (
         <div className="expended_padding_block">
             <div className="expanded_info_div"><b>Пол: </b> {questionnaire.gender}</div>

@@ -1,14 +1,40 @@
 import React from "react";
 
 
-export default function buildPaymentsBlock(payments) {
+export default function BuildPaymentsBlock(payments, id, setId, setRole, navigate) {
+    function handleDownloadPaymentReceipt(payment) {
 
-    const getPaymentImageBlock = (payment) => {
-        if (payment.receiptImage) {
-            const url = URL.createObjectURL(new Blob([payment.receiptImage], {type: 'image/png'}));
-            return (<img className="payment-receipt-image" src={url} alt="payment_image"/>);
-        } else
-            return null;
+        const url = `/files/receipt/user/${id}/payment/${payment.id}`;
+        fetch(url)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
+            .catch((error) => {
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find((cookie) => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        setId(null);
+                        setRole(null);
+                        navigate('/login');
+                    }
+                }
+            })
+            .then(
+                (data) => {
+                    const pinkBlank = Uint8Array.from(atob(data.file), (c) => c.charCodeAt(0));
+                    const blobBlank = new Blob([pinkBlank], {type: "image/jpeg"});
+                    const urlBlank = URL.createObjectURL(blobBlank);
+                    const link = document.createElement("a");
+                    link.href = urlBlank;
+                    link.download = "receipt_" + payment.id + ".jpeg";
+                    link.click();
+                }
+            );
     }
 
     return (
@@ -20,9 +46,10 @@ export default function buildPaymentsBlock(payments) {
                 <div className="expanded_info_div"><b>Время платежа:</b>
                     {new Date(Date.parse(payment.paymentTime)).toLocaleString()}
                 </div>
-                <div className="expanded_info_div"><b>Квитанция:</b> {payment.receiptText}</div>
-                <div className="expanded_info_div"><b>Квитанция:</b></div>
-                <div>{getPaymentImageBlock(payment)}</div>
+                <div className="expanded_info_div"><b>Квитанция(текст):</b> {payment.receiptText}</div>
+                <div className="expanded_info_div">
+                    <b>Квитанция(фото):</b><button className="download-button" onClick={()=>handleDownloadPaymentReceipt(payment)}>Скачать</button>
+                </div>
                 <hr/>
             </div>))}
         </div>

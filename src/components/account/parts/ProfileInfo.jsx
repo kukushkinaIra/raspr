@@ -12,20 +12,23 @@ export default class ProfileInfo extends React.Component {
             error: null,
             isLoaded: false,
             userInfo: null,
-            oldPassword: '',
-            newPassword: '',
-            validated: false
+            validated: false,
+            formData: {
+                oldPassword: '',
+                newPassword: '',
+            }
         };
     }
 
     handleChange(event) {
-        const {name, value} = event.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value,
+        const { name, value } = event.target;
+        this.setState(prevState => ({
+            formData: {
+                ...prevState.formData,
+                [name]: value
+            }
         }));
     };
-
 
     handleSubmit() {
         //TODO : change password
@@ -94,7 +97,7 @@ export default class ProfileInfo extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, userInfo, validated, oldPassword, newPassword} = this.state;
+        const {error, isLoaded, userInfo, validated, formData} = this.state;
         console.log(userInfo)
         if (error) {
             return <div>Ошибка: {error.message}</div>;
@@ -114,7 +117,7 @@ export default class ProfileInfo extends React.Component {
                         <Form.Control
                             type="text"
                             name="oldPassword"
-                            value={oldPassword}
+                            value={formData.oldPassword}
                             onChange={this.handleChange}
                             placeholder="Иванову Татьяну Викторовну"
                             autoFocus
@@ -125,7 +128,7 @@ export default class ProfileInfo extends React.Component {
                         <Form.Control
                             type="text"
                             name="newPassword"
-                            value={newPassword}
+                            value={formData.newPassword}
                             onChange={this.handleChange}
                             placeholder="Иванову Татьяну Викторовну"
                             autoFocus

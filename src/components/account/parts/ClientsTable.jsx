@@ -9,10 +9,10 @@ import {IoMdSearch} from "react-icons/io";
 import {GrRefresh} from "react-icons/gr";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
 import buildUserInfo from "./expandedRowBuilders/BuildUserInfo";
-import buildQuestionnaire from "./expandedRowBuilders/BuilderQuestionnaire";
-import buildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
-import buildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
-import buildContractBlock from "./expandedRowBuilders/BuilderContract";
+import BuildQuestionnaire from "./expandedRowBuilders/BuilderQuestionnaire";
+import BuildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
+import BuildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
+import BuildContractBlock from "./expandedRowBuilders/BuilderContract";
 
 
 export default class ClientsTable extends React.Component {
@@ -195,7 +195,7 @@ export default class ClientsTable extends React.Component {
 
         if (user.questionnaire.gender) {
             const questionnaire = user.questionnaire;
-            questionnaireBlock = buildQuestionnaire(questionnaire)
+            questionnaireBlock = BuildQuestionnaire(questionnaire)
         }
 
         return (<tr className="expanded_row">
@@ -214,16 +214,16 @@ export default class ClientsTable extends React.Component {
             paymentBlock = (<div hidden></div>);
         if (order.contract) {
             const contract = order.contract;
-            contractBlock = buildContractBlock(contract)
+            contractBlock = BuildContractBlock(contract, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
         }
         if (order.shortInfo) {
             const shortInfo = order.shortInfo;
-            shortInfoBlock = buildShortInfoBlock(shortInfo)
+            shortInfoBlock = BuildShortInfoBlock(shortInfo, order.id, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
         }
         const payments = order.payments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         if (payments) {
-            paymentBlock = buildPaymentsBlock(payments)
+            paymentBlock = BuildPaymentsBlock(payments, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
         }
 
         return (<tr>
@@ -254,7 +254,7 @@ export default class ClientsTable extends React.Component {
 
         if (user.questionnaire.gender) {
             const questionnaire = user.questionnaire;
-            questionnaireBlock = buildQuestionnaire(questionnaire)
+            questionnaireBlock = BuildQuestionnaire(questionnaire)
         }
 
         return (

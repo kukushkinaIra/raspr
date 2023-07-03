@@ -4,8 +4,8 @@ import {MdKeyboardArrowDown, MdKeyboardArrowRight} from "react-icons/md";
 import {IoMdSearch} from "react-icons/io";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
 import {GrRefresh} from "react-icons/gr";
-import buildContractBlock from "./expandedRowBuilders/BuilderContract";
-import buildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
+import BuildContractBlock from "./expandedRowBuilders/BuilderContract";
+import BuildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 
@@ -220,11 +220,11 @@ export default class ManagementTable extends React.Component {
         let contractBlock = (<div hidden></div>), shortInfoBlock = (<div hidden></div>);
         if (order.contract) {
             const contract = order.contract;
-            contractBlock = buildContractBlock(contract);
+            contractBlock = BuildContractBlock(contract, this.props.id, this.props.setId, this.props.setRole, this.props.navigate);
         }
         if (order.shortInfo) {
             const shortInfo = order.shortInfo;
-            shortInfoBlock = buildShortInfoBlock(shortInfo);
+            shortInfoBlock = BuildShortInfoBlock(shortInfo, order.id, this.props.id, this.props.setId, this.props.setRole, this.props.navigate);
         }
         return (<tr className="expanded_row">
                 <td colSpan={7}>

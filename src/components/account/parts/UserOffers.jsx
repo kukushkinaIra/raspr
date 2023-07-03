@@ -75,7 +75,7 @@ export default class UserOffers extends React.Component {
     };
 
     handleOfferClick(offer) {
-        this.handleShowUserOffer()
+        this.handleShowUserOffer();
 
 
         switch (offer.title) {

@@ -91,11 +91,11 @@ function Main() {
                     <Fragment>
                         <Tab.Pane eventKey="sixs">
                             <h3>Выберите услугу для заказа</h3>
-                            <UserOffers setId={setId} setRole={setRole} navigate={navigate}/>
+                            <UserOffers id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="seventh">
                             <h3>Информация о заказах</h3>
-                            <TableOrders setId={setId} setRole={setRole} navigate={navigate}/>
+                            <TableOrders id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                         </Tab.Pane>
                     </Fragment>
                 );
@@ -104,19 +104,19 @@ function Main() {
                 return (<Fragment>
                     <Tab.Pane eventKey="second">
                         <h3>Управление заказами</h3>
-                        <WorkWithOrdersTable setId={setId} setRole={setRole} navigate={navigate}/>
+                        <WorkWithOrdersTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
                         <h3 className="choose">Распределение заказов</h3>
-                        <ManagementTable setId={setId} setRole={setRole} navigate={navigate}/>
+                        <ManagementTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="forth">
                         <h3>Информация о заказах</h3>
-                        <OrdersHistoryTable setId={setId} setRole={setRole} navigate={navigate}/>
+                        <OrdersHistoryTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="fifth">
                         <h3>Информация о клиентах</h3>
-                        <ClientsTable setId={setId} setRole={setRole} navigate={navigate}/>
+                        <ClientsTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                 </Fragment>);
             }
@@ -124,15 +124,15 @@ function Main() {
                 return (<Fragment>
                     <Tab.Pane eventKey="second">
                         <h3>Управление заказами</h3>
-                        <WorkWithOrdersTable setId={setId} setRole={setRole} navigate={navigate}/>
+                        <WorkWithOrdersTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="forth">
                         <h3>Информация о заказах</h3>
-                        <OrdersHistoryTable setId={setId} setRole={setRole} navigate={navigate}/>
+                        <OrdersHistoryTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="fifth">
                         <h3>Информация о клиентах</h3>
-                        <ClientsTable setId={setId} setRole={setRole} navigate={navigate}/>
+                        <ClientsTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                 </Fragment>);
             }

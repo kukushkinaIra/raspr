@@ -93,6 +93,7 @@
     margin: 0;
     font-family: 'Code Pro', sans-serif;
     font-weight: normal;
+    outline: none;
 }
 
 ul {
@@ -543,9 +544,9 @@ footer {
 }
 
 .yellow-button {
-    padding: 3px 20px 3px 20px;
+    padding: 3px 20px 3px 20px !important;
     height: 35px;
-    background-color: #FAC600;
+    background-color: #FAC600 !important;
     color: black;
     font-family: "Montserrat", sans-serif;
     filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
@@ -946,9 +947,9 @@ tbody * {
 
 .expanded_row * {
     --bs-table-striped-bg: transparent;
-    background-color: white !important;
+    background-color: white;
     --bs-table-hover-bg: transparent;
-    padding: 0 !important;
+    padding: 0;
 }
 
 .expended_padding_block {
@@ -959,7 +960,7 @@ tbody * {
 
 .expanded_info_div {
     display: flex;
-    padding: 5px 10px 5px 10px;
+    padding: 3px 10px 3px 10px;
 }
 
 .expanded_row b {
@@ -1168,8 +1169,9 @@ h4.offer_seller {
 
 .user-info-block * {
     font-family: "Montserrat", sans-serif;
-    font-size: 16px!important;
+    font-size: 16px !important;
 }
+
 .password-change-form {
     max-width: 500px !important;
 }
@@ -1177,4 +1179,16 @@ h4.offer_seller {
 .user-info-block.yellow-button {
     width: inherit;
     align-self: start;
+}
+
+.download-button {
+    background-color: transparent !important;
+    color: blue;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: underline;
+    border: 0;
+    border-radius: 0;
+    margin-right: 10px;
+    max-width: max-content;
+    align-self: center;
 }

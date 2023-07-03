@@ -4,9 +4,9 @@ import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
 import {IoMdSearch} from "react-icons/io";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
 import {GrRefresh} from "react-icons/gr";
-import buildContractBlock from "./expandedRowBuilders/BuilderContract";
-import buildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
-import buildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
+import BuildContractBlock from "./expandedRowBuilders/BuilderContract";
+import BuildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
+import BuildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
@@ -151,7 +151,6 @@ export default class OrdersHistoryTable extends React.Component {
                         this.props.navigate('/login');
                     }
                 }
-                //TODO: обновление сразу при введении даты
 
                 this.setState({
                     isLoaded: true,
@@ -218,16 +217,16 @@ export default class OrdersHistoryTable extends React.Component {
             paymentBlock = (<div hidden></div>);
         if (order.contract) {
             const contract = order.contract;
-            contractBlock = buildContractBlock(contract)
+            contractBlock = BuildContractBlock(contract, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
         }
         if (order.shortInfo) {
             const shortInfo = order.shortInfo;
-            shortInfoBlock = buildShortInfoBlock(shortInfo)
+            shortInfoBlock = BuildShortInfoBlock(shortInfo, order.id, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
         }
         const payments = order.payments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         if (payments) {
-            paymentBlock = buildPaymentsBlock(payments)
+            paymentBlock = BuildPaymentsBlock(payments, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
         }
 
         return (<tr className="expanded_row">
@@ -243,7 +242,6 @@ export default class OrdersHistoryTable extends React.Component {
     }
 
     render() {
-
         const {
             error,
             orders,

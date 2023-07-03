@@ -1,18 +1,18 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Table from 'react-bootstrap/Table';
 import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import {IoMdSearch} from "react-icons/io";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
 import {GrRefresh} from "react-icons/gr";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from "moment/moment";
-import buildContractBlock from "./expandedRowBuilders/BuilderContract";
-import buildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
-import buildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
+import BuildContractBlock from "./expandedRowBuilders/BuilderContract";
+import BuildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
+import BuildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 
 export default class TableOrders extends React.Component {
@@ -28,7 +28,7 @@ export default class TableOrders extends React.Component {
             expandedRow: null,
             orders: [],
             show: false,
-            modal: <div></div>,
+            modalPayment: <Fragment/>,
             search: '',
             currentPage: 0,
             totalPages: 0,
@@ -100,7 +100,7 @@ export default class TableOrders extends React.Component {
         }
     };
 
-    renderPageNumbers(){
+    renderPageNumbers() {
         const {currentPage, totalPages} = this.state;
         const pageNumbers = [];
 
@@ -188,6 +188,24 @@ export default class TableOrders extends React.Component {
             )
     }
 
+    handleSubmit(order, lastPayment) {
+        lastPayment.note = this.noteRef.current.value;
+        lastPayment.receiptText = this.receiptTextRef.current.value;
+        const file = this.receiptImageRef.current.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            lastPayment.receiptImage = file;
+            lastPayment.targetDetails = this.targetDetailsRef.current.value;
+            this.createPayment(order.id, lastPayment);
+            this.setState({
+                show: false,
+                modal: <div></div>
+            });
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
     handlePaymentCreate(order, lastPayment) {
         this.setState({
             show: true,
@@ -205,17 +223,11 @@ export default class TableOrders extends React.Component {
                                     <option value="2">Другие реквизиты</option>
                                 </Form.Select>
                             </Form.Group>
-                            {/*<Form.Group className="mb-3" controlId="note">*/}
-                            {/*    <Form.Label>Сумма к оплате</Form.Label>*/}
-                            {/*    <Form.Control type="text" className="form-control-text"*/}
-                            {/*                  placeholder={lastPayment.price + " руб."}*/}
-                            {/*                  disabled*/}
-                            {/*                  ref={this.noteRef}*/}
-                            {/*    />*/}
-                            {/*</Form.Group>*/}
                             <Form.Group className="mb-3" controlId="price">
-                                <div className="form-label">Суммма к оплате:</div>
-                                <div className="form-control">{lastPayment.price + " руб."}</div>
+                                <Form.Label>Сумма к оплате:</Form.Label>
+                                <Form.Control
+                                    type="text" disabled value={lastPayment.price + " руб."}
+                                />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="receiptImage">
                                 <Form.Label>Скриншот/фото квитанции об оплате</Form.Label>
@@ -239,25 +251,7 @@ export default class TableOrders extends React.Component {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" onClick={() => {
-                            lastPayment.note = this.noteRef.current.value;
-                            lastPayment.receiptText = this.receiptTextRef.current.value;
-                            const file = this.receiptImageRef.current.files[0];
-                            const reader = new FileReader();
-
-                            reader.onload = (event) => {
-                                const arrayBuffer = event.target.result;
-                                const uint8Array = new Uint8Array(arrayBuffer);
-                                lastPayment.receiptImage = Array.from(uint8Array);
-                                lastPayment.targetDetails = this.targetDetailsRef.current.value;
-                                this.createPayment(order.id, lastPayment);
-                                this.setState({
-                                    show: false,
-                                    modal: <div></div>
-                                });
-                            };
-                            reader.readAsArrayBuffer(file);
-                        }}>
+                        <Button variant="primary" onClick={() => this.handleSubmit(order, lastPayment)}>
                             Подтвердить
                         </Button>
                     </Modal.Footer>
@@ -267,19 +261,21 @@ export default class TableOrders extends React.Component {
     }
 
     createPayment(orderId, payment) {
-        const requestBody = {
+        const requestBody = new FormData();
+        const paymentBody = {
             targetDetails: payment.targetDetails,
-            receiptImage: payment.receiptImage,
+            receiptImage: null,
             receiptText: payment.receiptText,
             note: payment.note
-
         }
+
+        requestBody.append("paymentDto", new Blob([JSON.stringify(paymentBody)], { type: "application/json" }));
+        requestBody.append("receiptImage",  payment.receiptImage);
+
         fetch(`/orders/${orderId}/update-payment`, {
             method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(requestBody)
+            body: requestBody,
+            credentials: "include"
         })
             .then(res => res.json())
             .catch((error) => {
@@ -364,16 +360,16 @@ export default class TableOrders extends React.Component {
             paymentBlock = (<div hidden></div>);
         if (order.contract) {
             const contract = order.contract;
-            contractBlock = buildContractBlock(contract)
+            contractBlock = BuildContractBlock(contract, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
         }
         if (order.shortInfo) {
             const shortInfo = order.shortInfo;
-            shortInfoBlock = buildShortInfoBlock(shortInfo)
+            shortInfoBlock = BuildShortInfoBlock(shortInfo, order.id, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
         }
         const payments = order.payments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         if (payments) {
-            paymentBlock = buildPaymentsBlock(payments)
+            paymentBlock = BuildPaymentsBlock(payments, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
         }
 
         return (<tr className="expanded_row">
@@ -399,6 +395,7 @@ export default class TableOrders extends React.Component {
         const {
             error,
             orders,
+            modalPayment,
             expandedRow,
             search,
             currentPage,

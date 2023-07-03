@@ -1,42 +1,88 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import JSZip from "jszip";
 
-export default function buildContractBlock(contract) {
 
-    const pinkBlank = Uint8Array.from(atob(contract.pinkBlank), (c) => c.charCodeAt(0));
-    const blobBlank = new Blob([pinkBlank], {type: "image/jpeg"});
-    const urlBlank = URL.createObjectURL(blobBlank);
+export default function BuildContractBlock(contract, id, setId, setRole, navigate) {
 
-    const handleDownloadZip = () => {
-        // const zip = new JSZip();
-        // contract.passport.passportPhotos.forEach((photo, index) => {
-        //     const fileData = Uint8Array.from(atob(photo.file), (c) => c.charCodeAt(0));
-        //     zip.file(`image${index + 1}.jpg`, fileData);
-        // });
-        //
-        // zip.generateAsync({type: "blob"}).then((blob) => {
-        //     const url = URL.createObjectURL(blob);
-        //
-        //     const link = document.createElement("a");
-        //     link.href = url;
-        //     link.download = "photos.zip";
-        //     link.click();
-        // });
+    function handleDownloadPinkBlank() {
+        const url = `/files/pinkBlank/user/${id}/contract/${contract.id}`;
+        fetch(url)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
+            .catch((error) => {
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find((cookie) => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        setId(null);
+                        setRole(null);
+                        navigate('/login');
+                    }
+                }
+            })
+            .then(
+                (data) => {
+                    const pinkBlank = Uint8Array.from(atob(data.file), (c) => c.charCodeAt(0));
+                    const blobBlank = new Blob([pinkBlank], {type: "image/jpeg"});
+                    const urlBlank = URL.createObjectURL(blobBlank);
+                    const link = document.createElement("a");
+                    link.href = urlBlank;
+                    link.download = "pink_blank_" + id + ".jpeg";
+                    link.click();
+                }
+            );
+    }
 
-        const pinkBlank = Uint8Array.from(atob(contract.pinkBlank), (c) => c.charCodeAt(0));
-        const blobBlank = new Blob([pinkBlank], {type: "image/jpeg"});
-        const url = URL.createObjectURL(blobBlank);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "photos.jpg ";
-        link.click();
+    function handleDownloadPassportPhotos() {
+        const url = `/files/passport/user/${id}/contract/${contract.id}`;
+        fetch(url)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
+            .catch((error) => {
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find((cookie) => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        setId(null);
+                        setRole(null);
+                        navigate('/login');
+                    }
+                }
+            })
+            .then(
+                (data) => {
+                    console.log(data)
+                    const zip = new JSZip();
+                    data.files.forEach((element, index) => {
+                        const fileData = Uint8Array.from(atob(element), (c) => c.charCodeAt(0));
+                        zip.file(`image${index + 1}.jpeg`, fileData);
+                    });
 
+                    zip.generateAsync({type: "blob"}).then((blob) => {
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement("a");
+                        link.href = url;
+                        link.download = "passport_" + id + ".zip";
+                        link.click();
+                    });
+                }
+            );
     }
 
     return (
         <div className="expended_padding_block">
-            <div className="expanded_info_div"><b>ФИО полностью:</b> soon...</div>
-            <div className="expanded_info_div"><b>Телефон:</b> soon...</div>
+            <div className="expanded_info_div"><b>ФИО полностью:</b> {contract.fullname}</div>
+            <div className="expanded_info_div"><b>Телефон:</b> {contract.phoneNumber}</div>
             <div className="expanded_info_div"><b>Дата начала:</b> {contract.startDate}</div>
             <div className="expanded_info_div"><b>Дата окончания:</b> {contract.endDate}</div>
             <div className="expanded_info_div"><b>Должности:</b> {contract.position}</div>
@@ -45,7 +91,6 @@ export default function buildContractBlock(contract) {
             <div className="expanded_info_div"><b>Серия и номер пасспорта:</b> {contract.passport.number}</div>
             <div className="expanded_info_div"><b>Идентификационный номер
                 паспорта:</b> {contract.passport.identification}</div>
-            <div className="expanded_info_div"><b>Фото пасспорта:</b> soon...</div>
             <div className="expanded_info_div"><b>Дата выдачи пасспорта:</b> {contract.passport.issueDate}</div>
             <div className="expanded_info_div"><b>Дата окончания паспорта:</b> {contract.passport.expiryDate}
             </div>
@@ -63,10 +108,11 @@ export default function buildContractBlock(contract) {
             <div className="expanded_info_div"><b>ФИО в творительном
                 падеже:</b> {contract.fullnameCases.instrumentalCase}</div>
             <div className="expanded_info_div"><b>Фамилия И.О:</b> {contract.fullnameCases.abbreviation}</div>
-            <div className="expanded_info_div"><b>Розовый бланк:</b><a href={urlBlank} download="blank.jpeg">Скачать</a>
+            <div className="expanded_info_div"><b>Розовый бланк:</b>
+                <button className="download-button" onClick={handleDownloadPinkBlank}>Скачать</button>
             </div>
             <div className="expanded_info_div"><b>Фото паспорта:</b>
-                <button onClick={handleDownloadZip}>Скачать все фотографии</button>
+                <button className="download-button" onClick={handleDownloadPassportPhotos}>Скачать архив</button>
             </div>
         </div>
     )
