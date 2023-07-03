@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect, useState} from "react"
 import logo from "../footer/images/Logo-01 1.svg"
-import {useNavigate} from "react-router-dom"
+import {NavLink, useNavigate} from "react-router-dom"
 import {logout} from "../auth/actions/user";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
@@ -42,23 +42,45 @@ function Navigation() {
     }
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        // <Navbar expand="lg" className="bg-body-tertiary">
+        //     <Container>
+        //         <Navbar.Brand href="#home" className="me-5">
+        //             <img src={logo} alt="logo"/>
+        //         </Navbar.Brand>
+        //         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+        //         <Navbar.Collapse id="basic-navbar-nav">
+        //             <Nav className="me-auto ps-lg-5 ps-md-0">
+        //                 <div>
+        //                     <Nav.Link href="/#about">О нас</Nav.Link>
+        //                     <Nav.Link href="/#services">Наши услуги</Nav.Link>
+        //                     <Nav.Link href="/#reviews">Отзывы</Nav.Link>
+        //                 </div>
+        //                 <div>{buttonBlock}</div>
+        //             </Nav>
+        //         </Navbar.Collapse>
+        //     </Container>
+        // </Navbar>
+
+
+        <Navbar sticky="top" collapseOnSelect expand="lg" className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="#home" className="me-5">
-                    <img src={logo} alt="logo"/>
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto ps-lg-5 ps-md-0">
-                        <Nav.Link href="/#about">О нас</Nav.Link>
-                        <Nav.Link href="/#services">Наши услуги</Nav.Link>
-                        <Nav.Link href="/#referal">Акции</Nav.Link>
-                        <Nav.Link href="/#team">О нас</Nav.Link>
-                        <Nav.Link href="/#reviews">Отзывы</Nav.Link>
-                        <Nav.Link href="/#contact">Контакты</Nav.Link>
-                        {buttonBlock}
-                    </Nav>
-                </Navbar.Collapse>
+            <Navbar.Brand href="#home">
+                <img src={logo} alt="logo"/>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="me-auto">
+                    <Nav.Link href="/#about">О нас</Nav.Link>
+                    <Nav.Link href="/#services">Наши услуги</Nav.Link>
+                    <Nav.Link href="/#reviews">Отзывы</Nav.Link>
+                </Nav>
+                <Nav>
+                <Nav.Link href="#deets">{buttonBlock}</Nav.Link>
+                {/* <Nav.Link eventKey={2} href="#memes">
+                    {buttonBlock}
+                </Nav.Link> */}
+                </Nav>
+            </Navbar.Collapse>
             </Container>
         </Navbar>
     )
