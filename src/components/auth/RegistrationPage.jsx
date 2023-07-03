@@ -39,7 +39,7 @@ const RegistrationPage = () => {
     return (
         <Fragment>
             <div className="root">
-                <Form className="form">
+                <Form className="sign-form">
                     <h3>Регистрация</h3>
                     <Form.Group className="mb-3" controlId="form-registration">
                         <Form.Label>E-mail</Form.Label>

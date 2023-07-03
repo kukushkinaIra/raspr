@@ -4,8 +4,8 @@ import {MdKeyboardArrowDown, MdKeyboardArrowRight} from "react-icons/md";
 import {IoMdSearch} from "react-icons/io";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
 import {GrRefresh} from "react-icons/gr";
-import buildContractBlock from "./BuilderContract";
-import buildShortInfoBlock from "./BuildShortInfoBlock";
+import buildContractBlock from "./expandedRowBuilders/BuilderContract";
+import buildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 

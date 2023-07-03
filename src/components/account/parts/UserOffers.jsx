@@ -1,8 +1,9 @@
 import React, {Fragment} from 'react';
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import FormGuaranteeLetter from "./forms/FormGuaranteeLetter";
-import FormContract from "./forms/FormContract";
+import ModalGuaranteeLetter from "./modals/ModalGuaranteeLetter";
+import ModalContract from "./modals/ModalContract";
+import {ToastContainer} from "react-toastify";
 
 
 export default class UserOffers extends React.Component {
@@ -15,7 +16,6 @@ export default class UserOffers extends React.Component {
             offers: [],
             show: false,
             modal: <Fragment/>,
-            modalTitle: "Заполните данные",
         };
     }
 
@@ -74,56 +74,60 @@ export default class UserOffers extends React.Component {
         }));
     };
 
-    handleOfferClick(title) {
+    handleOfferClick(offer) {
         this.handleShowUserOffer()
 
 
-        switch (title) {
+        switch (offer.title) {
             case "Гарантийное письмо": {
                 this.setState((prevState) => ({
                     modal: (
-                        <FormGuaranteeLetter
+                        <ModalGuaranteeLetter
                             showProp={true}
                             setShowPropFalse={this.handleCloseUserOffer}
+                            offerId={offer.id}
                         />
                     ),
-                    show: !prevState.show, // Используем функцию в setState
+                    show: !prevState.show,
                 }));
                 break;
             }
             case "Распределение": {
                 this.setState((prevState) => ({
                     modal: (
-                        <FormContract
+                        <ModalContract
                             showProp={true}
                             setShowPropFalse={this.handleCloseUserOffer}
+                            offerId={offer.id}
                         />
                     ),
-                    show: !prevState.show, // Используем функцию в setState
+                    show: !prevState.show,
                 }));
                 break;
             }
             case "Перераспределение": {
                 this.setState((prevState) => ({
                     modal: (
-                        <FormContract
+                        <ModalContract
                             showProp={true}
                             setShowPropFalse={this.handleCloseUserOffer}
+                            offerId={offer.id}
                         />
                     ),
-                    show: !prevState.show, // Используем функцию в setState
+                    show: !prevState.show,
                 }));
                 break;
             }
             case "Практика": {
                 this.setState((prevState) => ({
                     modal: (
-                        <FormGuaranteeLetter
+                        <ModalGuaranteeLetter
                             showProp={true}
                             setShowPropFalse={this.handleCloseUserOffer}
+                            offerId={offer.id}
                         />
                     ),
-                    show: !prevState.show, // Используем функцию в setState
+                    show: !prevState.show,
                 }));
                 break;
             }
@@ -136,17 +140,18 @@ export default class UserOffers extends React.Component {
     }
 
     render() {
-        const {error, offers, modal, modalTitle} = this.state;
+        const {error, offers, modal} = this.state;
 
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
             return (
                 <div>
+                    <ToastContainer />
                     <div className="services">
                         {offers.map(item => (
                             <div className="service" key={item.id}
-                                 onClick={() => this.handleOfferClick(item.title)}
+                                 onClick={() => this.handleOfferClick(item)}
                             >
                                 <h4>{item.title}</h4>
                                 <hr/>

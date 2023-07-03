@@ -10,6 +10,9 @@ import {GrRefresh} from "react-icons/gr";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from "moment/moment";
+import buildContractBlock from "./expandedRowBuilders/BuilderContract";
+import buildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
+import buildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
 
 
 export default class TableOrders extends React.Component {
@@ -97,7 +100,7 @@ export default class TableOrders extends React.Component {
         }
     };
 
-    renderPageNumbers() {
+    renderPageNumbers(){
         const {currentPage, totalPages} = this.state;
         const pageNumbers = [];
 
@@ -174,6 +177,7 @@ export default class TableOrders extends React.Component {
                 data => {
                     this.setState({
                         orders: data.content,
+                        totalPages: data.totalPages,
                     })
                 },
                 (error) => {
@@ -355,6 +359,40 @@ export default class TableOrders extends React.Component {
         }
     }
 
+    buildExpandedRow(order) {
+        let contractBlock = (<div hidden></div>), shortInfoBlock = (<div hidden></div>),
+            paymentBlock = (<div hidden></div>);
+        if (order.contract) {
+            const contract = order.contract;
+            contractBlock = buildContractBlock(contract)
+        }
+        if (order.shortInfo) {
+            const shortInfo = order.shortInfo;
+            shortInfoBlock = buildShortInfoBlock(shortInfo)
+        }
+        const payments = order.payments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        if (payments) {
+            paymentBlock = buildPaymentsBlock(payments)
+        }
+
+        return (<tr className="expanded_row">
+                <td colSpan={3}>
+                    {contractBlock}
+                    {shortInfoBlock}
+                </td>
+                <td colSpan={3}>
+                    {paymentBlock}
+                </td>
+            </tr>
+        );
+    }
+
+    getPrice(payments) {
+        const lastPayment = payments
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+        return lastPayment.price;
+    }
 
     render() {
 
@@ -439,19 +477,11 @@ export default class TableOrders extends React.Component {
                                         {order.offer.title}</td>
                                     <td>{this.parseOrderStatus(order.status)}</td>
                                     <td>{this.buildPaymentColumn(order)}</td>
-                                    <td>{}</td>
+                                    <td>{this.getPrice(order.payments)}</td>
                                     <td>{order.note}</td>
                                     <td>{new Date(Date.parse(order.createdAt)).toLocaleString()}</td>
                                 </tr>
-                                {expandedRow === order.id && (
-                                    <tr className="expanded_row">
-                                        <td colSpan={6}>
-                                            <div className="expended_padding_block">
-                                                Дополнительная информация
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )}
+                                {expandedRow === order.id && (this.buildExpandedRow(order))}
                             </React.Fragment>
                         ))}
                         </tbody>

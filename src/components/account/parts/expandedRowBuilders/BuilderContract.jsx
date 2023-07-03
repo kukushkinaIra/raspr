@@ -1,7 +1,38 @@
-import React from "react";
-
+import React, {useEffect, useState} from "react";
+import JSZip from "jszip";
 
 export default function buildContractBlock(contract) {
+
+    const pinkBlank = Uint8Array.from(atob(contract.pinkBlank), (c) => c.charCodeAt(0));
+    const blobBlank = new Blob([pinkBlank], {type: "image/jpeg"});
+    const urlBlank = URL.createObjectURL(blobBlank);
+
+    const handleDownloadZip = () => {
+        // const zip = new JSZip();
+        // contract.passport.passportPhotos.forEach((photo, index) => {
+        //     const fileData = Uint8Array.from(atob(photo.file), (c) => c.charCodeAt(0));
+        //     zip.file(`image${index + 1}.jpg`, fileData);
+        // });
+        //
+        // zip.generateAsync({type: "blob"}).then((blob) => {
+        //     const url = URL.createObjectURL(blob);
+        //
+        //     const link = document.createElement("a");
+        //     link.href = url;
+        //     link.download = "photos.zip";
+        //     link.click();
+        // });
+
+        const pinkBlank = Uint8Array.from(atob(contract.pinkBlank), (c) => c.charCodeAt(0));
+        const blobBlank = new Blob([pinkBlank], {type: "image/jpeg"});
+        const url = URL.createObjectURL(blobBlank);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "photos.jpg ";
+        link.click();
+
+    }
+
     return (
         <div className="expended_padding_block">
             <div className="expanded_info_div"><b>ФИО полностью:</b> soon...</div>
@@ -32,6 +63,11 @@ export default function buildContractBlock(contract) {
             <div className="expanded_info_div"><b>ФИО в творительном
                 падеже:</b> {contract.fullnameCases.instrumentalCase}</div>
             <div className="expanded_info_div"><b>Фамилия И.О:</b> {contract.fullnameCases.abbreviation}</div>
+            <div className="expanded_info_div"><b>Розовый бланк:</b><a href={urlBlank} download="blank.jpeg">Скачать</a>
+            </div>
+            <div className="expanded_info_div"><b>Фото паспорта:</b>
+                <button onClick={handleDownloadZip}>Скачать все фотографии</button>
+            </div>
         </div>
     )
 }

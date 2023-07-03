@@ -499,7 +499,7 @@ footer {
     height: 100vh;
 }
 
-.form {
+.sign-form {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -513,7 +513,7 @@ footer {
     text-align: center;
 }
 
-.root h3{
+.root h3 {
     margin-bottom: 20px;
 }
 
@@ -542,10 +542,29 @@ footer {
     font-weight: 500;
 }
 
+.yellow-button {
+    padding: 3px 20px 3px 20px;
+    height: 35px;
+    background-color: #FAC600;
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
+    border: 0;
+    border-radius: 0;
+    margin-right: 10px;
+    max-width: max-content;
+    align-self: center;
+}
+
+.toast-message {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    padding: 10px 10px;
+}
+
 .table-yellow-button:hover {
     background-color: #ffce14;
 }
-
 
 
 .root .form-control {
@@ -672,7 +691,7 @@ footer {
 }
 
 .modal-body {
-    padding: 10px 30px 0 30px;
+    padding: 10px 30px 30px 30px;
 }
 
 .modal-footer {
@@ -851,10 +870,16 @@ tbody * {
     padding: 0 5px;
     border: none;
     background-color: #ececec;
-    margin:0 5px;
+    margin: 0 5px;
     height: 33px;
     text-align: center;
     outline: none;
+}
+
+.invalid-feedback {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    margin-top: 0;
 }
 
 .table-sort-select {
@@ -1127,4 +1152,29 @@ section.about_us {
 
 h4.offer_seller {
     margin-top: 25px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.user-info-block {
+    max-width: fit-content;
+    background-color: white;
+    padding: 20px;
+}
+
+.user-info-block * {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px!important;
+}
+.password-change-form {
+    max-width: 500px !important;
+}
+
+.user-info-block.yellow-button {
+    width: inherit;
+    align-self: start;
 }

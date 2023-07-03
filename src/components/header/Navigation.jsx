@@ -52,10 +52,8 @@ function Navigation() {
                     <Nav className="me-auto ps-lg-5 ps-md-0">
                         <Nav.Link href="/#about">О нас</Nav.Link>
                         <Nav.Link href="/#services">Наши услуги</Nav.Link>
-                        <Nav.Link href="/#prices">Цены</Nav.Link>
-                        <Nav.Link href="/#referal">Реферальная программа</Nav.Link>
+                        <Nav.Link href="/#referal">Акции</Nav.Link>
                         <Nav.Link href="/#team">О нас</Nav.Link>
-                        <Nav.Link href="/#vacansies">Вакансии</Nav.Link>
                         <Nav.Link href="/#reviews">Отзывы</Nav.Link>
                         <Nav.Link href="/#contact">Контакты</Nav.Link>
                         {buttonBlock}

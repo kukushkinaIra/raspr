@@ -10,6 +10,7 @@ import UserOffers from "./UserOffers";
 import TableOrders from "./TableOrders";
 import {useAuth} from "../../auth/AuthProvider";
 import {useNavigate} from "react-router-dom";
+import ProfileInfo from "./ProfileInfo";
 
 
 function Main() {
@@ -159,6 +160,7 @@ function Main() {
                         <Tab.Content>
                             <Tab.Pane eventKey="first">
                                 <h3>Профиль</h3>
+                                <ProfileInfo id={id} role={role} setId={setId} setRole={setRole} navigate={navigate}/>
                             </Tab.Pane>
                             {load()}
                         </Tab.Content>

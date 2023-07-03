@@ -4,9 +4,9 @@ import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
 import {IoMdSearch} from "react-icons/io";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
 import {GrRefresh} from "react-icons/gr";
-import buildContractBlock from "./BuilderContract";
-import buildShortInfoBlock from "./BuildShortInfoBlock";
-import buildPaymentsBlock from "./BuildPaymentsBlock";
+import buildContractBlock from "./expandedRowBuilders/BuilderContract";
+import buildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
+import buildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
@@ -151,6 +151,8 @@ export default class OrdersHistoryTable extends React.Component {
                         this.props.navigate('/login');
                     }
                 }
+                //TODO: обновление сразу при введении даты
+
                 this.setState({
                     isLoaded: true,
                     error,

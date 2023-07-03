@@ -8,11 +8,11 @@ import '../../../fonts/pdf/Montserrat-SemiBold-bold.js';
 import {IoMdSearch} from "react-icons/io";
 import {GrRefresh} from "react-icons/gr";
 import {RiArrowLeftDoubleFill, RiArrowRightDoubleFill} from "react-icons/ri";
-import buildUserInfo from "./BuildUserInfo";
-import buildQuestionnaire from "./BuilderQuestionnaire";
-import buildPaymentsBlock from "./BuildPaymentsBlock";
-import buildShortInfoBlock from "./BuildShortInfoBlock";
-import buildContractBlock from "./BuilderContract";
+import buildUserInfo from "./expandedRowBuilders/BuildUserInfo";
+import buildQuestionnaire from "./expandedRowBuilders/BuilderQuestionnaire";
+import buildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
+import buildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
+import buildContractBlock from "./expandedRowBuilders/BuilderContract";
 
 
 export default class ClientsTable extends React.Component {

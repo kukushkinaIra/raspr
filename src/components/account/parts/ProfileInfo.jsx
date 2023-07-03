@@ -1,4 +1,7 @@
 import React from 'react';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import {toast} from "react-toastify";
 
 
 export default class ProfileInfo extends React.Component {
@@ -8,16 +11,55 @@ export default class ProfileInfo extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            userInfo: null
+            userInfo: null,
+            oldPassword: '',
+            newPassword: '',
+            validated: false
         };
     }
 
+    handleChange(event) {
+        const {name, value} = event.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }));
+    };
+
+
+    handleSubmit() {
+        //TODO : change password
+    }
+
+    parseUserStatus(status) {
+        switch (status) {
+            case "PRACTICE": {
+                return "На практике";
+            }
+            case "GUARANTEE": {
+                return "Оформил гарантийное письмо";
+            }
+            case "CONTRACT": {
+                return "Подписан контракт";
+            }
+            case "DEFAULT": {
+                return "Простой пользователь";
+            }
+            default: {
+                return "Простой пользователь";
+            }
+        }
+    }
+
     componentDidMount() {
-        const userId = localStorage.getItem('id')
-        fetch(`/users/${userId}`, {
-            method: "GET"
-        })
-            .then(res => res.json())
+        const userId = this.props.id;
+        fetch(`/users/${userId}`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.status);
+                }
+                return res.json();
+            })
             .catch((error) => {
                 if (error.message === "401") {
                     const authCookie = document.cookie
@@ -52,16 +94,45 @@ export default class ProfileInfo extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, userInfo} = this.state;
+        const {error, isLoaded, userInfo, validated, oldPassword, newPassword} = this.state;
+        console.log(userInfo)
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         }
+        if (!userInfo) {
+            return <div>Loading...</div>;
+        }
+
         return (
-            <div>
-                {/*<p>Имя: {userInfo.id}</p>*/}
-                {/*<p>Фамилия: {userInfo.lastname}</p>*/}
-                {/*<p>Статус: {userInfo.status}</p>*/}
-                {/*<p>Email: {userInfo.email}</p>*/}
+            <div className="user-info-block">
+                <p><b>ФИО: </b>{userInfo.fullname}</p>
+                <p><b>Статус: </b>{this.parseUserStatus(userInfo.status)}</p>
+                <p><b>Email: </b>{userInfo.email}</p>
+                <Form className="input-form" noValidate validated={validated} onSubmit={this.handleSubmit()}>
+                    <Form.Group className="mb-3" controlId="oldPassword">
+                        <Form.Label>Введите старый пароль:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="oldPassword"
+                            value={oldPassword}
+                            onChange={this.handleChange}
+                            placeholder="Иванову Татьяну Викторовну"
+                            autoFocus
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="newPassword">
+                        <Form.Label>Введите новый пароль:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="newPassword"
+                            value={newPassword}
+                            onChange={this.handleChange}
+                            placeholder="Иванову Татьяну Викторовну"
+                            autoFocus
+                        />
+                    </Form.Group>
+                    <Button className="yellow-button">Сменить пароль</Button>
+                </Form>
             </div>
         );
     }

@@ -9,10 +9,34 @@ import AboutUs from "./parts/AboutUs.jsx"
 import ReferralProgram from "./parts/ReferralProgram.jsx"
 import Team from "./parts/Team.jsx"
 import Vacancies from "./parts/Vacancies.jsx"
+import {useAuth} from "../auth/AuthProvider";
 
 
 function MainPage() {
-    const role = localStorage.getItem("role")
+    const {setRole, setId} = useAuth();
+
+    function checkAuth() {
+        fetch("/auth/isAuthenticated", {
+            method: "POST"
+        }).then(res => {
+            if (!res.ok) {
+                throw new Error(res.status);
+            }
+        })
+        .catch((error) => {
+            if (error.message === "401") {
+                const authCookie = document.cookie
+                    .split(";")
+                    .find((cookie) => cookie.startsWith("auth="));
+                if (!authCookie) {
+                    setId(null);
+                    setRole(null);
+                }
+            }
+        })
+    }
+
+    checkAuth()
 
     return (
         <>
