@@ -419,9 +419,12 @@ section.main {
 
 /* reviews style */
 
+#reviews{
+    margin-bottom: 25px;
+}
 
 .reviews_cards {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 25px;
@@ -429,8 +432,8 @@ section.main {
 }
 
 .cards {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
 }
 
 .card {
@@ -687,6 +690,7 @@ footer {
 
 .service {
     max-width: 265px;
+    min-width: 230px;
     height: 180px;
     padding: 20px;
     background-color: white;
@@ -1114,7 +1118,7 @@ section.referal, section.team {
 }
 
 .team_infoText p {
-    font-size: 1.8vw;
+    font-size: 23px;
 }
 
 .main_description_team {
@@ -1145,6 +1149,11 @@ section.referal, section.team {
 
     .main_description {
         width: 100%;
+    }
+
+    .about_text{
+        margin-right: 0px!important;
+        margin-left: 20px!important;
     }
 }
 
@@ -1230,16 +1239,16 @@ h4.offer_seller {
     color: white;
 }
 
-.whu_us_text {
+.whu_us_text{
     background-color: black;
     width: 50%;
 }
 
-.why_us ul {
+.why_us ul{
     text-align: start;
 }
 
-.swiper-slide-cust {
+.swiper-slide-cust{
     border-radius: 20px;
     width: 98%;
     margin-right: 30px;
@@ -1247,12 +1256,12 @@ h4.offer_seller {
     min-height: 430px;
 }
 
-.swiper-slide-cust h6 {
+.swiper-slide-cust h6{
     margin-left: 30px;
 }
 
 
-.rts-client-reviews-h2 {
+.rts-client-reviews-h2{
     padding: 50px 50px 30px 50px;
 }
 
@@ -1286,7 +1295,7 @@ h4.offer_seller {
     border-radius: 35px;
 }
 
-.reviews_cards .discription {
+  .reviews_cards .discription{
     margin-left: 30px;
 }
 
@@ -1305,53 +1314,47 @@ h4.offer_seller {
 }
 
 
-.flipcard {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    perspective: 500px;
-    margin-bottom: 20px;
-}
-
-.flipcard.v:hover .front, .flipcard.v.flip .front {
+  .flipcard {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        perspective: 500px;
+        margin-bottom: 20px;
+    }
+    .flipcard.v:hover .front, .flipcard.v.flip .front{
     transform: rotateX(180deg);
-}
-
-.flipcard.v:hover .back, .flipcard.v.flip .back {
+    }
+    .flipcard.v:hover .back, .flipcard.v.flip .back{
     transform: rotateX(0deg);
-}
-
-.flipcard.v .back {
+    }
+    .flipcard.v .back{
     transform: rotateX(-180deg);
-}
-
-.flipcard.h:hover .front, .flipcard.h.flip .front {
+    }
+    .flipcard.h:hover .front, .flipcard.h.flip .front{
     transform: rotateY(180deg);
-}
+    }
 
-.flipcard.h:hover .back, .flipcard.h.flip .back {
-    transform: rotateY(0deg);
-}
-
-.flipcard.h .back {
-    transform: rotateY(-180deg);
-}
-
-.flipcard .front, .flipcard .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    transition: all 0.5s ease-in;
-    padding: 10px;
-    backface-visibility: hidden;
-    border: 1px solid rgb(202, 202, 202);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
+    .flipcard.h:hover .back, .flipcard.h.flip .back{
+        transform: rotateY(0deg);
+        }
+        .flipcard.h .back{
+        transform: rotateY(-180deg);
+        }
+        .flipcard .front, .flipcard .back
+        {
+            position:absolute;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            transition: all 0.5s ease-in;
+            padding: 10px;
+            backface-visibility: hidden;
+            border: 1px solid rgb(202, 202, 202);
+            border-radius:20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
 .services_blocks {
     display: flex;

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 // Import Swiper React components
-import {Swiper, SwiperSlide} from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
+import review8 from "./images/04.jpg"
 import zero from "./images/zero.jpg"
 import first from "./images/first.jpg"
 import second from "./images/second.jpg"
@@ -14,7 +15,7 @@ import forth from "./images/forth.jpg"
 
 
 // import required modules
-import {FreeMode, Pagination} from 'swiper/modules';
+import { FreeMode, Pagination } from 'swiper/modules';
 
 export default function ReviewCarousel() {
   return (
@@ -66,9 +67,9 @@ export default function ReviewCarousel() {
                                     </div>
                                     <div className="review-body">
                                         <p className="disc">
-                                            Близился момент распределения, я устроилась в прекрасную компанию, но из-за внутренней политики
-                                            не смогла туда распределиться, а времени оставалось очень мало. Тогда я обратилась к
-                                            Алексею и его команде. Это высоко квалифицированные профессионалы, которые взяли решение
+                                            Близился момент распределения, я устроилась в прекрасную компанию, но из-за внутренней политики 
+                                            не смогла туда распределиться, а времени оставалось очень мало. Тогда я обратилась к 
+                                            Алексею и его команде. Это высоко квалифицированные профессионалы, которые взяли решение 
                                             всех вопросов на себя. Вы сберегли мою карьеру, нервы, деньги,  за что безумно вам благодарна!
                                         </p>
                                     </div>
@@ -108,7 +109,7 @@ export default function ReviewCarousel() {
                                     </div>
                                     <div className="review-body">
                                         <p className="disc">
-                                           О компании узнала от знакомого. Отработку от университета не рассматривала даже, сама ничего не искала даже, так как
+                                           О компании узнала от знакомого. Отработку от университета не рассматривала даже, сама ничего не искала даже, так как 
                                            этот вариант оказался самым удобным. Главный плюс - свободный график и достаточно свободного времени. Сложно представить вариант лучше.
                                         </p>
                                     </div>
@@ -128,7 +129,7 @@ export default function ReviewCarousel() {
                                     </div>
                                     <div className="review-body">
                                         <p className="disc">
-                                           О компании мне рассказала подруга, она сама к вам распределилась. Очень благодарна Алексею за то, что помогает с комфортной
+                                           О компании мне рассказала подруга, она сама к вам распределилась. Очень благодарна Алексею за то, что помогает с комфортной 
                                            отработкой с возможностью работать на любимой работе. Перераспределили меня буквально за день, очень оперативно сработали, спасибо, вы крутые!
                                         </p>
                                     </div>
@@ -143,8 +144,78 @@ export default function ReviewCarousel() {
                 <SwiperSlide>Slide 8</SwiperSlide>
                 <SwiperSlide>Slide 9</SwiperSlide> */}
             </Swiper>
+
+
+            <div className="reviews_cards">
+                <div className="cards">
+                    <div className="swiper-slide-cust">
+                        <div className="rts-client-reviews-h2">
+                            <div className="review-header">
+                                <a className="thumbnail">
+                                 <img alt="image" src={first}/>
+                                </a>
+                                <div className="discription">
+                                    <h6>Екатерина</h6>
+                                </div>
+                            </div>
+                            <div className="review-body">
+                                <p className="disc">
+                                            Близился момент распределения, я устроилась в прекрасную компанию, но из-за внутренней политики 
+                                            не смогла туда распределиться, а времени оставалось очень мало. Тогда я обратилась к 
+                                            Алексею и его команде. Это высоко квалифицированные профессионалы, которые взяли решение 
+                                            всех вопросов на себя. Вы сберегли мою карьеру, нервы, деньги,  за что безумно вам благодарна!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="swiper-slide-cust">
+                        <div className="rts-client-reviews-h2">
+                            <div className="review-header">
+                                <a className="thumbnail">
+                                 <img alt="image" src={second}/>
+                                </a>
+                                <div className="discription">
+                                    <h6>Анастасия</h6>
+                                </div>
+                            </div>
+                            <div className="review-body">
+                                <p className="disc">
+                                        Узнала о компании от брата, он к Вам обращался. На момент учёбы уже была основная работа, не связанная с профессией.
+                                        Плюсы в том, что нет необходимости в поиске отработки, и в том, что можно параллельно работать там, где нравится.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div className="swiper-slide-cust">
+                        <div className="rts-client-reviews-h2">
+                            <div className="review-header">
+                                <a className="thumbnail">
+                                 <img alt="image" src={third}/>
+                                </a>
+                                <div className="discription">
+                                    <h6>Анастасия</h6>
+                                </div>
+                            </div>
+                            <div className="review-body">
+                                <p className="disc">
+                                    О компании узнала от знакомого. Отработку от университета не рассматривала даже, сама ничего не искала даже, так как 
+                                    этот вариант оказался самым удобным. Главный плюс - свободный график и достаточно свободного времени. Сложно представить вариант лучше.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </section>
+      
     </>
   );
 }

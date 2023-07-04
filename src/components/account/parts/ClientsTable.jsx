@@ -34,8 +34,8 @@ export default class ClientsTable extends React.Component {
             totalElements: 0,
             pageSize: 10,
             sortParams: 'fullname,asc',
-            editModal: <Fragment/>,
-            show: false,
+            showHide: false,
+            user: null,
             validated: false,
             editForm: {
                 fullname: '',
@@ -137,7 +137,7 @@ export default class ClientsTable extends React.Component {
     fetchUsers = () => {
         const {search, currentPage, pageSize, sortParams} = this.state;
         const url = `/users?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}`;
-
+        console.log(url)
         fetch(url)
             .then(res => {
                 if (!res.ok) {
@@ -327,31 +327,14 @@ export default class ClientsTable extends React.Component {
             })
     }
 
-    handleChange = (event) => {
-        const {name, value} = event.target;
-        this.setState(prevState => ({
-            editForm: {
-                ...prevState.editForm,
-                [name]: value
-            }
-        }));
-    };
-
-    handleCloseEditModal = () => {
-        this.setState({
-            show: false,
-            editModal: <Fragment/>,
-        });
-    };
-
     handleSubmitEdit = (event) => {
         event.preventDefault();
         event.stopPropagation();
-
         const form = event.currentTarget;
         if (form.checkValidity() === true) {
             const requestBody = this.state.editForm;
-            fetch(`/users/${this.props.id}`, {
+            console.log(requestBody)
+            fetch(`/users/${this.state.user.id}`, {
                 method: 'PATCH',
                 body: JSON.stringify(requestBody),
                 headers: {
@@ -367,7 +350,7 @@ export default class ClientsTable extends React.Component {
                                 phoneNumber: '',
                             },
                             // validated: false
-                            show: false
+                            user: null
                         })
                         toast.success("Информация изменена успешно", {
                             position: toast.POSITION.BOTTOM_RIGHT
@@ -393,60 +376,36 @@ export default class ClientsTable extends React.Component {
                         error,
                     });
                 })
+            this.setState({showHide: !this.state.showHide})
         } else {
-            // this.setState({
-            //     validated: true
-            // })
+            this.setState({
+                validated: true,
+            })
         }
     }
 
-    handleEditUser(user) {
-        const {fullname, firm} = this.state.editForm;
-        console.log("edit start")
+    handleModalShowHide(user) {
         this.setState({
-            show: true,
-            editModal: (
-                <Modal show={this.state.show} onHide={this.handleCloseEditModal} backdrop="static" keyboard={false}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Внесение изменение</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form className="input-form" onSubmit={(event) => this.handleSubmitEdit(event)}>
-                            <Form.Group className="mb-3" controlId="fullname">
-                                <Form.Label>ФИО</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="fullname"
-                                    value={fullname === '' ? user.fullname : fullname}
-                                    onChange={this.handleChange}
-                                    autoFocus
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Поле обязательно для заполнения
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="firm">
-                                <Form.Label>Компания</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="firm"
-                                    value={firm === '' ? user.firm : firm}
-                                    onChange={this.handleChange}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Поле обязательно для заполнения
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Button
-                                className="yellow-button"
-                                type="submit">
-                                Подтвердить
-                            </Button>
-                        </Form>
-                    </Modal.Body>
-                </Modal>
-            )
+            showHide: !this.state.showHide,
+            user: user,
+            editForm: {
+                fullname: user.fullname == null ? '' : user.fullname,
+                firm: user.firm == null ? '' : user.firm,
+            }
         })
+    }
+
+    handleChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState(prevState => ({
+            editForm: {
+                ...prevState.editForm,
+                [name]: value
+            }
+        }));
     }
 
 
@@ -460,15 +419,53 @@ export default class ClientsTable extends React.Component {
             totalPages,
             totalElements,
             pageSize,
+            user,
             sortParams,
-            editModal
         } = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
             return (
                 <div className="table-container">
-                    {editModal}
+                    <Modal show={this.state.showHide} backdrop="static" keyboard={false}>
+                        <Modal.Header closeButton onClick={() => this.handleModalShowHide(user)}>
+                            <Modal.Title>Внесение изменение</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form className="input-form" onSubmit={(event) => this.handleSubmitEdit(event)}>
+                                <Form.Group className="mb-3" controlId="fullname">
+                                    <Form.Label>ФИО</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="fullname"
+                                        value={this.state.editForm.fullname}
+                                        onChange={(e) => this.handleChange(e)}
+                                        autoFocus
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Поле обязательно для заполнения
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="firm">
+                                    <Form.Label>Компания</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="firm"
+                                        value={this.state.editForm.firm}
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Поле обязательно для заполнения
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Button
+                                    className="yellow-button"
+                                    type="submit">
+                                    Подтвердить
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
                     <div className="table-container-header">
                         <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
                             <input
@@ -526,7 +523,7 @@ export default class ClientsTable extends React.Component {
                                         </button>
                                     </td>
                                     <td>
-                                        <button className="edit-button" onClick={() => this.handleEditUser(user)}>
+                                        <button className="edit-button" onClick={() => this.handleModalShowHide(user)}>
                                             <LiaUserEditSolid/></button>
                                     </td>
                                 </tr>
