@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Table from 'react-bootstrap/Table';
 import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
 import jsPDF from "jspdf";
@@ -15,6 +15,10 @@ import BuildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
 import BuildContractBlock from "./expandedRowBuilders/BuilderContract";
 import {FaUserEdit} from "react-icons/fa";
 import {LiaUserEditSolid} from "react-icons/lia";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import {toast} from "react-toastify";
 
 
 export default class ClientsTable extends React.Component {
@@ -30,6 +34,13 @@ export default class ClientsTable extends React.Component {
             totalPages: 0,
             pageSize: 10,
             sortParams: 'fullname,asc',
+            editModal: <Fragment/>,
+            show: false,
+            validated: false,
+            editForm: {
+                fullname: '',
+                firm: '',
+            }
         };
     }
 
@@ -75,7 +86,6 @@ export default class ClientsTable extends React.Component {
             }
         );
     };
-
 
     goToPreviousPage = () => {
         const {currentPage} = this.state;
@@ -124,7 +134,6 @@ export default class ClientsTable extends React.Component {
         );
     };
 
-
     fetchUsers = () => {
         const {search, currentPage, pageSize, sortParams} = this.state;
         const url = `/users?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}`;
@@ -172,7 +181,6 @@ export default class ClientsTable extends React.Component {
             )
     }
 
-
     componentDidMount() {
         this.fetchUsers();
     }
@@ -188,7 +196,6 @@ export default class ClientsTable extends React.Component {
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         return sortedOrders[0] || null;
     }
-
 
     buildExpandedRow(user) {
         let userBlock, questionnaireBlock = (<div hidden></div>);
@@ -239,7 +246,6 @@ export default class ClientsTable extends React.Component {
             </tr>
         );
     }
-
 
     buildFullUserInfo(user) {
         let userBlock, questionnaireBlock = (<div hidden></div>), ordersBlock = (<div hidden></div>);
@@ -321,17 +327,148 @@ export default class ClientsTable extends React.Component {
             })
     }
 
-    handleEditUser(){
+    handleChange = (event) => {
+        const {name, value} = event.target;
+        console.log(name)
+        console.log(value)
+        this.setState(prevState => ({
+            editForm: {
+                ...prevState.editForm,
+                [name]: value
+            }
+        }));
+        console.log(this.state.editForm.fullname)
+    };
+
+    handleCloseEditModal = () => {
+        this.setState((prevState) => ({
+            show: false, // Используем функцию в setState
+            editModal: <Fragment/>,
+        }));
+    };
+
+    handleSubmitEdit = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const form = event.currentTarget;
+        if (form.checkValidity() === true) {
+            const requestBody = this.state.editForm;
+            fetch(`/users/${this.props.id}`, {
+                method: 'PATCH',
+                body: JSON.stringify(requestBody),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        this.setState({
+                            editForm: {
+                                fullname: '',
+                                firm: '',
+                                phoneNumber: '',
+                            },
+                            // validated: false
+                        })
+                        toast.success("Информация изменена успешно", {
+                            position: toast.POSITION.BOTTOM_RIGHT
+                        });
+                    } else {
+                        toast.error("Ошибка при редактировании клиента", {position: toast.POSITION.BOTTOM_RIGHT});
+                        throw new Error(response.status);
+                    }
+                })
+                .catch((error) => {
+                    if (error.message === "401") {
+                        const authCookie = document.cookie
+                            .split(";")
+                            .find((cookie) => cookie.startsWith("auth="));
+                        if (!authCookie) {
+                            this.props.setId(null);
+                            this.props.setRole(null);
+                            this.props.navigate('/login');
+                        }
+                    }
+                    this.setState({
+                        isLoaded: true,
+                        error,
+                    });
+                })
+        } else {
+            // this.setState({
+            //     validated: true
+            // })
+        }
+    }
+
+    handleEditUser(user) {
+        console.log("edit start")
+        this.setState({
+            show: true,
+            editModal: (
+                <Modal show={this.state.show} onHide={this.handleCloseEditModal} backdrop="static" keyboard={false}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Заполните свои данные</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form className="input-form" onSubmit={() => this.handleSubmitEdit()}>
+                            <Form.Group className="mb-3" controlId="fullname">
+                                <Form.Label>ФИО</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="fullname"
+                                    value={this.state.editForm.fullname}
+                                    onChange={this.handleChange}
+                                    autoFocus
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Поле обязательно для заполнения
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="firm">
+                                <Form.Label>Компания</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="firm"
+                                    value={this.state.editForm.firm}
+                                    onChange={this.handleChange}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Поле обязательно для заполнения
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <Button
+                                className="yellow-button"
+                                type="submit">
+                                Подтвердить
+                            </Button>
+                        </Form>
+                    </Modal.Body>
+                </Modal>
+            )
+        })
     }
 
 
     render() {
-        const {error, users, expandedRow, search, currentPage, totalPages, pageSize, sortParams} = this.state;
+        const {
+            error,
+            users,
+            expandedRow,
+            search,
+            currentPage,
+            totalPages,
+            pageSize,
+            sortParams,
+            editModal
+        } = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else {
             return (
                 <div className="table-container">
+                    {editModal}
                     <div className="table-container-header">
                         <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
                             <input
@@ -391,7 +528,10 @@ export default class ClientsTable extends React.Component {
                                             doc
                                         </button>
                                     </td>
-                                    <td><button className="edit-button" onClick={()=>this.handleEditUser(user)}><LiaUserEditSolid/></button></td>
+                                    <td>
+                                        <button className="edit-button" onClick={() => this.handleEditUser(user)}>
+                                            <LiaUserEditSolid/></button>
+                                    </td>
                                 </tr>
                                 {expandedRow === user.id && (this.buildExpandedRow(user))}
                             </React.Fragment>

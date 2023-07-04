@@ -28,12 +28,12 @@ export default class ProfileInfo extends React.Component {
 
     handleChange = (event) => {
         const {name, value} = event.target;
-        this.setState(prevState => ({
-            formData: {
-                ...prevState.formData,
+        this.setState({
+            editForm: {
+                ...this.state.editForm,
                 [name]: value
             }
-        }));
+        });
     };
 
     handleSubmit = (event) => {
