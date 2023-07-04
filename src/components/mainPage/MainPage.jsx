@@ -9,6 +9,9 @@ import AboutUs from "./parts/AboutUs.jsx"
 import ReferralProgram from "./parts/ReferralProgram.jsx"
 import Team from "./parts/Team.jsx"
 import Vacancies from "./parts/Vacancies.jsx"
+import ReviewCarousel from "./parts/ReviewCarousel.jsx"
+
+
 
 
 function MainPage() {
@@ -24,7 +27,7 @@ function MainPage() {
           <Vacancies/>
           <Service/>
           <ReferralProgram/>
-          <Reviews/>
+          <ReviewCarousel/>
           <Footer/>
         </div>
       </>
