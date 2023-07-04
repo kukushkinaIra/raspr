@@ -430,6 +430,8 @@ export default class TableOrders extends React.Component {
                             <option value="user.fullname,desc"> ФИО &#9650;</option>
                             <option value="user.email,asc"> Email &#9660;</option>
                             <option value="user.email,desc"> Email &#9650;</option>
+                            <option value="createdAt,desc"> Создание &#9660;</option>
+                            <option value="createdAt,asc"> Создание &#9650;</option>
                         </select>
                         <span>Период:</span>
                         <DatePicker
@@ -471,7 +473,7 @@ export default class TableOrders extends React.Component {
                                          {expandedRow === order.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
                                          )}
                                         </span>
-                                        {order.offer.title}</td>
+                                        {order.title}</td>
                                     <td>{this.parseOrderStatus(order.status)}</td>
                                     <td>{this.buildPaymentColumn(order)}</td>
                                     <td>{this.getPrice(order.payments)}</td>

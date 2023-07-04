@@ -637,7 +637,7 @@ export default class WorkWithOrdersTable extends React.Component {
                                          )}
                                         </span>
                                         {order.user.fullname}</td>
-                                    <td>{order.offer.title}</td>
+                                    <td>{order.title}</td>
                                     <td>{order.user.email}</td>
                                     <td>{this.buildStatusColumn(order)}</td>
                                     <td>{this.buildPaymentColumn(order)}</td>

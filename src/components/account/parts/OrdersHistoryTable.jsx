@@ -327,7 +327,7 @@ export default class OrdersHistoryTable extends React.Component {
                                          )}
                                         </span>
                                         {order.user.fullname}</td>
-                                    <td>{order.offer.title}</td>
+                                    <td>{order.title}</td>
                                     <td>{this.getPrice(order.payments)}</td>
                                     <td>{order.user.email}</td>
                                     <td>{this.parseOrderStatus(order.status)}</td>
