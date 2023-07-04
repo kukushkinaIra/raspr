@@ -1099,9 +1099,14 @@ span.arrow-icon svg {
 
 /* referal programm */
 
+
 .referal_main {
     padding: 40px;
     text-align: center;
+    /* background-color: #f3f1eb; */
+    border-radius: 20px;
+    border: 1px solid #c0bbbb;
+    box-shadow: 5px 5px 5px rgb(231, 231, 231);
 }
 
 .referal_main ul li {
@@ -1267,8 +1272,12 @@ h4.offer_seller {
     width: 98%;
     margin-right: 30px;
     border: 1px solid #d5d1d1;
-    min-height: 515px;
+    min-height: 500px;
 }
+
+.rts-client-reviews-h2 {
+    padding: 40px 40px 30px 40px!important;
+  }
 
 .swiper-slide-cust h6{
     margin-left: 30px;
@@ -1331,7 +1340,7 @@ h4.offer_seller {
   .flipcard {
         position: relative;
         width: 300px;
-        height: 300px;
+        height: 315px;
         perspective: 500px;
         margin-bottom: 20px;
     }
@@ -1412,8 +1421,16 @@ h4.offer_seller {
     }
 
     .back h6 {
-        margin-top: 20px;
+        margin-top: 50px;
     }
+
+    .flipcard {
+        height: 400px;
+      }
+
+      .flipcard .front {
+        padding-top: 25px;
+      }
 }
 
 @media (max-width: 1450px) {
