@@ -22,6 +22,7 @@ export default class OrdersHistoryTable extends React.Component {
             search: '',
             currentPage: 0,
             totalPages: 0,
+            totalElements: 0,
             pageSize: 10,
             sortParams: 'createdAt,desc',
             startDate: null,
@@ -164,6 +165,7 @@ export default class OrdersHistoryTable extends React.Component {
                         this.setState({
                             orders: data.content,
                             totalPages: data.totalPages,
+                            totalElements: data.totalElements,
                             isLoading: false,
                         });
                     } else {
@@ -249,6 +251,7 @@ export default class OrdersHistoryTable extends React.Component {
             search,
             currentPage,
             totalPages,
+            totalElements,
             pageSize,
             sortParams,
             startDate,
@@ -336,6 +339,9 @@ export default class OrdersHistoryTable extends React.Component {
                         </tbody>
                     </Table>
                     <div className="table-container-footer">
+                        <div className="total-elements-container">
+                            Найдено заказов: {totalElements}
+                        </div>
                         <div className="pagination-container">
                             <a
                                 className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}

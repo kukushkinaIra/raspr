@@ -29,6 +29,7 @@ export default class WorkWithOrdersTable extends React.Component {
             search: '',
             currentPage: 0,
             totalPages: 0,
+            totalElements: 0,
             pageSize: 10,
             sortParams: 'createdAt,desc',
             startDate: null,
@@ -171,6 +172,7 @@ export default class WorkWithOrdersTable extends React.Component {
                         this.setState({
                             orders: data.content,
                             totalPages: data.totalPages,
+                            totalElements: data.totalPages,
                             isLoading: false,
                         });
                     }
@@ -526,7 +528,7 @@ export default class WorkWithOrdersTable extends React.Component {
 
     buildExpandedRow(order) {
         let contractBlock = (<div hidden></div>), shortInfoBlock = (<div hidden></div>),
-            paymentBlock = (<div hidden></div>);
+            paymentBlock;
         if (order.contract) {
             const contract = order.contract;
             contractBlock = BuildContractBlock(contract, this.props.id, this.props.setId, this.props.setRole, this.props.navigate)
@@ -560,6 +562,7 @@ export default class WorkWithOrdersTable extends React.Component {
             search,
             currentPage,
             totalPages,
+            totalElements,
             pageSize,
             sortParams,
             startDate,
@@ -646,6 +649,9 @@ export default class WorkWithOrdersTable extends React.Component {
                         </tbody>
                     </Table>
                     <div className="table-container-footer">
+                        <div className="total-elements-container">
+                            Найдено заказов: {totalElements}
+                        </div>
                         <div className="pagination-container">
                             <a
                                 className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}

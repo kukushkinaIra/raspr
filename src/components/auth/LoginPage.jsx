@@ -49,6 +49,8 @@ const LoginPage = () => {
                             value={form.username}
                             type="text"
                             placeholder="Введите ваш E-mail"
+                            autoFocus
+                            required
                         />
                         <Form.Label>Пароль</Form.Label>
                         <Form.Control
@@ -57,6 +59,7 @@ const LoginPage = () => {
                             value={form.password}
                             type="password"
                             placeholder="Введите ваш пароль"
+                            required
                         />
                     </Form.Group>
                     <Button className="table-yellow-button"

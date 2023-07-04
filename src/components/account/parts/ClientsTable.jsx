@@ -13,7 +13,6 @@ import BuildQuestionnaire from "./expandedRowBuilders/BuilderQuestionnaire";
 import BuildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
 import BuildShortInfoBlock from "./expandedRowBuilders/BuildShortInfoBlock";
 import BuildContractBlock from "./expandedRowBuilders/BuilderContract";
-import {FaUserEdit} from "react-icons/fa";
 import {LiaUserEditSolid} from "react-icons/lia";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -32,6 +31,7 @@ export default class ClientsTable extends React.Component {
             search: '',
             currentPage: 0,
             totalPages: 0,
+            totalElements: 0,
             pageSize: 10,
             sortParams: 'fullname,asc',
             editModal: <Fragment/>,
@@ -168,6 +168,7 @@ export default class ClientsTable extends React.Component {
                         this.setState({
                             users: data.content,
                             totalPages: data.totalPages,
+                            totalElements: data.totalElements,
                             isLoading: false,
                         });
                     }
@@ -183,11 +184,6 @@ export default class ClientsTable extends React.Component {
 
     componentDidMount() {
         this.fetchUsers();
-    }
-
-    getUserInstitution(orders) {
-        const order = this.getLatestOrderWithInfo(orders);
-        return order ? (order.contract ? order.contract.institution.name : order.shortInfo.institution) : '';
     }
 
     getLatestOrderWithInfo(orders) {
@@ -208,7 +204,7 @@ export default class ClientsTable extends React.Component {
         }
 
         return (<tr className="expanded_row">
-                <td colSpan={4}>
+                <td colSpan={3}>
                     {userBlock}
                 </td>
                 <td colSpan={3}>
@@ -307,6 +303,10 @@ export default class ClientsTable extends React.Component {
         .expanded_info_div {
             padding: 0 10px 0 10px;
         }
+        
+        table{
+            max-width: 1000px;
+        }
         </style>
         
         ${renderToString(this.buildFullUserInfo(user))}`;
@@ -316,7 +316,7 @@ export default class ClientsTable extends React.Component {
         doc.html(element,
             {
                 callback: function (doc) {
-                    doc.save("generated.pdf");
+                    doc.save("client_info_" + user.fullname + ".pdf");
                 },
                 margin: [10, 10, 10, 10],
                 autoPaging: 'text',
@@ -329,22 +329,19 @@ export default class ClientsTable extends React.Component {
 
     handleChange = (event) => {
         const {name, value} = event.target;
-        console.log(name)
-        console.log(value)
         this.setState(prevState => ({
             editForm: {
                 ...prevState.editForm,
                 [name]: value
             }
         }));
-        console.log(this.state.editForm.fullname)
     };
 
     handleCloseEditModal = () => {
-        this.setState((prevState) => ({
-            show: false, // Используем функцию в setState
+        this.setState({
+            show: false,
             editModal: <Fragment/>,
-        }));
+        });
     };
 
     handleSubmitEdit = (event) => {
@@ -370,6 +367,7 @@ export default class ClientsTable extends React.Component {
                                 phoneNumber: '',
                             },
                             // validated: false
+                            show: false
                         })
                         toast.success("Информация изменена успешно", {
                             position: toast.POSITION.BOTTOM_RIGHT
@@ -403,22 +401,23 @@ export default class ClientsTable extends React.Component {
     }
 
     handleEditUser(user) {
+        const {fullname, firm} = this.state.editForm;
         console.log("edit start")
         this.setState({
             show: true,
             editModal: (
                 <Modal show={this.state.show} onHide={this.handleCloseEditModal} backdrop="static" keyboard={false}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Заполните свои данные</Modal.Title>
+                        <Modal.Title>Внесение изменение</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form className="input-form" onSubmit={() => this.handleSubmitEdit()}>
+                        <Form className="input-form" onSubmit={(event) => this.handleSubmitEdit(event)}>
                             <Form.Group className="mb-3" controlId="fullname">
                                 <Form.Label>ФИО</Form.Label>
                                 <Form.Control
                                     type="text"
                                     name="fullname"
-                                    value={this.state.editForm.fullname}
+                                    value={fullname === '' ? user.fullname : fullname}
                                     onChange={this.handleChange}
                                     autoFocus
                                 />
@@ -431,7 +430,7 @@ export default class ClientsTable extends React.Component {
                                 <Form.Control
                                     type="text"
                                     name="firm"
-                                    value={this.state.editForm.firm}
+                                    value={firm === '' ? user.firm : firm}
                                     onChange={this.handleChange}
                                 />
                                 <Form.Control.Feedback type="invalid">
@@ -459,6 +458,7 @@ export default class ClientsTable extends React.Component {
             search,
             currentPage,
             totalPages,
+            totalElements,
             pageSize,
             sortParams,
             editModal
@@ -494,10 +494,9 @@ export default class ClientsTable extends React.Component {
                     <Table responsive striped hover>
                         <thead>
                         <tr>
+                            <th>№</th>
                             <th>ФИО</th>
-                            <th>Фирма</th>
                             <th>Телефон</th>
-                            <th>Университет</th>
                             <th>Email</th>
                             <th>Скачать</th>
                             <th></th>
@@ -508,16 +507,14 @@ export default class ClientsTable extends React.Component {
                             <React.Fragment key={user.id}>
                                 <tr>
                                     <td onClick={() => this.toggleRow(user.id)}>
-                                         <span className="arrow-icon">
+                                        <span className="arrow-icon">
                                          {expandedRow === user.id ? (<MdKeyboardArrowDown/>) : (<MdKeyboardArrowRight/>
                                          )}
                                         </span>
-                                        {user.fullname}</td>
-                                    <td onClick={() => this.toggleRow(user.id)}>{user.firm}</td>
-                                    <td onClick={() => this.toggleRow(user.id)}>{user.phoneNumber}</td>
-                                    <td onClick={() => this.toggleRow(user.id)}>
-                                        {this.getUserInstitution(user.orders)}
+                                        {user.id}
                                     </td>
+                                    <td onClick={() => this.toggleRow(user.id)}>{user.fullname}</td>
+                                    <td onClick={() => this.toggleRow(user.id)}>{user.phoneNumber}</td>
                                     <td onClick={() => this.toggleRow(user.id)}>{user.email}</td>
                                     <td>
                                         <button className="table-download-button"
@@ -539,6 +536,9 @@ export default class ClientsTable extends React.Component {
                         </tbody>
                     </Table>
                     <div className="table-container-footer">
+                        <div className="total-elements-container">
+                            Найдено клиентов: {totalElements}
+                        </div>
                         <div className="pagination-container">
                             <a
                                 className={`pagination-link ${currentPage === 0 ? 'disabled' : ''}`}

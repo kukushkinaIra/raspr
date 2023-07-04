@@ -982,6 +982,7 @@ tbody * {
     margin-right: 10px;
 }
 
+
 span.arrow-icon svg {
     font-size: 22px;
 }
@@ -1016,6 +1017,12 @@ span.arrow-icon svg {
     color: black;
     height: 45px;
     padding-top: 6px;
+}
+
+.total-elements-container {
+    display: flex;
+    text-wrap: nowrap;
+    align-items: center;
 }
 
 .home_main_button:hover {
@@ -1368,7 +1375,7 @@ h4.offer_seller {
     .flipcard .back {
         position: absolute;
         transition: none;
-        top: 0px;
+        top: 0;
     }
 
     .flipcard.h .back:hover {

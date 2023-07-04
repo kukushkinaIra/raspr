@@ -50,7 +50,7 @@ export default function BuildPaymentsBlock(payments, id, setId, setRole, navigat
                 <div className="expanded_info_div">
                     <b>Квитанция(фото):</b><button className="download-button" onClick={()=>handleDownloadPaymentReceipt(payment)}>Скачать</button>
                 </div>
-                <hr/>
+                <p></p>
             </div>))}
         </div>
     )
