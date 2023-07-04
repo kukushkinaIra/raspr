@@ -362,6 +362,20 @@ section.main {
         flex-wrap: wrap;
         justify-content: center;
     }
+
+    .reviews_cards{
+        display: flex !important;
+    }
+
+    .swiper{
+        display: none;
+    }
+
+    .swiper-slide-cust{
+        margin-bottom: 20px;
+        margin-right: 15px!important;
+        min-height: 375px!important;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -1253,7 +1267,7 @@ h4.offer_seller {
     width: 98%;
     margin-right: 30px;
     border: 1px solid #d5d1d1;
-    min-height: 430px;
+    min-height: 515px;
 }
 
 .swiper-slide-cust h6{
@@ -1450,6 +1464,42 @@ h4.offer_seller {
     .reviews_cards .discription {
         margin-left: 0;
     }
+}
+
+@media (max-width: 1450px){
+    .swiper-slide-cust {
+        min-height: 600px;
+      }
+}
+
+@media (max-width: 1300px){
+    .swiper-slide-cust {
+        min-height: 800px;
+      }
+}
+
+@media (max-width: 1200px){
+    .swiper-slide-cust {
+        min-height: 1000px;
+      }
+      .rts-client-reviews-h2 {
+        padding: 20px 30px 15px 40px;
+      }
+}
+
+@media (max-width: 770px){
+    .services_blocks{
+        justify-content: center;
+    }
+}
+
+@media (max-width: 410px){
+    /* .swiper-slide-cust{
+        width: 80%;
+    } */
+    .reviews_cards .discription {
+        margin-left: 0px;
+      }
 }
 
 .navbar-nav .nav-link {

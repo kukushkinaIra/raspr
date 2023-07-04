@@ -100,7 +100,7 @@ function Service(){
                     </div>
                     <div className="flipcard h">
                         <div className="front">
-                            <h5>Преддипломная практика</h5>
+                            <h5 className="text-center">Преддипломная практика</h5>
                         </div>
                         <div className="back">
                             <div>
