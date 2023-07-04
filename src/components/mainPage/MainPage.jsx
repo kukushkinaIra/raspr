@@ -3,7 +3,6 @@ import Navigation from "../header/Navigation";
 import MainInfo from "./parts/MainInfo.jsx"
 import Service from "./parts/Service.jsx"
 import Prices from "./parts/Prices.jsx"
-import Reviews from "./parts/Reviews.jsx"
 import Footer from "../footer/Footer"
 import AboutUs from "./parts/AboutUs.jsx"
 import ReferralProgram from "./parts/ReferralProgram.jsx"
