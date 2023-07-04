@@ -10,10 +10,12 @@ import ReferralProgram from "./parts/ReferralProgram.jsx"
 import Team from "./parts/Team.jsx"
 import Vacancies from "./parts/Vacancies.jsx"
 import {useAuth} from "../auth/AuthProvider";
+import {useNavigate} from "react-router-dom";
 
 
 function MainPage() {
-    const {setRole, setId} = useAuth();
+    const {role, id, setRole, setId} = useAuth();
+    const navigate = useNavigate();
 
     function checkAuth() {
         fetch("/auth/isAuthenticated", {
@@ -28,9 +30,10 @@ function MainPage() {
                 const authCookie = document.cookie
                     .split(";")
                     .find((cookie) => cookie.startsWith("auth="));
-                if (!authCookie) {
+                if (!authCookie && (id != null || role !=null)) {
                     setId(null);
                     setRole(null);
+                    navigate('/');
                 }
             }
         })

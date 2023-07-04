@@ -187,12 +187,13 @@ section.main {
 
 /* servise style */
 .services_block {
-    padding-bottom: 20px;
+    padding: 40px 0;
+    background-color: #f3f3f3;
 }
 
 .services_block h2 {
     text-align: center;
-    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .services_block img.round {
@@ -1335,6 +1336,7 @@ h4.offer_seller {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .services_blocks {
