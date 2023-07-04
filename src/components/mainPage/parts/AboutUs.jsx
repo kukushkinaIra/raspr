@@ -18,15 +18,7 @@ function AboutUs(){
                             Помогаем учащимся по всем специальностям, кроме врачей, милиции и военных.</p>
                         </div>
                         <div className="why_us text-center">
-                                <div className="whu_us_text">
-                                <h6>Почему именно мы:</h6>
-                                <ul>
-                                    <li>Первое</li>
-                                    <li>Второе</li>
-                                    <li>Третье</li>
-                                    <li>Четвёртое</li>
-                                </ul>
-                                </div>
+                                
 
                         </div>
                         

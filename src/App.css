@@ -349,10 +349,6 @@ section.main {
         display: block;
     }
 
-    .team_infoText p {
-        font-size: 2.8vw;
-    }
-
     .referal_main ul {
         text-align: left;
     }
@@ -1072,7 +1068,7 @@ section.referal, section.team {
 }
 
 .team_infoText p {
-    font-size: 1.8vw;
+    font-size: 23px;
 }
 
 .main_description_team {
@@ -1103,6 +1099,11 @@ section.referal, section.team {
 
     .main_description {
         width: 100%;
+    }
+
+    .about_text{
+        margin-right: 0px!important;
+        margin-left: 20px!important;
     }
 }
 
