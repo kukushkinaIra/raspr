@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
 import * as PropTypes from "prop-types";
+import {AiOutlineCheck} from "react-icons/ai";
 
 
 function Redirect(props) {
@@ -19,6 +20,7 @@ export default class ProfileInfo extends React.Component {
             isLoaded: false,
             userInfo: null,
             validated: false,
+            isVerified: false,
             formData: {
                 oldPassword: '',
                 newPassword: '',
@@ -29,8 +31,8 @@ export default class ProfileInfo extends React.Component {
     handleChange = (event) => {
         const {name, value} = event.target;
         this.setState({
-            editForm: {
-                ...this.state.editForm,
+            formData: {
+                ...this.state.formData,
                 [name]: value
             }
         });
@@ -113,7 +115,10 @@ export default class ProfileInfo extends React.Component {
                 return "Подписан контракт";
             }
             case "DEFAULT": {
-                return "Простой пользователь";
+                return "Подтвержденный пользователь";
+            }
+            case "UNVERIFIED": {
+                return "Неподтвержденный пользователь";
             }
             default: {
                 return "Простой пользователь";
@@ -153,6 +158,11 @@ export default class ProfileInfo extends React.Component {
                         isLoaded: false,
                         userInfo: data
                     })
+                    if(data.status !== 'UNVERIFIED') {
+                        this.setState({
+                            isVerified: true
+                        })
+                    }
                 },
                 (error) => {
                     this.setState({
@@ -164,7 +174,7 @@ export default class ProfileInfo extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, userInfo, validated, formData} = this.state;
+        const {error, isLoaded, userInfo, validated, formData, isVerified} = this.state;
         if (!userInfo) {
             return <div>Loading...</div>;
         }
@@ -176,6 +186,7 @@ export default class ProfileInfo extends React.Component {
                     <p><b>ФИО: </b>{userInfo.fullname}</p>
                     <p><b>Статус: </b>{this.parseUserStatus(userInfo.status)}</p>
                     <p><b>Email: </b>{userInfo.email}</p>
+                    <p>{isVerified ? 'Email подтвержден': 'Письмо для подтверждения отправлено на вашу почту'}</p>
                 </div>
                 <Form className="input-form form-password-change" noValidate validated={validated}
                       onSubmit={this.handleSubmit}>
@@ -198,7 +209,6 @@ export default class ProfileInfo extends React.Component {
                             value={formData.newPassword}
                             onChange={this.handleChange}
                             required
-                            aria-describedby="passwordHelpBlock"
                         />
                     </Form.Group>
                     <Button className="yellow-button" type="submit">Сменить пароль</Button>

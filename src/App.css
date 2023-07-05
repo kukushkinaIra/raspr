@@ -1673,3 +1673,14 @@ h4.offer_seller {
     }
 }
 
+@media only screen and (max-width: 768px){
+    .bg-body-tertiary{
+        background-color: #fac600!important;
+    }
+
+    .mainUser{
+        background: #ececec none;
+    }
+}
+
+

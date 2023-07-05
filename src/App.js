@@ -6,6 +6,8 @@ import AccountPage from "./components/account/AccountPage.jsx"
 import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom"
 import './App.css';
 import {AuthProvider, useAuth} from "./components/auth/AuthProvider";
+import ConfirmationPage from "./components/confirmation/ConfirmationPage";
+import {ToastContainer} from "react-toastify";
 
 function PageContainer() {
     const navigate = useNavigate()
@@ -24,10 +26,12 @@ function PageContainer() {
     return <AccountPage/>
 }
 
+
 function App() {
     return (
         <AuthProvider>
             <>
+                <ToastContainer />
                 <div className="main">
                     <BrowserRouter>
                         <Routes>
@@ -35,6 +39,10 @@ function App() {
                             <Route path="/login" element={<LoginPage/>}/>
                             <Route path="/registration" element={<RegistrationPage/>}/>
                             <Route path="/home" element={<PageContainer/>}/>
+                            <Route
+                                path="/confirm"
+                                element={<ConfirmationPage/>}
+                            />
                         </Routes>
                     </BrowserRouter>
                 </div>

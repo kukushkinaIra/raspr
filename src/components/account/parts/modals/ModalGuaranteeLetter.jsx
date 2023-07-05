@@ -36,7 +36,7 @@ function ModalGuaranteeLetter({showProp, setShowPropFalse, offerId}) {
             if (allowedTypes.includes(selectedFile.type)) {
                 setDocumentTemplate(selectedFile);
             } else {
-                toast.error("Выберите файл в формате .docx или .doc", { position: toast.POSITION.BOTTOM_RIGHT });
+                toast.error("Выберите файл в формате .docx или .doc", {position: toast.POSITION.BOTTOM_RIGHT});
             }
         } else {
             setFormData((prevFormData) => ({
@@ -57,15 +57,15 @@ function ModalGuaranteeLetter({showProp, setShowPropFalse, offerId}) {
             const requestBody = new FormData();
             let order = {
                 shortInfo: formData,
-                user : {
+                user: {
                     id: id
                 },
-                offer : {
+                offer: {
                     id: offerId
                 }
             }
 
-            requestBody.append("order", new Blob([JSON.stringify(order)], { type: "application/json" }));
+            requestBody.append("order", new Blob([JSON.stringify(order)], {type: "application/json"}));
             requestBody.append("documentTemplate", documentTemplate);
 
             fetch("/orders/short", {
@@ -177,19 +177,14 @@ function ModalGuaranteeLetter({showProp, setShowPropFalse, offerId}) {
 
                     <Form.Group className="mb-3" controlId="institution">
                         <Form.Label>Наименование учреждения образования</Form.Label>
-                        <Form.Select aria-label="Default select example"
-                                     required
-                                     name="institution"
-                                     value={formData.institution}
-                                     onChange={handleChange}
-                        >
-                            <option value="" disabled selected hidden>Выберите свой университет</option>
-                            <option value="БГУ">БГУ</option>
-                            <option value="БГУИР">БГУИР</option>
-                            <option value="БНТУ">БНТУ</option>
-                            <option value="БГЭУ">БГЭУ</option>
-                            <option value="МГЛУ">МГЛУ</option>
-                        </Form.Select>
+                        <Form.Control
+                            required
+                            type="text"
+                            name="institution"
+                            value={formData.institution}
+                            onChange={handleChange}
+                            placeholder="БГУ"
+                        />
                         <Form.Control.Feedback type="invalid">
                             Поле обязательно для заполнения
                         </Form.Control.Feedback>

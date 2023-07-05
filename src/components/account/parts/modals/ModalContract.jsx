@@ -225,15 +225,19 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="phoneNumber">
-                        <Form.Label>Телефон (12 цифр)</Form.Label>
+                        <Form.Label>Телефон (9 цифр)</Form.Label>
                         <Form.Control
                             onChange={handleChange}
                             required
                             name="phoneNumber"
                             value={formData.phoneNumber}
                             type="text"
-                            placeholder="+375XXXXXXXXX"
+                            pattern="\d{9}"
+                            placeholder="291234567"
                         />
+                        <Form.Control.Feedback type="invalid">
+                            Пожалуйста, введите 9 цифр
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="birthDate">
                         <Form.Label>Дата Рождения</Form.Label>
@@ -241,6 +245,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                             onChange={handleChange}
                             required
                             name="birthDate"
+                            pattern="\d{4}-\d{2}-\d{2}"
                             value={formData.birthDate}
                             type="date"
                         />

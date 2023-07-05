@@ -40,11 +40,11 @@ export default function BuildPaymentsBlock(payments, id, setId, setRole, navigat
     return (
         <div className="expended_padding_block">
             {payments.map(payment => (<div>
-                <div className="expanded_info_div"><b>Id платежа:</b> {payment.id}</div>
+                <div className="expanded_info_div"><b>№ платежа:</b> {payment.id}</div>
                 <div className="expanded_info_div"><b>Сумма к оплате:</b> {payment.price + " руб."}</div>
                 <div className="expanded_info_div"><b>Реквизиты счёта:</b> {payment.targetDetails}</div>
                 <div className="expanded_info_div"><b>Время платежа:</b>
-                    {new Date(Date.parse(payment.paymentTime)).toLocaleString()}
+                    {payment.paymentTime != null ? new Date(Date.parse(payment.paymentTime)).toLocaleString() : ''}
                 </div>
                 <div className="expanded_info_div"><b>Квитанция(текст):</b> {payment.receiptText}</div>
                 <div className="expanded_info_div">
