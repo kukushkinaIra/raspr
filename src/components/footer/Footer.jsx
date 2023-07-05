@@ -24,10 +24,7 @@ function Footer() {
                             <img src={telegram} alt="tg"/>
                         </a>
                     </div>
-                    <div>
-                        {/*<img src={binance} alt="binance"/>*/}
-                    </div>
-                    <div>
+                    <div className="email_phone">
                         <p>a888881h@gmail.com</p>
                         <p>+375 (33) 398-88-11</p>
                     </div>
