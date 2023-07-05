@@ -1344,6 +1344,7 @@ h4.offer_seller {
         perspective: 500px;
         margin-bottom: 20px;
     }
+
     .flipcard.v:hover .front, .flipcard.v.flip .front{
     transform: rotateX(180deg);
     }
@@ -1521,4 +1522,26 @@ h4.offer_seller {
 
 .navbar-nav .nav-link {
     display: flex;
+}
+
+@media (max-width: 810px){
+    .footer_container {
+        width: 80%;
+    }
+
+    .email_phone{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+    }
+
+    .email_phone p{
+        font-size: 14px;
+    }
+
+    .footer_year p{
+        font-size: 12px;
+    }
 }
