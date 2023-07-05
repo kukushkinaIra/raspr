@@ -13,6 +13,8 @@ import BuildPaymentsBlock from "./expandedRowBuilders/BuildPaymentsBlock";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {toast} from "react-toastify";
+import {LuClipboardCopy} from "react-icons/lu";
 
 
 export default class TableOrders extends React.Component {
@@ -206,6 +208,25 @@ export default class TableOrders extends React.Component {
         reader.readAsArrayBuffer(file);
     }
 
+    handleCopyClick = (event) => {
+        event.preventDefault();
+        const selectedOption = this.targetDetailsRef.current.options[this.targetDetailsRef.current.selectedIndex];
+        const selectedText = selectedOption.text;
+
+        const words = selectedText.split(' ');
+        const lastWord = words[words.length - 1];
+
+        navigator.clipboard.writeText(lastWord)
+            .then(() => {
+                toast.success("Номер счета скопирован", {
+                    position: toast.POSITION.BOTTOM_RIGHT
+                });
+            })
+            .catch((error) => {
+                console.error('Ошибка копирования: ', error);
+            });
+    }
+
     handlePaymentCreate(order, lastPayment) {
         this.setState({
             show: true,
@@ -217,11 +238,26 @@ export default class TableOrders extends React.Component {
                         <Form>
                             <Form.Group className="mb-3" controlId="target-details">
                                 <Form.Label>Реквизиты оплаты</Form.Label>
-                                <Form.Select aria-label="Default select example" ref={this.targetDetailsRef}>
-                                    <option value="0" disabled selected hidden>Выберите реквизиты оплаты</option>
-                                    <option value="1">БНБ-Банк 3001179330001227/9742</option>
-                                    <option value="2">Другие реквизиты</option>
-                                </Form.Select>
+                                <div className="payment-select">
+                                    <Form.Select aria-label="Default select example" ref={this.targetDetailsRef}>
+                                        <option value="0" disabled selected
+                                                hidden>Выберите реквизиты для оплаты по ЕРИП
+                                        </option>
+                                        <option value="1">БНБ-Банк BY18BLNB30141001009330019703</option>
+                                        <option value="2">Сбер Банк BY90BPSB3014F000000009944060</option>
+                                    </Form.Select>
+                                    <button className="copy-button"
+                                            onClick={e => this.handleCopyClick(e)}><LuClipboardCopy/></button>
+                                </div>
+                                <div className="payment-instruction">
+                                    Моментальное зачисление без комиссии в бел. рублях: <br/>
+                                    - ЕРИП<br/>
+                                    - Банковские, финансовые услуги<br/>
+                                    - Банки, НКФО<br/>
+                                    - Название банка указанное в начале строки с реквизитами<br/>
+                                    - Пополнение счета <br/>
+                                    (номер счета можно скопировать нажатием на кнопку справа)
+                                </div>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="price">
                                 <Form.Label>Сумма к оплате:</Form.Label>

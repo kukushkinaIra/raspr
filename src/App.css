@@ -1002,6 +1002,21 @@ tbody * {
     align-self: center;
 }
 
+.copy-button{
+    border: none;
+    background-color: #ececec;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.payment-instruction{
+    margin: 10px 0;
+}
+
+.payment-select{
+    display: flex;
+}
+
 
 .table-container-header div {
     display: flex;
