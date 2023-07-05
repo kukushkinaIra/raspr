@@ -148,8 +148,8 @@ function Main() {
             <ToastContainer />
             <Tab.Container id="ledt-tabs-example" defaultActiveKey="first">
                 <Row>
-                    <Col sm={2}>
-                        <Nav variant="pills" className="flex-column mt-2 nav">
+                    <Col sm={2} className="user-menu">
+                        <Nav variant="pills" className="flex-column mt-2 nav user-menu-nav">
                             <Nav.Item className="tab_item_custom">
                                 <Nav.Link className="tab_link_custom" eventKey="first">
                                     Профиль
@@ -158,7 +158,7 @@ function Main() {
                             {menu()}
                         </Nav>
                     </Col>
-                    <Col sm={10}>
+                    <Col sm={10} className="user-main">
                         <Tab.Content>
                             <Tab.Pane eventKey="first">
                                 <h3>Профиль</h3>

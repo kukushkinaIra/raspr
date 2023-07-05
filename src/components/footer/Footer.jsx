@@ -28,7 +28,7 @@ function Footer() {
                         {/*<img src={binance} alt="binance"/>*/}
                     </div>
                     <div>
-                        <p>lorem_ipsum@gmail.com</p>
+                        <p>a888881h@gmail.com</p>
                         <p>+375 (33) 398-88-11</p>
                     </div>
                 </div>

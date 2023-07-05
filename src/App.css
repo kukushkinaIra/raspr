@@ -489,8 +489,8 @@ footer {
 .footer_container a img {
     text-decoration: none;
     margin-left: 10px;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
 }
 
 .footer_container .logo img {
@@ -518,13 +518,13 @@ footer {
 }
 
 .sign-form {
-    width: 50%;
     display: flex;
     flex-direction: column;
     box-shadow: 5px 5px 20px 1px #b7b7b7;
     padding: 20px 30px;
     text-align: left;
-    max-width: 500px;
+    width: 500px;
+    margin: 20px 20px;
 }
 
 .root h3, .root p {
@@ -643,6 +643,47 @@ footer {
 
 .tab-content h3.choose {
     margin-left: 15px;
+}
+
+@media (max-width: 990px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .user-main {
+        margin: 0;
+    }
+
+    .col-sm-2 {
+        width: 100%;
+    }
+
+    .user-menu-nav{
+        flex-direction: row!important;
+        justify-content: center;
+        margin: 0!important;
+    }
+
+    .user-menu-nav div{
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 8px 10px;
+    }
+
+    .col-sm-10 {
+        width: 100%;
+    }
+
+    .tab-content h3 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .user-menu {
+        background-color: white;
+    }
 }
 
 .mainUser {
@@ -844,6 +885,7 @@ tbody * {
     background-color: #FAC600;
     border: 0;
     padding: 0 15px 0 15px;
+    height: 33px;
 }
 
 .table-search-form {
@@ -952,6 +994,25 @@ tbody * {
     padding: 10px;
     justify-content: left;
     align-items: center;
+}
+
+.table-container-header div {
+    display: flex;
+}
+
+@media (max-width: 1280px) {
+    .table-container-header {
+        flex-direction: column;
+        padding: 10px 0 0 0;
+    }
+
+    .table-header-part {
+        margin-bottom: 10px;
+    }
+
+    .table-container-header *{
+        align-items: center;
+    }
 }
 
 .table-container-footer {
@@ -1246,12 +1307,12 @@ h4.offer_seller {
 }
 
 .why_us {
-    background-image: url('components/mainPage/parts/images/about.jpg');
+    background-image: url('components/mainPage/parts/images/img.png');
     width: 50%;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 0.6;
+    background-size: 100% auto;
+    opacity: 0.9;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1334,6 +1395,10 @@ h4.offer_seller {
     margin-right: 10px;
     margin-top: 3px;
     color: black;
+}
+
+.navbar-toggler {
+    border: none;
 }
 
 

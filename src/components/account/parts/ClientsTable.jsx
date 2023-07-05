@@ -467,26 +467,28 @@ export default class ClientsTable extends React.Component {
                         </Modal.Body>
                     </Modal>
                     <div className="table-container-header">
-                        <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
-                            <input
-                                type="text"
-                                value={search}
-                                onChange={this.handleSearchChange}
-                                placeholder="Ключевое слово"
-                            />
-                            <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
-                        </form>
-                        <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
-                            <option value="fullname,asc"> ФИО &#9650; </option>
-                            <option value="fullname,desc"> ФИО &#9660;</option>
-                            <option value="email,asc">Email &#9650;</option>
-                            <option value="email,desc">Email &#9660;</option>
-                            <option value="id,desc">Id &#9650;</option>
-                            <option value="id,asc">Id &#9660;</option>
-                        </select>
-                        <button className="table-refresh-button" onClick={this.handleRefresh}>
-                            <GrRefresh/>
-                        </button>
+                        <div className="table-header-part">
+                            <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
+                                <input
+                                    type="text"
+                                    value={search}
+                                    onChange={this.handleSearchChange}
+                                    placeholder="Ключевое слово"
+                                />
+                                <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
+                            </form>
+                            <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
+                                <option value="fullname,asc"> ФИО &#9650; </option>
+                                <option value="fullname,desc"> ФИО &#9660;</option>
+                                <option value="email,asc">Email &#9650;</option>
+                                <option value="email,desc">Email &#9660;</option>
+                                <option value="id,desc">Id &#9650;</option>
+                                <option value="id,asc">Id &#9660;</option>
+                            </select>
+                            <button className="table-refresh-button" onClick={this.handleRefresh}>
+                                <GrRefresh/>
+                            </button>
+                        </div>
                     </div>
                     <Table responsive striped hover>
                         <thead>

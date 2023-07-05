@@ -66,7 +66,7 @@ const LoginPage = () => {
                             onClick={submitButton}>Войти
                     </Button>
                     <p>Нет аккауна? <Link className="registration" to="/registration"
-                                          style={{textDecoration: 'none'}}>Зарегестрироваться</Link></p>
+                                          style={{textDecoration: 'none'}}>Зарегистрироваться</Link></p>
                 </Form>
             </div>
         </Fragment>
