@@ -646,6 +646,7 @@ footer {
 }
 
 @media (max-width: 990px) {
+
     .row {
         flex-direction: column;
     }
@@ -666,6 +667,7 @@ footer {
 
     .user-menu-nav div{
         display: flex;
+        flex-wrap: wrap;
     }
 
     .nav-link {
@@ -996,6 +998,11 @@ tbody * {
     align-items: center;
 }
 
+.table-header-period-span{
+    align-self: center;
+}
+
+
 .table-container-header div {
     display: flex;
 }
@@ -1004,14 +1011,33 @@ tbody * {
     .table-container-header {
         flex-direction: column;
         padding: 10px 0 0 0;
+        flex-wrap: wrap;
+    }
+
+    .table-search-form {
+        padding: 0;
+        margin: 5px 10px;
+    }
+
+    .table-container-header div {
+        justify-content: center;
     }
 
     .table-header-part {
         margin-bottom: 10px;
+        flex-wrap: wrap;
     }
 
     .table-container-header *{
         align-items: center;
+    }
+
+    .table-container-header .react-datepicker-wrapper {
+        margin:5px 0;
+    }
+
+    .table-header-period-span {
+        display: none;
     }
 }
 
@@ -1609,3 +1635,26 @@ h4.offer_seller {
         font-size: 12px;
     }
 }
+
+@media (max-width: 500px) {
+    .table-container-footer{
+        flex-direction: column;
+        align-items: end;
+    }
+}
+
+@media (max-width: 620px) {
+    .user-info-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .form-password-change {
+        border-top: 1px solid #9f9f9f;
+        border-left: none;
+        padding: 10px 0 0 0;
+        margin: 0;
+    }
+}
+

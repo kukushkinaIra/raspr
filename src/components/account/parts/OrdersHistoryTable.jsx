@@ -287,7 +287,7 @@ export default class OrdersHistoryTable extends React.Component {
                             </select>
                         </div>
                         <div className="table-header-part">
-                            <span>Период:</span>
+                            <span className="table-header-period-span">Период:</span>
                             <DatePicker
                                 selected={startDate}
                                 onChange={this.handleStartDateChange}
