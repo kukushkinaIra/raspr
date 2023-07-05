@@ -305,7 +305,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="addressResidence">
-                        <Form.Label>Адресс прописки</Form.Label>
+                        <Form.Label>Адрес прописки</Form.Label>
                         <Form.Control
                             onChange={handleChange}
                             required
@@ -317,7 +317,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="addressActual">
-                        <Form.Label>Адресс проживания</Form.Label>
+                        <Form.Label>Адрес проживания</Form.Label>
                         <Form.Control
                             onChange={handleChange}
                             required
