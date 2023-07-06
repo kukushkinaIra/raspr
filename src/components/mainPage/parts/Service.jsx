@@ -4,11 +4,11 @@ import serviceBoy from "./images/jump_student 1.png"
 import doneIcon from "./images/27098.svg"
 
 
-function Service(){
-    return(
+function Service() {
+    return (
         <section id="services" className="services_block">
-            <h2>Наши услуги</h2>
-            <div className="container">
+            <div className="container main_container">
+                <h2>Наши услуги</h2>
                 {/* <div className="service_block">
                     <div className="servise_img">
                         <img alt="image"className="round" src={serviceBoy} />
@@ -47,23 +47,22 @@ function Service(){
                 </div> */}
 
                 <div className="services_blocks">
-
                     <div className="flipcard h">
                         <div className="front">
-                            <h5>Распределение/ <br></br>Перераспределение</h5>
+                            <h5>Распределение<br></br>Перераспределение</h5>
                         </div>
                         <div className="back">
                             <div>
-                                    <ul>
-                                        <li>
-                                            <img alt="image" className="doneIcon" src={doneIcon} />
-                                             от <b>148</b> руб в месяц
-                                        </li>
-                                        <li>
-                                            <img alt="image" className="doneIcon" src={doneIcon} />
-                                            Аванс 534 руб за три месяца для гарантии сотрудничества
-                                        </li>
-                                    </ul>
+                                <ul>
+                                    <li>
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
+                                        от <b>148</b> руб в месяц
+                                    </li>
+                                    <li>
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
+                                        Аванс 534 руб за три месяца для гарантии сотрудничества
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -76,22 +75,22 @@ function Service(){
                                 <h6 className="text-center">От <b>10</b> рублей</h6>
                                 <ul>
                                     <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Подписание пакета на трудоустройство
                                     </li>
-                                    <li><img alt="image" className="doneIcon" src={doneIcon} />
+                                    <li><img alt="image" className="doneIcon" src={doneIcon}/>
                                         Оформление процесса увольнения
                                     </li>
                                     <li>
-                                    <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Завести трудовую книжку
                                     </li>
                                     <li>
-                                    <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Завести карту соц. страхования
                                     </li>
                                     <li>
-                                    <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Характеристика на новое место работы
                                     </li>
                                 </ul>
@@ -104,16 +103,16 @@ function Service(){
                         </div>
                         <div className="back">
                             <div>
-                            <ul>
+                                <ul>
                                     <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon} />
-                                         от <b>148</b> руб в месяц
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
+                                        от <b>148</b> руб в месяц
                                     </li>
                                     <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Аванс 534 руб за три месяца для гарантии сотрудничества
                                     </li>
-                            </ul>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -126,35 +125,33 @@ function Service(){
                                 <h6 className="text-center">От <b>15</b> рублей</h6>
                                 <ul>
                                     <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Гарантийное письмо
                                     </li>
                                     <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Копия трудовой книжки
                                     </li>
                                     <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Подписать дневник/ отчёт/ титульный лист
                                     </li>
                                     <li>
-                                    <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Справка для университета об окончании отработки
                                     </li>
                                     <li>
-                                    <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Справка для посольства
                                     </li>
                                     <li>
-                                    <img alt="image" className="doneIcon" src={doneIcon} />
+                                        <img alt="image" className="doneIcon" src={doneIcon}/>
                                         Доставка корреспонденции в руки ЕМС по РБ за 24 часа
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    
-
                 </div>
             </div>
         </section>

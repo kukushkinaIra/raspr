@@ -21,8 +21,8 @@ export default function ReviewCarousel() {
   return (
     <>
     <section className="reviews" id="reviews">
-    <div className="container">
-            <h2 className='text-center'>Мы - это наши клиенты</h2>
+    <div className="container main_container">
+            <h2>Мы - это наши клиенты</h2>
                 <Swiper
                     slidesPerView={3}
                     spaceBetween={30}

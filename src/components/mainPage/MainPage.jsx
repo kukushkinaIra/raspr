@@ -46,10 +46,10 @@ function MainPage() {
                 <Navigation/>
                 <MainInfo/>
                 <AboutUs/>
-                <Team/>
-                <Vacancies/>
+                {/*<Team/>*/}
                 <Service/>
                 <ReferralProgram/>
+                <Vacancies/>
                 <ReviewCarousel/>
                 <Footer/>
             </div>

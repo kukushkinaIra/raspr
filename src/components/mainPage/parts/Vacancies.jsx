@@ -4,12 +4,12 @@ import icon from "./images/662218.svg"
 
 function Vacancies(){
     return(
-        <section className="about_us vacansies referal" id="vacansies">
+        <section className="about_us vacancies referal" id="vacancies">
             <div className="container main_container">
                  {/*<h2>Присоединяйся к нашей команде</h2>*/}
-                <div className="referal_main hire_main">
+                <div className="hire_main">
                     <div>
-                        <h3>МЕНЕДЖЕР, МЫ ИЩЕМ ТЕБЯ <img alt="image" className="myIcon" src={icon} /></h3>
+                        <h2>Присоединяйся к нашей команде!</h2>
                         <h5>Какие задачи тебя ожидают</h5>
                         <ul className="hire">
                             <li> <img alt="image" className="myIcon" src={icon} />
@@ -44,8 +44,8 @@ function Vacancies(){
                             </li>
                         </ul>
 
-                        <h4 className="offer_seller">Ты умеешь продавать, готов и хочешь строить общее дело? Присоединяйся к нашей команде!</h4>
-                        <h5>Работа в офисе</h5>
+                        <h4 className="offer_seller">Ты умеешь продавать, готов и хочешь строить общее дело?
+                            Присоединяйся к нашей команде! Работа в офисе</h4>
                     </div>
                 </div>
             </div>
