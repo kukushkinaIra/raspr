@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import Table from 'react-bootstrap/Table';
 import {MdKeyboardArrowDown, MdKeyboardArrowRight} from 'react-icons/md';
 import jsPDF from "jspdf";
@@ -18,6 +18,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
+import {AiOutlineEdit} from "react-icons/ai";
 
 
 export default class ClientsTable extends React.Component {
@@ -467,28 +468,26 @@ export default class ClientsTable extends React.Component {
                         </Modal.Body>
                     </Modal>
                     <div className="table-container-header">
-                        <div className="table-header-part">
-                            <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
-                                <input
-                                    type="text"
-                                    value={search}
-                                    onChange={this.handleSearchChange}
-                                    placeholder="Ключевое слово"
-                                />
-                                <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
-                            </form>
-                            <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
-                                <option value="fullname,asc"> ФИО &#9650; </option>
-                                <option value="fullname,desc"> ФИО &#9660;</option>
-                                <option value="email,asc">Email &#9650;</option>
-                                <option value="email,desc">Email &#9660;</option>
-                                <option value="id,desc">Id &#9650;</option>
-                                <option value="id,asc">Id &#9660;</option>
-                            </select>
-                            <button className="table-refresh-button" onClick={this.handleRefresh}>
-                                <GrRefresh/>
-                            </button>
-                        </div>
+                        <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={this.handleSearchChange}
+                                placeholder="Ключевое слово"
+                            />
+                        </form>
+                        <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
+                            <option value="fullname,asc"> ФИО &#9650; </option>
+                            <option value="fullname,desc"> ФИО &#9660;</option>
+                            <option value="email,asc">Email &#9650;</option>
+                            <option value="email,desc">Email &#9660;</option>
+                            <option value="id,desc">Id &#9650;</option>
+                            <option value="id,asc">Id &#9660;</option>
+                        </select>
+                        <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
+                        <button className="table-refresh-button" onClick={this.handleRefresh}>
+                            <GrRefresh/>
+                        </button>
                     </div>
                     <Table responsive striped hover>
                         <thead>
@@ -498,7 +497,7 @@ export default class ClientsTable extends React.Component {
                             <th>Телефон</th>
                             <th>Email</th>
                             <th>Скачать</th>
-                            <th></th>
+                            <th><AiOutlineEdit/></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -520,9 +519,9 @@ export default class ClientsTable extends React.Component {
                                                 onClick={() => this.buildPdf(user)}>
                                             pdf
                                         </button>
-                                        <button className="table-download-button" disabled={true}>
-                                            doc
-                                        </button>
+                                        {/*<button className="table-download-button" disabled={true}>*/}
+                                        {/*    doc*/}
+                                        {/*</button>*/}
                                     </td>
                                     <td>
                                         <button className="edit-button" onClick={() => this.handleModalShowHide(user)}>

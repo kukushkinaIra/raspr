@@ -160,7 +160,7 @@ export default class UserOffers extends React.Component {
                             <div className="service" key={item.id}
                                  onClick={() => this.handleOfferClick(item)}
                             >
-                                <h4>{item.title}</h4>
+                                <h4>{item.title==='Перераспределение' ? 'Пере- распределение' : item.title}</h4>
                                 <hr/>
                                 <p>{this.getPricePeriod(item)}</p>
                             </div>

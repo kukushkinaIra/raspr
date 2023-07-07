@@ -645,6 +645,65 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                             placeholder="Гуревича Алексея Андреевича"
                         />
                     </Form.Group>
+                    <Form.Group className="mb-3" controlId="checkbox">
+                        <ol>
+                            <b>Обязательно к прочтению:</b>
+                            <li>
+                                <u>При нетрудоспособности</u> необходимо в тот же день брать больничный лист, а также:
+                                <ul>
+                                    <li>
+                                        Сделать фото больничного листа
+                                    </li>
+                                    <li>
+                                        Выслать нам
+                                    </li>
+                                    <li>
+                                        Передать оригинал больничного листа для расчета вычета из затратной части
+                                    </li>
+                                    <li>
+                                        Получить 2 руб за каждый день больничного
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Обязательно следует уведомить нас <u>о призыве в армию</u>:
+                                <ul>
+                                    <li>
+                                        В связи с призывом оформляется увольнение
+                                    </li>
+                                    <li>
+                                        Служба в армии идет в срок отработки
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                В случае <u>беременности</u>:
+                                <ul>
+                                    <li>
+                                        Следует обязательно уведомить нас о беременности <b>до</b> получения
+                                        больничного листа у своего врача
+                                    </li>
+                                    <li>
+                                        Беременность не освобождает от закрытия затратной части
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <Form.Check
+                            onChange={handleChange}
+                            required
+                            label="Я прочитал и принимаю вышеописанные условия"
+                            feedback="Вы должны согласится с условиями для оформления заказа"
+                            feedbackType="invalid"
+                            name="checkbox"
+                            className="form-checkbox"
+                            value={formData.checkbox}
+                            type="checkbox"
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Информация обязательна к ознакомлению
+                        </Form.Control.Feedback>
+                    </Form.Group>
                     <Button
                         className="yellow-button"
                         type="submit">

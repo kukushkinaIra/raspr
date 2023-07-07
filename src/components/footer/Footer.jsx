@@ -4,6 +4,7 @@ import logo from "./images/Logo-01 1.svg"
 import vk from "./images/ВК.svg"
 import telegram from "./images/Телега.svg"
 import binance from "./images/Binance.svg"
+import {AiOutlineMail, AiOutlinePhone} from "react-icons/ai";
 
 function Footer() {
     return (
@@ -13,7 +14,7 @@ function Footer() {
                     <div className="logo">
                         <img src={logo} alt={logo}/>
                     </div>
-                    <div>
+                    <div className="footer_icons">
                         <a target="_blank" href="https://www.instagram.com/alex.hurevich/">
                             <img src={insta} alt="inst"/>
                         </a>
@@ -25,8 +26,8 @@ function Footer() {
                         </a>
                     </div>
                     <div className="email_phone">
-                        <p>a888881h@gmail.com</p>
-                        <p>+375 (33) 398-88-11</p>
+                        <p><AiOutlineMail/>a888881h@gmail.com</p>
+                        <p><AiOutlinePhone/>+375 (33) 398-88-11</p>
                     </div>
                 </div>
                 <div className="footer_year">

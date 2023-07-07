@@ -50,106 +50,117 @@ function Service() {
                     <div className="flipcard h">
                         <div className="front">
                             <h5>Распределение<br></br>Перераспределение</h5>
+                            <span> <b>178</b> рублей в месяц</span>
                         </div>
                         <div className="back">
-                            <div>
-                                <ul>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        от <b>148</b> руб в месяц
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Аванс 534 руб за три месяца для гарантии сотрудничества
-                                    </li>
-                                </ul>
-                            </div>
+                            <h5>Распределение<br></br>Перераспределение</h5>
+                            <span> <b>178</b> рублей в месяц</span>
+                            <ul>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Аванс за последние три месяца как гарантия сотрудничества
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Возврат аванса в случае призыва в армию
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Оформление гарантийного письма - 20 руб
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Перераспределение от нас/к нам - 40 руб
+                                </li>
+                            </ul>
                         </div>
                     </div>
+
                     <div className="flipcard h">
                         <div className="front">
                             <h5>Трудоустройство</h5>
+                            <span> от <b>10</b> рублей</span>
                         </div>
                         <div className="back">
-                            <div>
-                                <h6 className="text-center">От <b>10</b> рублей</h6>
-                                <ul>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Подписание пакета на трудоустройство
-                                    </li>
-                                    <li><img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Оформление процесса увольнения
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Завести трудовую книжку
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Завести карту соц. страхования
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Характеристика на новое место работы
-                                    </li>
-                                </ul>
-                            </div>
+                            <h5>Трудоустройство</h5>
+                            <span> от <b>10</b> рублей</span>
+                            <ul>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Подписание пакета на трудоустройство
+                                </li>
+                                <li><img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Оформление процесса увольнения
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Завести трудовую книжку
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Завести карту соц. страхования
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Характеристика на новое место работы
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div className="flipcard h">
                         <div className="front">
-                            <h5 className="text-center">Преддипломная практика</h5>
+                            <h5 className="text-center">Преддипломная и производственная практика</h5>
+                            <span> <b>178</b> руб в месяц</span>
                         </div>
                         <div className="back">
-                            <div>
-                                <ul>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        от <b>148</b> руб в месяц
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Аванс 534 руб за три месяца для гарантии сотрудничества
-                                    </li>
-                                </ul>
-                            </div>
+                            <h5 className="text-center">Преддипломная и производственная практика</h5>
+                            <span> <b>178</b> руб в месяц</span>
+                            <ul>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Подписание договора на практику - 20 руб
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Подписание дневника - 15 руб
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Подписание титульного листа - 15 руб
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div className="flipcard h">
                         <div className="front">
                             <h5>Дополнительные услуги</h5>
+                            <span> от <b>15</b> рублей</span>
                         </div>
                         <div className="back">
-                            <div>
-                                <h6 className="text-center">От <b>15</b> рублей</h6>
-                                <ul>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Гарантийное письмо
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Копия трудовой книжки
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Подписать дневник/ отчёт/ титульный лист
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Справка для университета об окончании отработки
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Справка для посольства
-                                    </li>
-                                    <li>
-                                        <img alt="image" className="doneIcon" src={doneIcon}/>
-                                        Доставка корреспонденции в руки ЕМС по РБ за 24 часа
-                                    </li>
-                                </ul>
-                            </div>
+                            <h5>Дополнительные услуги</h5>
+                            <span> от <b>15</b> рублей</span>
+                            <ul>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Копия трудовой книжки
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Подписать дневник/ отчёт/ титульный лист
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Справка для университета об окончании отработки
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Справка для посольства
+                                </li>
+                                <li>
+                                    <img alt="image" className="doneIcon" src={doneIcon}/>
+                                    Доставка корреспонденции в руки ЕМС по РБ за 24 часа
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

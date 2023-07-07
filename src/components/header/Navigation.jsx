@@ -74,6 +74,7 @@ function Navigation() {
                     <Nav.Link href="/#about">О нас</Nav.Link>
                     <Nav.Link href="/#services">Наши услуги</Nav.Link>
                     <Nav.Link href="/#reviews">Отзывы</Nav.Link>
+                    <Nav.Link href="/#referal">Акции</Nav.Link>
                 </Nav>
                 <Nav>
                 <Nav.Link href="#deets">{buttonBlock}</Nav.Link>

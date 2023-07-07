@@ -577,46 +577,46 @@ export default class WorkWithOrdersTable extends React.Component {
                         {this.state.modalBody}
                     </Modal>
                     <div className="table-container-header">
-                        <div className="table-header-part">
-                            <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
-                                <input
-                                    type="text"
-                                    value={search}
-                                    onChange={this.handleSearchChange}
-                                    placeholder="Ключевое слово"
-                                />
-                                <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
-                            </form>
-                            <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
-                                <option value="offer.price,asc"> Цена &#9660; </option>
-                                <option value="offer.price,desc"> Цена &#9650;</option>
-                                <option value="user.fullname,asc"> ФИО &#9660;</option>
-                                <option value="user.fullname,desc"> ФИО &#9650;</option>
-                                <option value="user.email,asc"> Email &#9660;</option>
-                                <option value="user.email,desc"> Email &#9650;</option>
-                            </select>
-                        </div>
-                        <div className="table-header-part">
-                            <span className="table-header-period-span">Период:</span>
-                            <DatePicker
-                                selected={startDate}
-                                onChange={this.handleStartDateChange}
-                                dateFormat="dd.MM.yyyy"
-                                className="date-picker"
-                                placeholderText="Начальная дата"
+                        <form className="table-search-form" onSubmit={this.handleSearchSubmit}>
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={this.handleSearchChange}
+                                placeholder="Ключевое слово"
                             />
-                            <span>-</span>
-                            <DatePicker
-                                selected={endDate}
-                                onChange={this.handleEndDateChange}
-                                dateFormat="dd.MM.yyyy"
-                                className="date-picker"
-                                placeholderText="Конечная дата"
-                            />
-                            <button className="table-refresh-button" onClick={this.handleRefresh}>
-                                <GrRefresh/>
-                            </button>
-                        </div>
+                        </form>
+                        <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
+                            <option value="offer.price,asc"> Цена &#9660; </option>
+                            <option value="offer.price,desc"> Цена &#9650;</option>
+                            <option value="user.fullname,asc"> ФИО &#9660;</option>
+                            <option value="user.fullname,desc"> ФИО &#9650;</option>
+                            <option value="user.email,asc"> Email &#9660;</option>
+                            <option value="user.email,desc"> Email &#9650;</option>
+                            <option value="id,asc"> Id &#9660;</option>
+                            <option value="id,desc"> Id &#9650;</option>
+                            <option value="createdAt,desc"> Создание &#9660;</option>
+                            <option value="createdAt,asc"> Создание &#9650;</option>
+                        </select>
+                        {/*<span className="table-header-period-span">Период:</span>*/}
+                        <DatePicker
+                            selected={startDate}
+                            onChange={this.handleStartDateChange}
+                            dateFormat="dd.MM.yyyy"
+                            className="date-picker"
+                            placeholderText="Начальная дата"
+                        />
+                        {/*<span className="table-header-period-span">-</span>*/}
+                        <DatePicker
+                            selected={endDate}
+                            onChange={this.handleEndDateChange}
+                            dateFormat="dd.MM.yyyy"
+                            className="date-picker"
+                            placeholderText="Конечная дата"
+                        />
+                        <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
+                        <button className="table-refresh-button" onClick={this.handleRefresh}>
+                            <GrRefresh/>
+                        </button>
                     </div>
                     <Table responsive striped hover>
                         <thead>

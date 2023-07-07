@@ -113,7 +113,7 @@ h2, h1, h6 {
 /* navigation styles */
 
 .bg-body-tertiary {
-    background-color: #e1e1e1 !important;
+    background-color: #fac600 !important;
     box-shadow: 0 -2px 9px 0 black;
 }
 
@@ -320,9 +320,9 @@ section.main {
         font-size: 40px;
     }
 
-    .main p {
-        font-size: 20px;
-    }
+    /*.main p {*/
+    /*    font-size: 20px;*/
+    /*}*/
 
     .price_block {
         width: 50%;
@@ -483,14 +483,27 @@ footer {
     flex-wrap: wrap;
 }
 
+
+
+.footer_icons{
+    margin-left: 110px;
+}
+
+.email_phone svg {
+    margin-right: 5px;
+}
+
+.email_phone p {
+    margin: 15px 0;
+}
+
 .footer_container a {
     text-decoration: none;
-    margin-left: 10px;
+    margin: 20px;
 }
 
 .footer_container a img {
     text-decoration: none;
-    margin-left: 10px;
     width: 30px;
     height: 30px;
 }
@@ -506,6 +519,19 @@ footer {
 
 .footer_year p {
     text-align: center;
+    font-size: 13px;
+    color: #000000a8;
+}
+
+@media screen and (max-width: 1000px){
+    .footer_info{
+        flex-direction: column;
+    }
+
+    .footer_icons {
+        margin: 15px 0 10px 0;
+        align-self: center;
+    }
 }
 
 
@@ -548,7 +574,7 @@ footer {
 .logout {
     background-color: #fac600;
     filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
-    border: 2px solid #fac600;
+    border: 2px solid #ffffff;
     border-radius: 0;
     color: black;
     height: fit-content;
@@ -560,7 +586,7 @@ footer {
 }
 
 .logout:hover {
-    background-color: #ffd433 !important;
+    background-color: #ffffff !important;
     border: 1px solid #fac600;
     color: black;
 }
@@ -570,8 +596,8 @@ footer {
 }
 
 .nav-registration {
-    background-color: transparent;
-    border: 2px solid #fac600;
+    background-color: #fac600;
+    border: 2px solid #ffffff;
     border-radius: 0;
     color: black;
     height: fit-content;
@@ -582,7 +608,9 @@ footer {
 }
 
 .nav-registration:hover {
-    background-color: #fac600;
+    background-color: #ffce14 !important;
+    border: 2px solid #ffffff;
+    color: black;
 }
 
 .root .table-yellow-button {
@@ -692,8 +720,9 @@ footer {
 
 .mainUser {
     /* min-height: 100vh; */
-    background: url("images/light_back_3.jpg") right top;
+    /*background: url("images/light_back_3.jpg") right top;*/
     background-size: cover;
+    background-color: #e9e9eb;
 }
 
 .image_main {
@@ -772,8 +801,7 @@ footer {
 }
 
 .service {
-    max-width: 265px;
-    min-width: 230px;
+    width: 250px;
     height: 180px;
     padding: 20px;
     background-color: white;
@@ -914,6 +942,8 @@ tbody * {
     border: 0;
     padding: 0 15px 0 15px;
     height: 33px;
+    width: 150px;
+    justify-content: center;
 }
 
 .table-search-form {
@@ -924,8 +954,10 @@ tbody * {
     border: 0;
     background-color: #ECECEC;
     outline: none;
-    padding: 0 5px;
+    margin-right:5px;
     height: 33px;
+    width: 150px;
+    padding: 0 5px;
 }
 
 .pagination-container {
@@ -980,14 +1012,14 @@ tbody * {
 
 .date-picker {
     width: 150px;
-    padding: 0 5px;
+    margin-right:5px;
     border: none;
     background-color: #ececec;
-    margin: 0 5px;
     height: 33px;
     text-align: center;
     outline: none;
 }
+
 
 .invalid-feedback {
     font-size: 14px;
@@ -998,9 +1030,9 @@ tbody * {
     background-color: #ececec;
     border: none;
     outline: none;
-    margin: 0 20px;
-    padding: 0 5px;
+    margin-right: 5px;
     height: 33px;
+    width: 150px;
 }
 
 .option-with-icon {
@@ -1044,43 +1076,11 @@ tbody * {
 }
 
 
-.table-container-header div {
-    display: flex;
-}
+/*.table-container-header div {*/
+/*    display: flex;*/
+/*}*/
 
-@media (max-width: 1280px) {
-    .table-container-header {
-        flex-direction: column;
-        padding: 10px 0 0 0;
-        flex-wrap: wrap;
-    }
 
-    .table-search-form {
-        padding: 0;
-        margin: 5px 10px;
-    }
-
-    .table-container-header div {
-        justify-content: center;
-    }
-
-    .table-header-part {
-        margin-bottom: 10px;
-        flex-wrap: wrap;
-    }
-
-    .table-container-header * {
-        align-items: center;
-    }
-
-    .table-container-header .react-datepicker-wrapper {
-        margin: 5px 0;
-    }
-
-    .table-header-period-span {
-        display: none;
-    }
-}
 
 .table-container-footer {
     display: flex;
@@ -1099,6 +1099,9 @@ tbody * {
     margin-left: 15px;
     display: flex;
     align-items: center;
+    min-width: 150px;
+    justify-content: right;
+    flex-grow: 1;
 }
 
 .table-refresh-button:hover {
@@ -1173,7 +1176,8 @@ span.arrow-icon svg {
 
 .home_main_button:hover {
     cursor: pointer;
-    background-color: #efba00;
+    background-color: #ffce14 !important;
+    color: black;
 }
 
 .table-download-button {
@@ -1317,6 +1321,10 @@ section.referal, section.team {
         margin-right: 0px !important;
         margin-left: 20px !important;
     }
+
+    .table-sort-select {
+        margin-top: 10px;
+    }
 }
 
 h4 {
@@ -1359,18 +1367,28 @@ h4.offer_seller {
 
 .user-info-block {
     max-width: 700px;
-    width: fit-content;
     background-color: white;
     padding: 20px;
     display: flex;
+    justify-content: space-between;
 }
 
 .user-info-block * {
-    font-size: 16px !important;
+    font-size: 16px;
 }
 
 .password-change-form {
     max-width: 500px !important;
+}
+.password-change-button{
+    min-width: 200px;
+    margin: 0;
+    background-color: white!important;
+}
+
+.email-verification-text{
+    font-size: 14px !important;
+    color: red;
 }
 
 .user-info-block.yellow-button {
@@ -1488,7 +1506,7 @@ h4.offer_seller {
 .flipcard {
     position: relative;
     width: 300px;
-    height: 315px;
+    height: 345px;
     perspective: 500px;
     margin-bottom: 20px;
 }
@@ -1534,6 +1552,42 @@ h4.offer_seller {
     filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.1));
 }
 
+.front {
+    display: flex;
+    flex-direction: column;
+}
+
+.front span {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    white-space: break-spaces;
+}
+
+.front h5 {
+    flex-grow: 1;
+    display: flex;
+    align-items: end;
+}
+
+.back {
+    display: flex;
+    flex-direction: column;
+    padding: 20px!important;
+}
+
+.back h5 {
+    text-align: center;
+}
+
+.back ul {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding:0;
+}
+
 .flipcard .front {
     text-align: center;
 }
@@ -1562,6 +1616,10 @@ h4.offer_seller {
     .flipcard .front {
         position: relative;
         align-items: flex-start;
+    }
+
+    .flipcard .front *{
+        display: flex;
     }
 
     .flipcard .back {
@@ -1622,9 +1680,14 @@ h4.offer_seller {
 
 .form-password-change {
     max-width: 300px;
-    margin-left: 40px;
     padding-left: 20px;
     border-left: 1px solid #9f9f9f;
+}
+
+.password-change-title{
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
 }
 
 .edit-button {
@@ -1712,11 +1775,17 @@ h4.offer_seller {
     }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 770px) {
     .user-info-block {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        width: 300px;
+    }
+
+
+    .user-info-block *{
+        font-size: 14px;
     }
 
     .form-password-change {
@@ -1727,13 +1796,57 @@ h4.offer_seller {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 770px) {
     .bg-body-tertiary {
         background-color: #fac600 !important;
     }
 
     .mainUser {
         background: #ececec none;
+    }
+
+    .important-info-block * {
+        font-size: 13px;
+    }
+
+    .important-info-block ul {
+        padding-left: 5px;
+        list-style-type: disc;
+    }
+
+    .important-info-block ol {
+        padding-left: 10px;
+    }
+
+    .email-verification-text {
+        width: 260px;
+    }
+
+    .main_description p{
+        font-size: 24px;
+    }
+
+    .main_description h1{
+        font-size: 26px;
+    }
+
+    .referal_main {
+        padding: 10px;
+    }
+
+    .referal_main ul{
+        padding: 10px;
+    }
+
+    .hire_main ul {
+        padding: 5px;
+    }
+
+    .rts-client-reviews-h2 {
+        padding: 15px !important;
+    }
+    .rts-client-reviews-h2 p{
+        margin: 0;
     }
 }
 
@@ -1761,6 +1874,71 @@ h4.offer_seller {
 
     .main_container h2 {
         font-size: 22px;
+    }
+}
+
+.react-datepicker-popper *{
+
+}
+
+.form-checkbox {
+
+}
+
+.important-info-block{
+    margin-top: 20px;
+}
+
+.email-send-button {
+    margin: 0 0 20px 0;
+}
+
+@media screen and (max-width: 1200px) {
+    .table-container-header {
+        /*padding: 5px 0;*/
+        flex-wrap: wrap;
+    }
+
+    /*.table-search-form {*/
+    /*    padding: 0;*/
+    /*    margin: 5px 10px;*/
+    /*}*/
+
+    .table-refresh-button {
+        margin-top: 10px;
+        justify-content: center;
+    }
+    .table-container-header div {
+        justify-content: center;
+    }
+
+
+    .table-header-part {
+        flex-wrap: wrap;
+    }
+
+    .table-container-header * {
+        align-items: center;
+    }
+
+    .react-datepicker-wrapper {
+    }
+
+
+    .table-container-header .react-datepicker-wrapper {
+        /*margin: 5px 0;*/
+    }
+
+    .table-header-period-span {
+        display: none;
+    }
+
+    .table-search-button {
+        margin-top: 10px;
+    }
+
+    .react-datepicker-wrapper {
+        margin-top: 10px;
     }
 }
 

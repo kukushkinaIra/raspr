@@ -14,8 +14,7 @@ function ReferralProgram() {
                         <ul>
                             <li><img alt="image" className="myIcon" src={icon}/>
                                 С ЛЮБОГО аккаунта instagram разместите сторис с активной ссылками на наш телеграм
-                                канал <a href="https://t.me/raspred_by">https://t.me/raspred_by</a>,
-                                <a href="https://t.me/raspred_by"> (https://t.me/raspred_by)</a> инстаграм <a
+                                канал <a href="https://t.me/raspred_by"> raspred_by</a>, инстаграм <a
                                     href="https://www.instagram.com/alex.hurevich/">alex.hurevich</a> и
                                 номером +375333988811.<br></br>
                                 <span>Пример сторис смотрите в закрепленном хайлайтс «АКЦИИ». Делайте скрин и выкладывайте.</span>

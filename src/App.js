@@ -39,9 +39,7 @@ function App() {
                             <Route path="/login" element={<LoginPage/>}/>
                             <Route path="/registration" element={<RegistrationPage/>}/>
                             <Route path="/home" element={<PageContainer/>}/>
-                            <Route
-                                path="/confirm"
-                                element={<ConfirmationPage/>}
+                            <Route path="/confirm" element={<ConfirmationPage/>}
                             />
                         </Routes>
                     </BrowserRouter>
