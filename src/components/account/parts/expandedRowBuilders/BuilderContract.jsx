@@ -88,13 +88,13 @@ export default function BuildContractBlock(contract, id, setId, setRole, navigat
             <div className="expanded_info_div"><b>Должности:</b> {contract.position}</div>
             <div className="expanded_info_div"><b>Адрес проживания:</b> {contract.addressActual}</div>
             <div className="expanded_info_div"><b>Адрес прописки:</b> {contract.addressResidence}</div>
-            <div className="expanded_info_div"><b>Серия и номер пасспорта:</b> {contract.passport.number}</div>
+            <div className="expanded_info_div"><b>Серия и номер паспорта:</b> {contract.passport.number}</div>
             <div className="expanded_info_div"><b>Идентификационный номер
                 паспорта:</b> {contract.passport.identification}</div>
-            <div className="expanded_info_div"><b>Дата выдачи пасспорта:</b> {contract.passport.issueDate}</div>
+            <div className="expanded_info_div"><b>Дата выдачи паспорта:</b> {contract.passport.issueDate}</div>
             <div className="expanded_info_div"><b>Дата окончания паспорта:</b> {contract.passport.expiryDate}
             </div>
-            <div className="expanded_info_div"><b>Орган, выдавший пасспорт:</b> {contract.passport.authority}
+            <div className="expanded_info_div"><b>Орган, выдавший паспорт:</b> {contract.passport.authority}
             </div>
             <div className="expanded_info_div"><b>Университет:</b> {contract.institution.name}</div>
             <div className="expanded_info_div"><b>Факультет:</b> {contract.institution.faculty}</div>

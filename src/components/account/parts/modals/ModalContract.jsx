@@ -252,7 +252,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="passportNumber">
-                        <Form.Label>Серия и номер пасспорта</Form.Label>
+                        <Form.Label>Серия и номер паспорта</Form.Label>
                         <Form.Control
                             onChange={handleChange}
                             required
@@ -264,7 +264,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="passportIssueDate">
-                        <Form.Label>Дата выдачи пасспорта</Form.Label>
+                        <Form.Label>Дата выдачи паспорта</Form.Label>
                         <Form.Control
                             onChange={handleChange}
                             required
@@ -275,7 +275,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="passportExpiryDate">
-                        <Form.Label>Дата окончания действия пасспорта</Form.Label>
+                        <Form.Label>Дата окончания действия паспорта</Form.Label>
                         <Form.Control
                             onChange={handleChange}
                             required
@@ -286,7 +286,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="passportAuthority">
-                        <Form.Label>Кем выдан пасспорт</Form.Label>
+                        <Form.Label>Кем выдан паспорт</Form.Label>
                         <Form.Control
                             onChange={handleChange}
                             required
@@ -298,7 +298,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="passportIdentification">
-                        <Form.Label>Личный номер пасспорта</Form.Label>
+                        <Form.Label>Личный номер паспорта</Form.Label>
                         <Form.Control
                             onChange={handleChange}
                             required

@@ -5,7 +5,9 @@ function AboutUs() {
     return (
         <section id="about" className="about_us">
             <div className="container main_container">
-                <h2>Мы, команда «Алексей Гуревич – консалтинг»</h2>
+                <h2 style={
+                    {marginBottom: '20px'}
+                }>Мы, команда «Алексей Гуревич – консалтинг»</h2>
                 <div>
                     <div className="about_first">
                         {/* <img className="workImg" src={work}  alt="workimg"/> */}

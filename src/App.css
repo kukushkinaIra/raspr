@@ -1096,12 +1096,9 @@ tbody * {
 .table-refresh-button {
     background-color: transparent;
     border: none;
-    margin-left: 15px;
     display: flex;
     align-items: center;
-    min-width: 150px;
-    justify-content: right;
-    flex-grow: 1;
+    margin-left: auto;
 }
 
 .table-refresh-button:hover {
@@ -1242,12 +1239,12 @@ span.arrow-icon svg {
 }
 
 .referal_main {
-    padding: 40px;
+    padding:  0 20px;
     text-align: center;
     /* background-color: #f3f1eb; */
-    border-radius: 20px;
-    border: 1px solid #c0bbbb;
-    box-shadow: 5px 5px 5px rgb(231, 231, 231);
+    border-radius: 0;
+    /*border: 1px solid #c0bbbb;*/
+    /*box-shadow: 0px 0px 10px rgb(231, 231, 231);*/
 }
 
 .hire_main {
@@ -1448,6 +1445,30 @@ h4.offer_seller {
 
 .rts-client-reviews-h2 {
     padding: 50px 50px 30px 50px;
+}
+
+.swiper-wrapper {
+    padding-bottom: 30px;
+}
+
+.referal_main ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    font-size: 18px;
+    padding: 0;
+}
+
+.vertical-line {
+    border-left: 3px solid #fac600;
+    height: 40px;
+    margin: 15px 0;
+    width: 0;
+}
+
+.swiper-pagination {
+    bottom: 0 !important;
 }
 
 .review-header {
@@ -1831,12 +1852,12 @@ h4.offer_seller {
     }
 
     .referal_main {
-        padding: 10px;
+        padding: 0;
     }
 
-    .referal_main ul{
-        padding: 10px;
-    }
+    /*.referal_main ul{*/
+    /*    padding: 10px;*/
+    /*}*/
 
     .hire_main ul {
         padding: 5px;

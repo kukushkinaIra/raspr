@@ -320,7 +320,7 @@ export default class ManagementTable extends React.Component {
                         onChange={this.handleStartDateChange}
                         dateFormat="dd.MM.yyyy"
                         className="date-picker"
-                        placeholderText="Начальная дата"
+                        placeholderText="Начало периода"
                     />
                     {/*<span className="table-header-period-span">-</span>*/}
                     <DatePicker
@@ -328,7 +328,7 @@ export default class ManagementTable extends React.Component {
                         onChange={this.handleEndDateChange}
                         dateFormat="dd.MM.yyyy"
                         className="date-picker"
-                        placeholderText="Конечная дата"
+                        placeholderText="Конец периода"
                     />
                     <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
                     <button className="table-refresh-button" onClick={this.handleRefresh}>

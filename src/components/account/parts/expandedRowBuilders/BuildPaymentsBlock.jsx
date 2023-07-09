@@ -3,7 +3,6 @@ import React from "react";
 
 export default function BuildPaymentsBlock(payments, id, setId, setRole, navigate) {
     function handleDownloadPaymentReceipt(payment) {
-
         const url = `/files/receipt/user/${id}/payment/${payment.id}`;
         fetch(url)
             .then(res => {
@@ -48,7 +47,11 @@ export default function BuildPaymentsBlock(payments, id, setId, setRole, navigat
                 </div>
                 <div className="expanded_info_div"><b>Квитанция(текст):</b> {payment.receiptText}</div>
                 <div className="expanded_info_div">
-                    <b>Квитанция(фото):</b><button className="download-button" onClick={()=>handleDownloadPaymentReceipt(payment)}>Скачать</button>
+                    <b>Квитанция(фото):</b>
+                    {payment.paymentTime != null ?
+                        <button className="download-button"
+                                onClick={() => handleDownloadPaymentReceipt(payment)}>Скачать</button>
+                        : ''}
                 </div>
                 <p></p>
             </div>))}

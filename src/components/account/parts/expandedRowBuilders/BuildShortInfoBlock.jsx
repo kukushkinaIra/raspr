@@ -3,7 +3,7 @@ import React from "react";
 export default function BuildShortInfoBlock(shortInfo, orderId, id, setId, setRole, navigate) {
 
     function handleDownloadBlank() {
-        const url = `/files/pinkBlank/user/${id}/short/${orderId}`;
+        const url = `/files/template/user/${id}/order/${orderId}`;
         fetch(url)
             .then(res => {
                 if (!res.ok) {
