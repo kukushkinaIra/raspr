@@ -323,7 +323,6 @@ section.main {
     /*.main p {*/
     /*    font-size: 20px;*/
     /*}*/
-
     .price_block {
         width: 50%;
         margin-bottom: 20px;
@@ -484,8 +483,7 @@ footer {
 }
 
 
-
-.footer_icons{
+.footer_icons {
     margin-left: 110px;
 }
 
@@ -523,8 +521,8 @@ footer {
     color: #000000a8;
 }
 
-@media screen and (max-width: 1000px){
-    .footer_info{
+@media screen and (max-width: 1000px) {
+    .footer_info {
         flex-direction: column;
     }
 
@@ -549,7 +547,7 @@ footer {
     display: flex;
     flex-direction: column;
     box-shadow: 5px 5px 20px 1px #b7b7b7;
-    padding: 20px 30px;
+    padding: 20px 20px;
     text-align: left;
     width: 500px;
     margin: 20px 20px;
@@ -607,7 +605,47 @@ footer {
     padding: 5px 20px !important;
 }
 
+
+.sign-yellow-button {
+    padding: 5px 30px 5px 30px;
+    height: 37px;
+    font-size: 18px;
+    background-color: #FAC600;
+    color: black;
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
+    border: 0;
+    border-radius: 0;
+    margin: 10px 0 20px 0;
+    max-width: max-content;
+    text-transform: uppercase;
+    font-weight: 500;
+    align-self: center;
+}
+
+.sign-yellow-button:hover {
+    background-color: #fdd331!important;
+    color: black!important;
+}
+.sign-yellow-button:active {
+    background-color: #fdd331!important;
+    color: black!important;
+}
+.sign-yellow-button:focus {
+    background-color: #fdd331!important;
+    color: black!important;
+}
+
+.sign-form .form-control {
+    margin-bottom: 2px !important;
+}
+
 .nav-registration:hover {
+    background-color: #ffce14 !important;
+    border: 2px solid #ffffff;
+    color: black;
+}
+
+.nav-registration:active {
     background-color: #ffce14 !important;
     border: 2px solid #ffffff;
     color: black;
@@ -648,6 +686,11 @@ footer {
 }
 
 .table-yellow-button:hover {
+    background-color: #ffce14;
+}
+
+
+.table-yellow-button:active {
     background-color: #ffce14;
 }
 
@@ -733,13 +776,15 @@ footer {
 }
 
 .image_main_first {
-    background:  url("components/mainPage/parts/images/student_blue_girl.jpg") center;
+    background: url("components/mainPage/parts/images/student_blue_girl.jpg") center;
 }
+
 .image_main_second {
-    background:  url("components/mainPage/parts/images/map.jpg") center;
+    background: url("components/mainPage/parts/images/map.jpg") center;
 }
+
 .image_main_third {
-    background:  url("components/mainPage/parts/images/students_group.jpg") center;
+    background: url("components/mainPage/parts/images/students_group.jpg") center;
 }
 
 .about_part {
@@ -935,6 +980,13 @@ tbody * {
     filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2));
 }
 
+.question-container {
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2));
+    background-color: white;
+    padding: 20px;
+    max-width: 600px;
+}
+
 .table-search-button {
     display: flex;
     align-items: center;
@@ -954,7 +1006,7 @@ tbody * {
     border: 0;
     background-color: #ECECEC;
     outline: none;
-    margin-right:5px;
+    margin-right: 5px;
     height: 33px;
     width: 150px;
     padding: 0 5px;
@@ -1012,7 +1064,7 @@ tbody * {
 
 .date-picker {
     width: 150px;
-    margin-right:5px;
+    margin-right: 5px;
     border: none;
     background-color: #ececec;
     height: 33px;
@@ -1079,7 +1131,6 @@ tbody * {
 /*.table-container-header div {*/
 /*    display: flex;*/
 /*}*/
-
 
 
 .table-container-footer {
@@ -1239,7 +1290,7 @@ span.arrow-icon svg {
 }
 
 .referal_main {
-    padding:  0 20px;
+    padding: 0 20px;
     text-align: center;
     /* background-color: #f3f1eb; */
     border-radius: 0;
@@ -1368,7 +1419,18 @@ h4.offer_seller {
     padding: 20px;
     display: flex;
     justify-content: space-between;
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2));
+
 }
+
+.question-container-profile{
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2));
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    max-width: 700px;
+}
+
 
 .user-info-block * {
     font-size: 16px;
@@ -1377,13 +1439,14 @@ h4.offer_seller {
 .password-change-form {
     max-width: 500px !important;
 }
-.password-change-button{
+
+.password-change-button {
     min-width: 200px;
     margin: 0;
-    background-color: white!important;
+    background-color: white !important;
 }
 
-.email-verification-text{
+.email-verification-text {
     font-size: 14px !important;
     color: red;
 }
@@ -1594,7 +1657,7 @@ h4.offer_seller {
 .back {
     display: flex;
     flex-direction: column;
-    padding: 20px!important;
+    padding: 20px !important;
 }
 
 .back h5 {
@@ -1606,7 +1669,7 @@ h4.offer_seller {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:0;
+    padding: 0;
 }
 
 .flipcard .front {
@@ -1639,7 +1702,7 @@ h4.offer_seller {
         align-items: flex-start;
     }
 
-    .flipcard .front *{
+    .flipcard .front * {
         display: flex;
     }
 
@@ -1705,7 +1768,7 @@ h4.offer_seller {
     border-left: 1px solid #9f9f9f;
 }
 
-.password-change-title{
+.password-change-title {
     width: 100%;
     text-align: center;
     font-weight: 500;
@@ -1805,7 +1868,7 @@ h4.offer_seller {
     }
 
 
-    .user-info-block *{
+    .user-info-block * {
         font-size: 14px;
     }
 
@@ -1843,11 +1906,11 @@ h4.offer_seller {
         width: 260px;
     }
 
-    .main_description p{
+    .main_description p {
         font-size: 24px;
     }
 
-    .main_description h1{
+    .main_description h1 {
         font-size: 26px;
     }
 
@@ -1858,7 +1921,6 @@ h4.offer_seller {
     /*.referal_main ul{*/
     /*    padding: 10px;*/
     /*}*/
-
     .hire_main ul {
         padding: 5px;
     }
@@ -1866,14 +1928,15 @@ h4.offer_seller {
     .rts-client-reviews-h2 {
         padding: 15px !important;
     }
-    .rts-client-reviews-h2 p{
+
+    .rts-client-reviews-h2 p {
         margin: 0;
     }
 }
 
 
-@media screen and (max-width: 1250px){
-    .about_part{
+@media screen and (max-width: 1250px) {
+    .about_part {
         flex-direction: column;
     }
 
@@ -1898,7 +1961,7 @@ h4.offer_seller {
     }
 }
 
-.react-datepicker-popper *{
+.react-datepicker-popper * {
 
 }
 
@@ -1906,7 +1969,7 @@ h4.offer_seller {
 
 }
 
-.important-info-block{
+.important-info-block {
     margin-top: 20px;
 }
 
@@ -1924,11 +1987,11 @@ h4.offer_seller {
     /*    padding: 0;*/
     /*    margin: 5px 10px;*/
     /*}*/
-
     .table-refresh-button {
         margin-top: 10px;
         justify-content: center;
     }
+
     .table-container-header div {
         justify-content: center;
     }

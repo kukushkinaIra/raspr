@@ -20,6 +20,8 @@ function MainPage() {
         fetch("/auth/isAuthenticated", {
             method: "POST"
         }).then(res => {
+            console.log("id " + id)
+            console.log("role " + role)
             if (!res.ok) {
                 throw new Error(res.status);
             }
@@ -29,6 +31,9 @@ function MainPage() {
                     const authCookie = document.cookie
                         .split(";")
                         .find((cookie) => cookie.startsWith("auth="));
+                    console.log("auth " + authCookie)
+                    console.log("id " + id)
+                    console.log("role " + role)
                     if (!authCookie && (id != null || role != null)) {
                         setId(null);
                         setRole(null);

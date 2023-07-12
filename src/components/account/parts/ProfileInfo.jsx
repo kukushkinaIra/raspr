@@ -3,7 +3,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
 import * as PropTypes from "prop-types";
-import {AiOutlineCheck} from "react-icons/ai";
 
 
 function Redirect(props) {
@@ -20,12 +19,65 @@ export default class ProfileInfo extends React.Component {
             isLoaded: false,
             userInfo: null,
             validated: false,
-            importantInfo: '',
+            importantInfo: (
+                <div className="user-info-block important-info-block">
+                    <ol>
+                        <b>Важная информация:</b>
+                        <li>
+                            <u>При нетрудоспособности</u> необходимо в тот же день брать больничный
+                            лист, а
+                            также:
+                            <ul>
+                                <li>
+                                    Сделать фото больничного листа
+                                </li>
+                                <li>
+                                    Выслать нам
+                                </li>
+                                <li>
+                                    Передать оригинал больничного листа для расчета вычета из затратной
+                                    части
+                                </li>
+                                <li>
+                                    Получить 2 руб за каждый день больничного
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Обязательно следует уведомить нас <u>о призыве в армию</u>:
+                            <ul>
+                                <li>
+                                    В связи с призывом оформляется увольнение
+                                </li>
+                                <li>
+                                    Мы возвращаем вам аванс
+                                </li>
+                                <li>
+                                    Служба в армии идет в срок отработки
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            В случае <u>беременности</u>:
+                            <ul>
+                                <li>
+                                    Следует обязательно уведомить нас о беременности <b>до</b> получения
+                                    больничного листа у своего врача
+                                </li>
+                                <li>
+                                    Беременность не освобождает от закрытия затратной части
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            ),
             emailVerificationBlock: <Fragment/>,
             formData: {
                 oldPassword: '',
                 newPassword: '',
-            }
+            },
+            questionnaireData: {}
         };
     }
 
@@ -190,7 +242,8 @@ export default class ProfileInfo extends React.Component {
                 data => {
                     this.setState({
                         isLoaded: false,
-                        userInfo: data
+                        userInfo: data,
+                        questionnaireData: JSON.parse(data.questionnaire)
                     })
                     if (data.status === 'UNVERIFIED') {
                         this.setState({
@@ -205,62 +258,16 @@ export default class ProfileInfo extends React.Component {
                             )
                         })
                     }
-                    if (data.status === 'CONTRACT') {
+                    if (data.status !== 'CONTRACT') {
                         this.setState({
-                            importantInfo: (
-                                <div className="user-info-block important-info-block">
-                                    <ol>
-                                        <b>Важная информация:</b>
-                                        <li>
-                                            <u>При нетрудоспособности</u> необходимо в тот же день брать больничный
-                                            лист, а
-                                            также:
-                                            <ul>
-                                                <li>
-                                                    Сделать фото больничного листа
-                                                </li>
-                                                <li>
-                                                    Выслать нам
-                                                </li>
-                                                <li>
-                                                    Передать оригинал больничного листа для расчета вычета из затратной
-                                                    части
-                                                </li>
-                                                <li>
-                                                    Получить 2 руб за каждый день больничного
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            Обязательно следует уведомить нас <u>о призыве в армию</u>:
-                                            <ul>
-                                                <li>
-                                                    В связи с призывом оформляется увольнение
-                                                </li>
-                                                <li>
-                                                    Мы возвращаем вам аванс
-                                                </li>
-                                                <li>
-                                                    Служба в армии идет в срок отработки
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            В случае <u>беременности</u>:
-                                            <ul>
-                                                <li>
-                                                    Следует обязательно уведомить нас о беременности <b>до</b> получения
-                                                    больничного листа у своего врача
-                                                </li>
-                                                <li>
-                                                    Беременность не освобождает от закрытия затратной части
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ol>
-                                </div>
-                            )
+                            importantInfo: ''
                         })
+                    }
+                    const { fields } =  JSON.parse(data.questionnaire);
+                    const hasEmptyField = fields.some(field => field.value === "");
+
+                    if (hasEmptyField) {
+                        toast.info("У вас имеются незаполненные поля в анкете. Пожалуйста, заполните все необходимые поля с целью ...", {position: toast.POSITION.BOTTOM_RIGHT})
                     }
                 },
                 (error) => {
@@ -271,6 +278,124 @@ export default class ProfileInfo extends React.Component {
                 }
             )
     }
+
+    handleChangeQuestionnaire = e => {
+        const { name, value } = e.target;
+        const { questionnaireData } = this.state;
+        const { fields } = questionnaireData;
+
+        // Находим поле в анкете по имени
+        const updatedFields = fields.map(field => {
+            if (field.name === name) {
+                // Обновляем значение поля
+                return { ...field, value };
+            }
+            return field;
+        });
+
+        // Обновляем состояние анкеты с новыми значениями полей
+        this.setState(prevState => ({
+            questionnaireData: {
+                ...prevState.questionnaireData,
+                fields: updatedFields
+            }
+        }));
+    };
+
+    renderQuestionnaire() {
+        const {fields} = this.state.questionnaireData;
+
+        return fields.map(field => {
+            const {name, label, type, options, value} = field;
+
+            // Генерируем поле формы в зависимости от типа поля
+            switch (type) {
+                case "select":
+                    return (
+                        <Form.Group key={name}>
+                            <Form.Label>{label}</Form.Label>
+                            <Form.Select name={name} value={value} onChange={this.handleChangeQuestionnaire}>
+                                {options.map(option => (
+                                    <option key={option} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </Form.Select>
+                        </Form.Group>
+                    );
+                case "number":
+                    return (
+                        <Form.Group key={name}>
+                            <Form.Label>{label}</Form.Label>
+                            <Form.Control name={name} type="number" value={value} onChange={this.handleChangeQuestionnaire}/>
+                        </Form.Group>
+                    );
+                case "text":
+                    return (
+                        <Form.Group key={name}>
+                            <Form.Label>{label}</Form.Label>
+                            <Form.Control name={name} type="text" value={value} onChange={this.handleChangeQuestionnaire}/>
+                        </Form.Group>
+                    );
+                // Добавьте дополнительные условия для других типов полей, если необходимо
+
+                default:
+                    return null;
+            }
+        });
+    }
+
+    handleSubmitQuestion = e => {
+        e.preventDefault();
+        const { questionnaireData } = this.state;
+
+        // Создаем объект с данными анкеты в нужном формате
+        const requestBody = {
+            questionnaire: JSON.stringify(questionnaireData)
+        };
+
+        console.log(JSON.stringify(requestBody))
+
+        fetch(`/users/${this.props.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Обработка успешного ответа от сервера
+                    toast.success("Анкета успешно отправлена", {
+                        position: toast.POSITION.BOTTOM_RIGHT
+                    });
+                } else {
+                    // Обработка ошибки при отправке анкеты
+                    toast.error("Ошибка при отправке анкеты", {
+                        position: toast.POSITION.BOTTOM_RIGHT
+                    });
+                    throw new Error(response.status);
+                }
+            })
+            .catch(error => {
+                // Обработка ошибки
+                if (error.message === "401") {
+                    const authCookie = document.cookie
+                        .split(";")
+                        .find(cookie => cookie.startsWith("auth="));
+                    if (!authCookie) {
+                        this.props.setId(null);
+                        this.props.setRole(null);
+                        this.props.navigate("/login");
+                    }
+                }
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            });
+    };
+
 
     render() {
         const {error, isLoaded, userInfo, validated, formData, emailVerificationBlock, importantInfo} = this.state;
@@ -283,7 +408,6 @@ export default class ProfileInfo extends React.Component {
                 <div className="user-info-block">
                     <div>
                         <p><b>ФИО: </b>{userInfo.fullname}</p>
-                        {/*<p><b>Статус: </b>{this.parseUserStatus(userInfo.status)}</p>*/}
                         <div><b>Email: </b>{userInfo.email}</div>
                         {emailVerificationBlock}
                     </div>
@@ -314,6 +438,13 @@ export default class ProfileInfo extends React.Component {
                     </Form>
                 </div>
                 {importantInfo}
+                <div className="question-container-profile">
+                    <p>Анкета</p>
+                    <Form onSubmit={this.handleSubmitQuestion}>
+                        {this.renderQuestionnaire()}
+                        <Button className="yellow-button mt-3" type="submit">Отправить анкету</Button>
+                    </Form>
+                </div>
             </Fragment>
         );
     }

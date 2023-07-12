@@ -11,6 +11,7 @@ import TableOrders from "./TableOrders";
 import {useAuth} from "../../auth/AuthProvider";
 import {useNavigate} from "react-router-dom";
 import ProfileInfo from "./ProfileInfo";
+import QuestionnaireEdit from "./QuestionnaireEdit";
 
 
 function Main() {
@@ -55,6 +56,11 @@ function Main() {
                     <Nav.Item className="tab_item_custom">
                         <Nav.Link eventKey="third">
                             Менеджмент
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item className="tab_item_custom">
+                        <Nav.Link eventKey="eighth">
+                            Анкета
                         </Nav.Link>
                     </Nav.Item>
                 </Fragment>);
@@ -117,6 +123,10 @@ function Main() {
                     <Tab.Pane eventKey="fifth">
                         <h3>Информация о клиентах</h3>
                         <ClientsTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="eighth">
+                        <h3>Управление анкетой клиента</h3>
+                        <QuestionnaireEdit id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                 </Fragment>);
             }

@@ -47,6 +47,8 @@ function ModalGuaranteeLetter({showProp, setShowPropFalse, offerId}) {
     };
 
 
+
+
     const handleSubmit = (event) => {
 
         const form = event.currentTarget;
