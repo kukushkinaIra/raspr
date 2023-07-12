@@ -257,8 +257,8 @@ export default class ClientsTable extends React.Component {
         }
 
 
-        if (user.questionnaire.gender) {
-            const questionnaire = user.questionnaire;
+        if (user.questionnaire) {
+            const questionnaire = JSON.parse(user.questionnaire);
             questionnaireBlock = BuildQuestionnaire(questionnaire)
         }
 

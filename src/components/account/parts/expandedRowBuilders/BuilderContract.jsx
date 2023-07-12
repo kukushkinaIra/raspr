@@ -81,6 +81,7 @@ export default function BuildContractBlock(contract, id, setId, setRole, navigat
 
     return (
         <div className="expended_padding_block">
+            <div className="expanded_info_div"><u>Распределение</u></div>
             <div className="expanded_info_div"><b>ФИО полностью:</b> {contract.fullname}</div>
             <div className="expanded_info_div"><b>Телефон:</b> {contract.phoneNumber}</div>
             <div className="expanded_info_div"><b>Дата начала:</b> {contract.startDate}</div>

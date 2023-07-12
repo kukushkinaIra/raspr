@@ -19,6 +19,7 @@ export default class ProfileInfo extends React.Component {
             isLoaded: false,
             userInfo: null,
             validated: false,
+            isQuestionnaireExpanded: true,
             importantInfo: (
                 <div className="user-info-block important-info-block">
                     <ol>
@@ -90,6 +91,13 @@ export default class ProfileInfo extends React.Component {
             }
         });
     };
+
+    // toggleQuestionnaire = () => {
+    //     this.setState(prevState => ({
+    //         isQuestionnaireExpanded: !prevState.isQuestionnaireExpanded
+    //     }));
+    // };
+
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -263,11 +271,11 @@ export default class ProfileInfo extends React.Component {
                             importantInfo: ''
                         })
                     }
-                    const { fields } =  JSON.parse(data.questionnaire);
+                    const {fields} = JSON.parse(data.questionnaire);
                     const hasEmptyField = fields.some(field => field.value === "");
 
                     if (hasEmptyField) {
-                        toast.info("У вас имеются незаполненные поля в анкете. Пожалуйста, заполните все необходимые поля с целью ...", {position: toast.POSITION.BOTTOM_RIGHT})
+                        toast.info("У вас имеются незаполненные поля в анкете", {position: toast.POSITION.BOTTOM_RIGHT})
                     }
                 },
                 (error) => {
@@ -280,15 +288,15 @@ export default class ProfileInfo extends React.Component {
     }
 
     handleChangeQuestionnaire = e => {
-        const { name, value } = e.target;
-        const { questionnaireData } = this.state;
-        const { fields } = questionnaireData;
+        const {name, value} = e.target;
+        const {questionnaireData} = this.state;
+        const {fields} = questionnaireData;
 
         // Находим поле в анкете по имени
         const updatedFields = fields.map(field => {
             if (field.name === name) {
                 // Обновляем значение поля
-                return { ...field, value };
+                return {...field, value};
             }
             return field;
         });
@@ -327,14 +335,16 @@ export default class ProfileInfo extends React.Component {
                     return (
                         <Form.Group key={name}>
                             <Form.Label>{label}</Form.Label>
-                            <Form.Control name={name} type="number" value={value} onChange={this.handleChangeQuestionnaire}/>
+                            <Form.Control name={name} type="number" value={value}
+                                          onChange={this.handleChangeQuestionnaire}/>
                         </Form.Group>
                     );
                 case "text":
                     return (
                         <Form.Group key={name}>
                             <Form.Label>{label}</Form.Label>
-                            <Form.Control name={name} type="text" value={value} onChange={this.handleChangeQuestionnaire}/>
+                            <Form.Control name={name} type="text" value={value}
+                                          onChange={this.handleChangeQuestionnaire}/>
                         </Form.Group>
                     );
                 // Добавьте дополнительные условия для других типов полей, если необходимо
@@ -347,7 +357,7 @@ export default class ProfileInfo extends React.Component {
 
     handleSubmitQuestion = e => {
         e.preventDefault();
-        const { questionnaireData } = this.state;
+        const {questionnaireData} = this.state;
 
         // Создаем объект с данными анкеты в нужном формате
         const requestBody = {
@@ -405,45 +415,56 @@ export default class ProfileInfo extends React.Component {
 
         return (
             <Fragment>
-                <div className="user-info-block">
-                    <div>
-                        <p><b>ФИО: </b>{userInfo.fullname}</p>
-                        <div><b>Email: </b>{userInfo.email}</div>
-                        {emailVerificationBlock}
+                <div>
+                    <div className="user-info-block">
+                        <h5>Мои данные</h5>
+                        <div>
+                            <p><b>ФИО: </b>{userInfo.fullname}</p>
+                            <div><b>Email: </b>{userInfo.email}</div>
+                            {emailVerificationBlock}
+                        </div>
                     </div>
-                    <Form className="input-form form-password-change" noValidate validated={validated}
-                          onSubmit={this.handleSubmit}>
-                        <div className="password-change-title">Смена пароля</div>
-                        <Form.Group className="mb-3" controlId="oldPassword">
-                            <Form.Label>Введите старый пароль</Form.Label>
-                            <Form.Control
-                                type="password"
-                                name="oldPassword"
-                                value={formData.oldPassword}
-                                onChange={this.handleChange}
-                                required
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="newPassword">
-                            <Form.Label>Введите новый пароль</Form.Label>
-                            <Form.Control
-                                type="password"
-                                name="newPassword"
-                                value={formData.newPassword}
-                                onChange={this.handleChange}
-                                required
-                            />
-                        </Form.Group>
-                        <Button className="yellow-button password-change-button" type="submit">Сменить пароль</Button>
-                    </Form>
-                </div>
-                {importantInfo}
-                <div className="question-container-profile">
-                    <p>Анкета</p>
-                    <Form onSubmit={this.handleSubmitQuestion}>
-                        {this.renderQuestionnaire()}
-                        <Button className="yellow-button mt-3" type="submit">Отправить анкету</Button>
-                    </Form>
+                    <div className="question-container-profile">
+                        <h5>Настройки</h5>
+                        <Form className="input-form form-password-change" noValidate validated={validated}
+                              onSubmit={this.handleSubmit}>
+                            <div>Смена пароля</div>
+                            <Form.Group className="mb-3" controlId="oldPassword">
+                                <Form.Label>Введите старый пароль</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="oldPassword"
+                                    value={formData.oldPassword}
+                                    onChange={this.handleChange}
+                                    required
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="newPassword">
+                                <Form.Label>Введите новый пароль</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="newPassword"
+                                    value={formData.newPassword}
+                                    onChange={this.handleChange}
+                                    required
+                                />
+                            </Form.Group>
+                            <Button className="yellow-button password-change-button" type="submit">Сменить
+                                пароль</Button>
+                        </Form>
+                    </div>
+                    {importantInfo}
+                    <div className="question-container-profile">
+                        <h5>Анкета</h5>
+                        {/*<p onClick={this.toggleQuestionnaire}>Ваша анкета</p>*/}
+                        {this.state.isQuestionnaireExpanded && (
+                            <Fragment>
+                                <Form className="question-form" onSubmit={this.handleSubmitQuestion}>
+                                    {this.renderQuestionnaire()}
+                                    <Button className="yellow-button mt-3" type="submit">Сохранить</Button>
+                                </Form>
+                            </Fragment>)}
+                    </div>
                 </div>
             </Fragment>
         );

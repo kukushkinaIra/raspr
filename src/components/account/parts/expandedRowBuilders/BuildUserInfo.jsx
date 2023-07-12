@@ -24,6 +24,7 @@ export default function buildUserInfo(user) {
 
     return (
         <div className="expended_padding_block">
+            <div className="expanded_info_div"><u>Основная информация</u></div>
             <div className="expanded_info_div"><b>ФИО:</b> {user.fullname}</div>
             <div className="expanded_info_div"><b>Телефон:</b> {user.phoneNumber}</div>
             <div className="expanded_info_div"><b>Телеграм:</b> {user.telegram}</div>

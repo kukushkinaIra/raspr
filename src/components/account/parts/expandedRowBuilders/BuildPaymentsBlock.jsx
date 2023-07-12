@@ -39,7 +39,7 @@ export default function BuildPaymentsBlock(payments, id, setId, setRole, navigat
     return (
         <div className="expended_padding_block">
             {payments.map(payment => (<div>
-                <div className="expanded_info_div"><b>№ платежа:</b> {payment.id}</div>
+                <div className="expanded_info_div"><u>Платёж №{payment.id}</u></div>
                 <div className="expanded_info_div"><b>Сумма к оплате:</b> {payment.price + " руб."}</div>
                 <div className="expanded_info_div"><b>Реквизиты счёта:</b> {payment.targetDetails}</div>
                 <div className="expanded_info_div"><b>Время платежа:</b>

@@ -701,7 +701,7 @@ footer {
     font-size: 16px;
 }
 
-.root .form-label {
+.root{
     margin-bottom: 5px;
 }
 
@@ -1418,6 +1418,7 @@ h4.offer_seller {
     background-color: white;
     padding: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2));
 
@@ -1431,8 +1432,13 @@ h4.offer_seller {
     max-width: 700px;
 }
 
+.form-label{
+    margin-bottom: 2px;
+    margin-top: 10px;
+}
 
-.user-info-block * {
+
+.user-info-block > *:not(h5) {
     font-size: 16px;
 }
 
@@ -1444,6 +1450,7 @@ h4.offer_seller {
     min-width: 200px;
     margin: 0;
     background-color: white !important;
+    align-self: start!important;
 }
 
 .email-verification-text {
@@ -1763,9 +1770,9 @@ h4.offer_seller {
 }
 
 .form-password-change {
-    max-width: 300px;
-    padding-left: 20px;
-    border-left: 1px solid #9f9f9f;
+    /*max-width: 300px;*/
+    /*padding-left: 20px;*/
+    /*border-left: 1px solid #9f9f9f;*/
 }
 
 .password-change-title {
@@ -1872,12 +1879,12 @@ h4.offer_seller {
         font-size: 14px;
     }
 
-    .form-password-change {
-        border-top: 1px solid #9f9f9f;
-        border-left: none;
-        padding: 10px 0 0 0;
-        margin: 0;
-    }
+    /*.form-password-change {*/
+    /*    border-top: 1px solid #9f9f9f;*/
+    /*    border-left: none;*/
+    /*    padding: 10px 0 0 0;*/
+    /*    margin: 0;*/
+    /*}*/
 }
 
 @media only screen and (max-width: 770px) {
@@ -2024,5 +2031,19 @@ h4.offer_seller {
     .react-datepicker-wrapper {
         margin-top: 10px;
     }
+}
+
+.question-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.question-form div{
+    width: 310px;
+    margin: 10px;
+}
+
+.question-form button {
+    margin: 45px 10px 10px 10px !important;
 }
 
