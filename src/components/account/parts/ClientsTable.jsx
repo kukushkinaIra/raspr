@@ -199,8 +199,8 @@ export default class ClientsTable extends React.Component {
 
         userBlock = buildUserInfo(user)
 
-        if (user.questionnaire.gender) {
-            const questionnaire = user.questionnaire;
+        if (user.questionnaire) {
+            const questionnaire = JSON.parse(user.questionnaire);
             questionnaireBlock = BuildQuestionnaire(questionnaire)
         }
 
@@ -475,16 +475,16 @@ export default class ClientsTable extends React.Component {
                                 onChange={this.handleSearchChange}
                                 placeholder="Ключевое слово"
                             />
+                            <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
+                                <option value="fullname,asc"> ФИО &#9650; </option>
+                                <option value="fullname,desc"> ФИО &#9660;</option>
+                                <option value="email,asc">Email &#9650;</option>
+                                <option value="email,desc">Email &#9660;</option>
+                                <option value="id,desc">Id &#9650;</option>
+                                <option value="id,asc">Id &#9660;</option>
+                            </select>
+                            <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
                         </form>
-                        <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
-                            <option value="fullname,asc"> ФИО &#9650; </option>
-                            <option value="fullname,desc"> ФИО &#9660;</option>
-                            <option value="email,asc">Email &#9650;</option>
-                            <option value="email,desc">Email &#9660;</option>
-                            <option value="id,desc">Id &#9650;</option>
-                            <option value="id,asc">Id &#9660;</option>
-                        </select>
-                        <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
                         <button className="table-refresh-button" onClick={this.handleRefresh}>
                             <GrRefresh/>
                         </button>

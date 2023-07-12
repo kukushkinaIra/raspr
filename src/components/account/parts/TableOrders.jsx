@@ -457,36 +457,36 @@ export default class TableOrders extends React.Component {
                                 onChange={this.handleSearchChange}
                                 placeholder="Ключевое слово"
                             />
+                            <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
+                                <option value="offer.price,asc"> Цена &#9660; </option>
+                                <option value="offer.price,desc"> Цена &#9650;</option>
+                                <option value="user.fullname,asc"> ФИО &#9660;</option>
+                                <option value="user.fullname,desc"> ФИО &#9650;</option>
+                                <option value="user.email,asc"> Email &#9660;</option>
+                                <option value="user.email,desc"> Email &#9650;</option>
+                                <option value="id,asc"> Id &#9660;</option>
+                                <option value="id,desc"> Id &#9650;</option>
+                                <option value="createdAt,desc"> Создание &#9660;</option>
+                                <option value="createdAt,asc"> Создание &#9650;</option>
+                            </select>
+                            {/*<span className="table-header-period-span">Период:</span>*/}
+                            <DatePicker
+                                selected={startDate}
+                                onChange={this.handleStartDateChange}
+                                dateFormat="dd.MM.yyyy"
+                                className="date-picker"
+                                placeholderText="Начало периода"
+                            />
+                            {/*<span className="table-header-period-span">-</span>*/}
+                            <DatePicker
+                                selected={endDate}
+                                onChange={this.handleEndDateChange}
+                                dateFormat="dd.MM.yyyy"
+                                className="date-picker"
+                                placeholderText="Конец периода"
+                            />
+                            <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
                         </form>
-                        <select value={sortParams} onChange={this.handleSortChange} className="table-sort-select">
-                            <option value="offer.price,asc"> Цена &#9660; </option>
-                            <option value="offer.price,desc"> Цена &#9650;</option>
-                            <option value="user.fullname,asc"> ФИО &#9660;</option>
-                            <option value="user.fullname,desc"> ФИО &#9650;</option>
-                            <option value="user.email,asc"> Email &#9660;</option>
-                            <option value="user.email,desc"> Email &#9650;</option>
-                            <option value="id,asc"> Id &#9660;</option>
-                            <option value="id,desc"> Id &#9650;</option>
-                            <option value="createdAt,desc"> Создание &#9660;</option>
-                            <option value="createdAt,asc"> Создание &#9650;</option>
-                        </select>
-                        {/*<span className="table-header-period-span">Период:</span>*/}
-                        <DatePicker
-                            selected={startDate}
-                            onChange={this.handleStartDateChange}
-                            dateFormat="dd.MM.yyyy"
-                            className="date-picker"
-                            placeholderText="Начало периода"
-                        />
-                        {/*<span className="table-header-period-span">-</span>*/}
-                        <DatePicker
-                            selected={endDate}
-                            onChange={this.handleEndDateChange}
-                            dateFormat="dd.MM.yyyy"
-                            className="date-picker"
-                            placeholderText="Конец периода"
-                        />
-                        <button className="table-search-button" type="submit"><IoMdSearch/> Поиск</button>
                         <button className="table-refresh-button" onClick={this.handleRefresh}>
                             <GrRefresh/>
                         </button>
