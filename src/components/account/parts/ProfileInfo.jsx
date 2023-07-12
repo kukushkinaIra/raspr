@@ -22,8 +22,8 @@ export default class ProfileInfo extends React.Component {
             isQuestionnaireExpanded: true,
             importantInfo: (
                 <div className="user-info-block important-info-block">
+                    <h5>Важная информация</h5>
                     <ol>
-                        <b>Важная информация:</b>
                         <li>
                             <u>При нетрудоспособности</u> необходимо в тот же день брать больничный
                             лист, а
