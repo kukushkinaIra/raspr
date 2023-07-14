@@ -270,12 +270,12 @@ export default class WorkWithOrdersTable extends React.Component {
             show: true,
             modalBody: (<div>
                     <Modal.Header closeButton>
-                        <Modal.Title>Оставьте комментарий клиенту</Modal.Title>
+                        <Modal.Title>Оставьте комментарий клиенту (например с информацией о получении документов)</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
                             <Form.Group className="mb-3" controlId="reject-note">
-                                <Form.Label>Примечание к платежу</Form.Label>
+                                <Form.Label>Примечание</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     rows={3}
@@ -338,55 +338,94 @@ export default class WorkWithOrdersTable extends React.Component {
     }
 
     handleCompleteOrder(order) {
-        this.setState({
-            show: true,
-            modalBody: (<div>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Оставьте комментарий клиенту</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            <Form.Group className="mb-3" controlId="complete-note">
-                                <Form.Label>Примечание</Form.Label>
-                                <Form.Control
-                                    as="textarea"
-                                    rows={3}
-                                    ref={this.noteRef}
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="contract-number">
-                                <Form.Label>Номер контракта</Form.Label>
-                                <Form.Control
-                                    ref={this.contractNumberRef}
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="contract-date">
-                                <Form.Label>Дата начала распределения</Form.Label>
-                                <Form.Control
-                                    as="date"
-                                    rows={3}
-                                    ref={this.contractDateRef}
-                                />
-                            </Form.Group>
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={() => {
-                            order.note = this.noteRef.current.value;
-                            order.contractDate = this.contractDateRef.current.value;
-                            order.contractNumber = this.contractNumberRef.current.value;
-                            this.completeOrder(order);
-                            this.setState({
-                                show: false,
-                                modal: <div></div>
-                            });
-                        }}>
-                            Подтвердить
-                        </Button>
-                    </Modal.Footer>
-                </div>
-            )
-        })
+        if (order.contract) {
+            this.setState({
+                show: true,
+                modalBody: (<div>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Оставьте комментарий клиенту</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form>
+                                <Form.Group className="mb-3" controlId="complete-note">
+                                    <Form.Label>Примечание</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        ref={this.noteRef}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="contract-number">
+                                    <Form.Label>Номер контракта</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        ref={this.contractNumberRef}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="contract-date">
+                                    <Form.Label>Дата начала распределения</Form.Label>
+                                    <Form.Control
+                                        type="date"
+                                        pattern="\d{4}-\d{2}-\d{2}"
+                                        ref={this.contractDateRef}
+                                    />
+                                </Form.Group>
+                            </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={() => {
+                                order.note = this.noteRef.current.value;
+                                order.contractDate = this.contractDateRef.current.value;
+                                order.contractNumber = this.contractNumberRef.current.value;
+                                console.log(this.contractNumberRef.current.value);
+                                this.completeOrder(order);
+                                this.setState({
+                                    show: false,
+                                    modal: <div></div>
+                                });
+                            }}>
+                                Подтвердить
+                            </Button>
+                        </Modal.Footer>
+                    </div>
+                )
+            })
+        } else {
+            this.setState({
+                show: true,
+                modalBody: (<div>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Оставьте комментарий клиенту</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form>
+                                <Form.Group className="mb-3" controlId="complete-note">
+                                    <Form.Label>Примечание</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        ref={this.noteRef}
+                                    />
+                                </Form.Group>
+                            </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={() => {
+                                order.note = this.noteRef.current.value;
+                                this.completeOrder(order);
+                                this.setState({
+                                    show: false,
+                                    modal: <div></div>
+                                });
+                            }}>
+                                Подтвердить
+                            </Button>
+                        </Modal.Footer>
+                    </div>
+                )
+            })
+        }
+
     }
 
     fetchActionRequest(order) {
@@ -394,7 +433,10 @@ export default class WorkWithOrdersTable extends React.Component {
             status: order.status,
             note: order.note,
         }
-        if (order.contract) {
+        console.log(order)
+        console.log(order.contractDate)
+        console.log(order.contractNumber)
+        if (order.contractDate || order.contractNumber) {
             requestBody = {
                 status: order.status,
                 note: order.note,

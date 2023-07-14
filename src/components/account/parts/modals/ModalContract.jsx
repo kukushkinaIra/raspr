@@ -115,9 +115,11 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
             let order = {
                 contract: {
                     fullname: formData.fullname,
+                    phoneNumber: '+375' + formData.phoneNumber,
                     startDate: formData.startDate,
                     endDate: formData.endDate,
                     position: formData.positions,
+                    duration: formData.duration,
                     trusteeFirst: formData.trusteeFirst,
                     trusteeSecond: formData.trusteeSecond,
                     trusteeThird: formData.trusteeThird,
