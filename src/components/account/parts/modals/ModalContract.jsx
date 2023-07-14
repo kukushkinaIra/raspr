@@ -114,6 +114,7 @@ function ModalContract({showProp, setShowPropFalse, offerId}) {
             const requestBody = new FormData();
             let order = {
                 contract: {
+                    fullname: formData.fullname,
                     startDate: formData.startDate,
                     endDate: formData.endDate,
                     position: formData.positions,

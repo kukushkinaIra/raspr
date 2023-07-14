@@ -3,6 +3,7 @@ import React, {Fragment} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import ModalGuaranteeLetter from "./modals/ModalGuaranteeLetter";
 import ModalContract from "./modals/ModalContract";
+import ModalDefault from "./modals/ModalDefault";
 
 
 export default class UserOffers extends React.Component {
@@ -131,10 +132,17 @@ export default class UserOffers extends React.Component {
                 break;
             }
             default:
-            // this.setState({
-            //     show: true,
-            //     modalTitle: "Подтвердите заказ",
-            // });
+                this.setState((prevState) => ({
+                    modal: (
+                        <ModalDefault
+                            showProp={true}
+                            setShowPropFalse={this.handleCloseUserOffer}
+                            offerId={offer.id}
+                        />
+                    ),
+                    show: !prevState.show,
+                }));
+                break;
         }
     }
 

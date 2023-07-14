@@ -17,6 +17,7 @@ function ModalGuaranteeLetter({showProp, setShowPropFalse, offerId}) {
     const [documentTemplate, setDocumentTemplate] = useState("");
     const [formData, setFormData] = useState({
         fullname: "",
+        accusativeCase:"",
         speciality: "",
         recipient: "",
         recipientPosition: "",
@@ -117,12 +118,27 @@ function ModalGuaranteeLetter({showProp, setShowPropFalse, offerId}) {
             <Modal.Body>
                 <Form className="input-form" noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="fullname">
-                        <Form.Label>ФИО (вин. падеж)</Form.Label>
+                        <Form.Label>ФИО в именительном падеже</Form.Label>
                         <Form.Control
                             required
                             type="text"
                             name="fullname"
                             value={formData.fullname}
+                            onChange={handleChange}
+                            placeholder="Иванова Татьяна Викторовна"
+                            autoFocus
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Поле обязательно для заполнения
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="accusativeCase">
+                        <Form.Label>ФИО (вин. падеж)</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            name="accusativeCase"
+                            value={formData.accusativeCase}
                             onChange={handleChange}
                             placeholder="Иванову Татьяну Викторовну"
                             autoFocus
@@ -131,7 +147,6 @@ function ModalGuaranteeLetter({showProp, setShowPropFalse, offerId}) {
                             Поле обязательно для заполнения
                         </Form.Control.Feedback>
                     </Form.Group>
-
                     <Form.Group className="mb-3" controlId="speciality">
                         <Form.Label>Специальность</Form.Label>
                         <Form.Control

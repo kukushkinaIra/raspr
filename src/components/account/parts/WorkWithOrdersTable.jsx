@@ -19,6 +19,8 @@ export default class WorkWithOrdersTable extends React.Component {
     constructor(props) {
         super(props);
         this.noteRef = React.createRef();
+        this.contractNumberRef = React.createRef();
+        this.contractDateRef = React.createRef();
         this.state = {
             error: null,
             expandedRow: null,
@@ -344,7 +346,7 @@ export default class WorkWithOrdersTable extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            <Form.Group className="mb-3" controlId="reject-note">
+                            <Form.Group className="mb-3" controlId="complete-note">
                                 <Form.Label>Примечание</Form.Label>
                                 <Form.Control
                                     as="textarea"
@@ -352,11 +354,27 @@ export default class WorkWithOrdersTable extends React.Component {
                                     ref={this.noteRef}
                                 />
                             </Form.Group>
+                            <Form.Group className="mb-3" controlId="contract-number">
+                                <Form.Label>Номер контракта</Form.Label>
+                                <Form.Control
+                                    ref={this.contractNumberRef}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="contract-date">
+                                <Form.Label>Дата начала распределения</Form.Label>
+                                <Form.Control
+                                    as="date"
+                                    rows={3}
+                                    ref={this.contractDateRef}
+                                />
+                            </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="primary" onClick={() => {
                             order.note = this.noteRef.current.value;
+                            order.contractDate = this.contractDateRef.current.value;
+                            order.contractNumber = this.contractNumberRef.current.value;
                             this.completeOrder(order);
                             this.setState({
                                 show: false,
@@ -372,9 +390,19 @@ export default class WorkWithOrdersTable extends React.Component {
     }
 
     fetchActionRequest(order) {
-        const requestBody = {
+        let requestBody = {
             status: order.status,
-            note: order.note
+            note: order.note,
+        }
+        if (order.contract) {
+            requestBody = {
+                status: order.status,
+                note: order.note,
+                contract: {
+                    contractDate: order.contractDate,
+                    contractNumber: order.contractNumber
+                }
+            }
         }
         fetch(`/orders/${order.id}`, {
             method: "PATCH",
