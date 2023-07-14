@@ -143,7 +143,7 @@ export default class WorkWithOrdersTable extends React.Component {
         const managerId = localStorage.getItem('id')
         const formattedStartDate = startDate ? moment(startDate).format('YYYY-MM-DDTHH:mm:ss') : '';
         const formattedEndDate = endDate ? moment(endDate).format('YYYY-MM-DDTHH:mm:ss') : '';
-        const url = `/orders/manager/${managerId}?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
+        const url = `/orders?search=${encodeURIComponent(search)}&page=${currentPage}&size=${pageSize}&sort=${encodeURIComponent(sortParams)}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
         fetch(url)
             .then(res => {
                 if (!res.ok) {
@@ -174,7 +174,7 @@ export default class WorkWithOrdersTable extends React.Component {
                         this.setState({
                             orders: data.content,
                             totalPages: data.totalPages,
-                            totalElements: data.totalPages,
+                            totalElements: data.totalElements,
                             isLoading: false,
                         });
                     }

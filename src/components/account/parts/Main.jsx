@@ -40,14 +40,14 @@ function Main() {
                 return (<Fragment>
                     <Nav.Item className="tab_item_custom">
                         <Nav.Link eventKey="second">
-                            Работа с заказами
+                            Заказы
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item className="tab_item_custom">
-                        <Nav.Link eventKey="forth">
-                            История заказов
-                        </Nav.Link>
-                    </Nav.Item>
+                    {/*<Nav.Item className="tab_item_custom">*/}
+                    {/*    <Nav.Link eventKey="forth">*/}
+                    {/*        История заказов*/}
+                    {/*    </Nav.Link>*/}
+                    {/*</Nav.Item>*/}
                     <Nav.Item className="tab_item_custom">
                         <Nav.Link eventKey="fifth">
                             Клиенты
@@ -69,14 +69,14 @@ function Main() {
                 return (<Fragment>
                     <Nav.Item className="tab_item_custom">
                         <Nav.Link eventKey="second">
-                            Работа с заказами
+                            Заказы
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item className="tab_item_custom">
-                        <Nav.Link eventKey="forth">
-                            История заказов
-                        </Nav.Link>
-                    </Nav.Item>
+                    {/*<Nav.Item className="tab_item_custom">*/}
+                    {/*    <Nav.Link eventKey="forth">*/}
+                    {/*        История заказов*/}
+                    {/*    </Nav.Link>*/}
+                    {/*</Nav.Item>*/}
                     <Nav.Item className="tab_item_custom">
                         <Nav.Link eventKey="fifth">
                             Клиенты
@@ -109,17 +109,17 @@ function Main() {
             case "ROLE_ADMIN" : {
                 return (<Fragment>
                     <Tab.Pane eventKey="second">
-                        <h3>Управление заказами</h3>
+                        <h3>Заказы</h3>
                         <WorkWithOrdersTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
                         <h3 className="choose">Распределение заказов</h3>
                         <ManagementTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
-                    <Tab.Pane eventKey="forth">
-                        <h3>Информация о заказах</h3>
-                        <OrdersHistoryTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
-                    </Tab.Pane>
+                    {/*<Tab.Pane eventKey="forth">*/}
+                    {/*    <h3>Информация о заказах</h3>*/}
+                    {/*    <OrdersHistoryTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>*/}
+                    {/*</Tab.Pane>*/}
                     <Tab.Pane eventKey="fifth">
                         <h3>Информация о клиентах</h3>
                         <ClientsTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
@@ -133,13 +133,13 @@ function Main() {
             case "ROLE_MANAGER" : {
                 return (<Fragment>
                     <Tab.Pane eventKey="second">
-                        <h3>Управление заказами</h3>
+                        <h3>Заказы</h3>
                         <WorkWithOrdersTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
                     </Tab.Pane>
-                    <Tab.Pane eventKey="forth">
-                        <h3>Информация о заказах</h3>
-                        <OrdersHistoryTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
-                    </Tab.Pane>
+                    {/*<Tab.Pane eventKey="forth">*/}
+                    {/*    <h3>Информация о заказах</h3>*/}
+                    {/*    <OrdersHistoryTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>*/}
+                    {/*</Tab.Pane>*/}
                     <Tab.Pane eventKey="fifth">
                         <h3>Информация о клиентах</h3>
                         <ClientsTable id={id} setId={setId} setRole={setRole} navigate={navigate}/>
